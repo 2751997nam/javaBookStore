@@ -22,11 +22,11 @@ public class DB {
     protected String table;
     protected String class_name;
     protected Query query;
-    
+
     public DB() {
         try {
             this.connection = MySQLConnect.getMySQLConnection();
-            this.query = new Query();        
+            this.query = new Query();
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -87,7 +87,7 @@ public class DB {
 
         return result;
     }
-    
+
     public List excuteWithoutClass(String query) {
         List result = new ArrayList();
         try {
@@ -101,7 +101,7 @@ public class DB {
                 for (int i = 1; i <= length; i++) {
                     map.put(rs.getMetaData().getColumnName(i), rs.getString(i));
                 }
-                
+
                 result.add(map);
             }
             this.connection.close();
@@ -111,25 +111,25 @@ public class DB {
 
         return result;
     }
-    
+
     public boolean checkQuery(String query) {
         try {
             System.out.println(query);
             Statement statement = this.connection.createStatement();
 
             ResultSet rs = statement.executeQuery(query);
-            if(rs.next()) {
+            if (rs.next()) {
                 this.connection.close();
                 return true;
             }
-            this.connection.close(); 
+            this.connection.close();
         } catch (SQLException ex) {
             Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return false;
     }
-    
+
     public boolean checkQuery() {
         return this.checkQuery(this.query.toString());
     }
@@ -234,16 +234,16 @@ public class DB {
 
         return this;
     }
-    
+
     public DB insert() {
         this.query.setCommand("INSERT INTO ");
-        
+
         return this;
     }
-    
+
     public DB update() {
         this.query.setCommand("UPDATE ");
-        
+
         return this;
     }
 
@@ -293,7 +293,7 @@ public class DB {
     }
 
     public List get() {
-        if(this.class_name != null) {
+        if (this.class_name != null) {
             return execute(this.query.toString());
         } else {
             return excuteWithoutClass(this.query.toString());
@@ -302,11 +302,11 @@ public class DB {
 
     public DB paginate(HttpServletRequest request, int limit) {
         int current = 1;
-        if(request.getParameter("page") != null) {
+        if (request.getParameter("page") != null) {
             current = Integer.parseInt(request.getParameter("page"));
         }
-        new Paginate().setPaginate(request, getPageNumber(limit, current), current);
-        
+        new Paginate().setPaginate(request, getPageNumber(limit, current), limit, current);
+
         this.query.setLimit(limit);
         this.query.setPaginate("Offset " + limit * (current - 1));
 
@@ -337,19 +337,22 @@ public class DB {
 
         return page_number;
     }
-    
+
     public Object find(int id) {
         Object obj = new Object();
-        
+
         obj = this.where(new String[]{"id = " + id}).execute(this.query.toString()).get(0);
-        
+
         return obj;
     }
-    
+
     public DB limit(int limit) {
         this.query.setLimit(limit);
-        
+
         return this;
     }
-    
+
+    public String getClassName(String column) {
+        return "models." + column.toUpperCase().charAt(0) + column.substring(1, column.length() - 3);
+    }
 }

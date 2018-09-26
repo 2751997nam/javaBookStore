@@ -19,17 +19,18 @@
         <table>
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th> <%= Lang.getKey("en", "Username") %></th>
+                    <th><%= Lang.getKey(language, "Num.") %></th>
+                    <th><%= Lang.getKey(language, "Fullname") %></th>
                     <th>Email</th>
                     <th><%= Lang.getKey(language, "Created") %></th>
                     <th><%= Lang.getKey(language, "Updated") %></th>
                 </tr>
             </thead>
             <tbody>
+                <% int num = Integer.parseInt(request.getAttribute("perpage").toString()) * (Integer.parseInt(request.getAttribute("current").toString()) - 1); %>
                 <% for (User user : users) {%>
                 <tr>
-                    <td><%= user.getId()%></td>
+                    <td><%= ++num %></td>
                     <td><%= user.getName()%></td>
                     <td><%= user.getEmail()%></td>
                     <td><%= user.getCreated_at()%></td>

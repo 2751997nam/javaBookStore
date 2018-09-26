@@ -13,6 +13,7 @@ public class Lang extends Config{
     public Lang(String language) {
         this.setPath("..\\lang\\" + language + ".json");
     }
+    
     public static String getKey(String language, String key) {
         Lang lang = new Lang(language);
         String value = lang.get(key);

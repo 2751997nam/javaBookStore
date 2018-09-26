@@ -84,4 +84,10 @@ public class Product extends Model {
                         Integer.parseInt(new Database().get("paginate"))
                 ).get();
     }
+
+    @Override
+    public String toString() {
+        return "Product{" + "id=" + id + ", name=" + name + ", price=" + price + ", description=" + description + '}';
+    }
+    
 }

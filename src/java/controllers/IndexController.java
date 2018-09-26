@@ -12,7 +12,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.ProductUser;
 import models.User;
+import models.database.DB;
 
 /**
  *
@@ -35,6 +37,8 @@ public class IndexController extends HttpServlet {
         
         List users =  new User().getAllUser(request);
         
+        ProductUser productuser = (ProductUser) new DB("product_user", "models.ProductUser").find(1);
+        System.out.println(productuser.toString());
         request.setAttribute("users", users);
         RequestDispatcher dispatcher = request.getRequestDispatcher("indexView");
         dispatcher.forward(request, response);

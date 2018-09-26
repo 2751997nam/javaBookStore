@@ -86,7 +86,7 @@ public class Migration {
 
         int max_batch = 0;
         if (!list.isEmpty()) {
-            max_batch = Integer.parseInt(list.get(0).get("maxBatch"));
+            max_batch = Integer.parseInt(list.get(0).get("batch"));
         }
         max_batch++;
         new DB("migrations").insert(new String[]{name, "" + max_batch});
@@ -98,61 +98,59 @@ public class Migration {
 
     public static void main(String[] args) {
         int n = 0;
-        do {
-            Migration migration = new Migration();
-            Scanner sc = new Scanner(System.in);
-            System.out.println("1. Migrate");
-            System.out.println("2. RollBack");
-            System.out.println("3. Create Migration");
-            System.out.println("4. Drop Migration");
-            System.out.println("5. Refresh");
-            System.out.println("6. Rollback All");
-            System.out.println("0. Exit");
-            System.out.println("Choose: ");
-            n = sc.nextInt();
-            switch (n) {
-                case 1: {
-                    migration.up();
+        Migration migration = new Migration();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("1. Migrate");
+        System.out.println("2. RollBack");
+        System.out.println("3. Create Migration");
+        System.out.println("4. Drop Migration");
+        System.out.println("5. Refresh");
+        System.out.println("6. Rollback All");
+        System.out.println("0. Exit");
+        System.out.println("Choose: ");
+        n = sc.nextInt();
+        switch (n) {
+            case 1: {
+                migration.up();
 
-                    break;
-                }
-
-                case 2: {
-                    List<HashMap<String, String>> list = new DB("migrations")
-                            .select("*")
-                            .orderBy("batch DESC")
-                            .limit(1)
-                            .get();
-                    migration.down(list);
-
-                    break;
-                }
-
-                case 3: {
-                    new CreateMigrationsTable().up();
-
-                    break;
-                }
-
-                case 4: {
-                    new CreateMigrationsTable().down();
-
-                    break;
-                }
-
-                case 5: {
-                    migration.down(migration);
-                    migration.up();
-
-                    break;
-                }
-
-                case 6: {
-                    migration.down(migration);
-
-                    break;
-                }
+                break;
             }
-        } while (n != 0);
+
+            case 2: {
+                List<HashMap<String, String>> list = new DB("migrations")
+                        .select("*")
+                        .orderBy("batch DESC")
+                        .limit(1)
+                        .get();
+                migration.down(list);
+
+                break;
+            }
+
+            case 3: {
+                new CreateMigrationsTable().up();
+
+                break;
+            }
+
+            case 4: {
+                new CreateMigrationsTable().down();
+
+                break;
+            }
+
+            case 5: {
+                migration.down(migration);
+                migration.up();
+
+                break;
+            }
+
+            case 6: {
+                migration.down(migration);
+
+                break;
+            }
+        }
     }
 }

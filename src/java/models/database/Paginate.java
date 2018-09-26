@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class Paginate {
 
-    public void setPaginate(HttpServletRequest request, int page_number, int current) {
+    public void setPaginate(HttpServletRequest request, int page_number, int limit, int current) {
         StringBuffer current_url = request.getRequestURL();
         String[] links = new String[5];
         links[0] = current_url + "?page=1";
@@ -30,6 +30,7 @@ public class Paginate {
         request.setAttribute("page_number", page_number);
         request.setAttribute("links", links);
         request.setAttribute("current", current);
+        request.setAttribute("perpage", limit);
         request.setAttribute("url", current_url + "?page=");
     }
 }
