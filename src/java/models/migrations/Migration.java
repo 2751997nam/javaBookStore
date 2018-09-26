@@ -17,6 +17,8 @@ import java.util.logging.Logger;
 import models.database.DB;
 import models.database.MySQLConnect;
 import models.migrations.migrations.CreateMigrationsTable;
+import models.migrations.migrations.CreateProductUserPivotTable;
+import models.migrations.migrations.CreateRolesTable;
 import models.migrations.migrations.CreateUsersTable;
 
 /**
@@ -38,10 +40,12 @@ public class Migration {
     public void up() {
         new CreateUsersTable().up();
         new CreateProductsTable().up();
+        new CreateProductUserPivotTable().up();
+        new CreateRolesTable().up();
     }
-    
+
     public void down() {
-        
+
     }
 
     public void down(Migration migration) {
@@ -71,22 +75,21 @@ public class Migration {
                 Logger.getLogger(Migration.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        ;
     }
 
     public void addMigration(String name) {
         List<HashMap<String, String>> list = new DB("migrations")
-                .select("*, max(batch) as maxBatch")
-                .groupBy("batch")
-                .having("batch = max(batch)")
+                .select("*")
+                .orderBy("batch DESC")
+                .limit(1)
                 .get();
 
         int max_batch = 0;
         if (!list.isEmpty()) {
             max_batch = Integer.parseInt(list.get(0).get("maxBatch"));
         }
-
-        new DB("migrations", "models.Migration").insert(new String[]{name, "" + ++max_batch});
+        max_batch++;
+        new DB("migrations").insert(new String[]{name, "" + max_batch});
     }
 
     public void removeMigration(String name) {
@@ -110,7 +113,7 @@ public class Migration {
             switch (n) {
                 case 1: {
                     migration.up();
-                    
+
                     break;
                 }
 
@@ -140,13 +143,13 @@ public class Migration {
                 case 5: {
                     migration.down(migration);
                     migration.up();
-                    
+
                     break;
                 }
 
                 case 6: {
                     migration.down(migration);
-                    
+
                     break;
                 }
             }

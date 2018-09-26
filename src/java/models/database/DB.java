@@ -197,7 +197,6 @@ public class DB {
     public DB insert(String values[]) {
         this.query.setCommand("INSERT INTO");
         this.query.setFrom(this.table);
-        this.query.setColumns(this.getColumns());
         this.query.setColumnValues("VALUES " + this.getValues(values));
         this.execute();
 

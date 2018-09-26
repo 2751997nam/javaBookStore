@@ -1,9 +1,10 @@
+<%@page import="config.Lang"%>
 <% int page_number = Integer.parseInt(request.getAttribute("page_number").toString()); %>
 <% int current = Integer.parseInt(request.getAttribute("current").toString()); %>
 <% String[] links = (String[]) request.getAttribute("links"); %>
 <% String url = request.getAttribute("url").toString();%>
 <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="<%= links[0] %>">First</a></li>
+    <li class="page-item"><a class="page-link" href="<%= links[0] %>"><%= Lang.getKey(language, "First") %></a></li>
     <li class="page-item"><a class="page-link" href="<%= links[1] %>"> « </a></li>
     <% if(page_number < 6) {%>
         <% for (int i = 1; i <= page_number; i++) {%>
@@ -31,5 +32,5 @@
                 <% } %>
     <% } %>
     <li class="page-item"><a class="page-link" href="<%= links[3] %>"> » </a></li>
-    <li class="page-item"><a class="page-link" href="<%= links[4] %>">Last</a></li>
+    <li class="page-item"><a class="page-link" href="<%= links[4] %>"><%= Lang.getKey(language, "Last") %></a></li>
 </ul>

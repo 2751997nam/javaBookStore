@@ -36,20 +36,19 @@ public class Config {
         URL url = getClass().getResource(this.path);
         this.path = url.getPath() + "\\" + path;
     }
-    
-    
 
     public String get(String key) {
         JSONParser parser = new JSONParser();
         String value = "";
         try {
-            JSONObject object = (JSONObject) parser.parse(new InputStreamReader(new FileInputStream(this.path)));
+            JSONObject object = (JSONObject) parser.parse(new InputStreamReader(new FileInputStream(this.path), "UTF-8"));
             value = (String) object.get(key);
         } catch (ParseException | FileNotFoundException ex) {
             Logger.getLogger(Config.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(Config.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         return value;
     }
 }

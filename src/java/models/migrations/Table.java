@@ -23,12 +23,33 @@ public class Table {
         this.query.setColumns("(");
     }
     
+    public void alter() {
+        this.query.setColumns("");
+        this.query.setCommand("ALTER TABLE ");
+    }
+    
+    public Table addColumn() {
+        this.query.setColumns(this.query.getColumns() + "ADD ");
+        
+        return this;
+    }
+    
+    public Table modifyColumn() {
+        this.query.setColumns(this.query.getColumns() + "MODIFY ");
+        
+        return this;        
+    }
+    
+    public void dropColumn(String name) {
+        this.query.setColumns(this.query.getColumns() + "Drop COLUMN " + name + ", ");
+    }
+    
     public void addNullable(String key, String value) {
-        this.query.setColumns(this.query.getColumns() + ", " + key + " " + value);
+        this.query.setColumns(this.query.getColumns() + key + " " + value + ", ");
     }
     
     public void addNullable(String key, String value, String type) {
-        this.query.setColumns(this.query.getColumns() + ", " + key + " " + value + " " + type);
+        this.query.setColumns(this.query.getColumns() + key + " " + value + " " + type + ", ");
     }
     
     public void add(String key, String value, String type) {
@@ -65,22 +86,32 @@ public class Table {
     
     public void addID() {
         this.query.setColumns(this.query.getColumns() + "`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY");
+        this.query.setColumns(this.query.getColumns() + ", INDEX(`id`), ");
     }
     
     public void addForeign(String column, String table, String references) {
-        this.query.setColumns(this.query.getColumns() + "CONSTRAINT FK_" + this.query.getFrom() + table + "FOREIGN KEY (" + column + ")\n" +
-                                                            "REFERENCES " + table + "(" + references + ")" );
+        this.query.setColumns(this.query.getColumns() + "CONSTRAINT FK_" + this.query.getFrom() + table + " FOREIGN KEY (" + column + ")\n" +
+                                                            "REFERENCES " + table + "(" + references + ")" + " ON DELETE CASCADE, " );
     }
     
     public void addTimestamps() {
         this.add("created_at", "TIMESTAMP", "DEFAULT CURRENT_TIMESTAMP");
-        this.add("updated_at", "TIMESTAMP", "DEFAULT CURRENT_TIMESTAMP");
+         this.query.setColumns(this.query.getColumns() + "updated_at" + " " + "TIMESTAMP" + " " + "DEFAULT CURRENT_TIMESTAMP");
     }
     
     public void create() {
         this.query.setCommand("CREATE TABLE");
         this.query.setColumns(this.query.getColumns() + ")");
         new DB().executeQuery(this.query.toString());
+    }
+    
+    public void execute() {
+        String sql = this.query.toString().trim();
+        if(sql.charAt(sql.length() - 1) == 44) {
+            sql = sql.substring(0, sql.length() - 1);
+        }
+        
+        new DB().executeQuery(sql);
     }
     
     public void createWithTimestamps() {
@@ -90,6 +121,10 @@ public class Table {
     
     public void drop() {
         new DB().executeQuery("Drop Table " +  this.query.getFrom());
+    }
+    
+    public void dropForeign(String name) {
+        this.query.setColumns("Drop FOREIGN KEY " + name + ", ");
     }
     
     public boolean exists(String name) {
