@@ -1,6 +1,6 @@
+<%@page import="models.Book"%>
 <%@page import="config.Lang"%>
 <%@ page import="models.User"%>
-<%@page import="models.Product"%>
 <%@ page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="language.jsp" %>
@@ -14,7 +14,7 @@
     <body>
         <%@include file="langForm.jsp" %>
             
-        <% ArrayList<Product> products = (ArrayList<Product>) request.getAttribute("products"); %>
+        <% ArrayList<Book> books = (ArrayList<Book>) request.getAttribute("books"); %>
         <table>
             <thead>
                 <tr>
@@ -27,14 +27,14 @@
                 </tr>
             </thead>
             <tbody>
-                <% for (Product product : products) {%>
+                <% for (Book book : books) {%>
                 <tr>
-                    <td><%= product.getId()%></td>
-                    <td><%= product.getName()%></td>
-                    <td><%= product.getPrice()%></td>
-                    <td><%= product.getDescription()%></td>
-                    <td><%= product.getCreated_at()%></td>
-                    <td><%= product.getUpdated_at()%></td>
+                    <td><%= book.getId()%></td>
+                    <td><%= book.getName()%></td>
+                    <td><%= book.showPrice()%></td>
+                    <td><%= book.getDescription()%></td>
+                    <td><%= book.getCreated_at()%></td>
+                    <td><%= book.getUpdated_at()%></td>
                 </tr>
                 <%}%>
             </tbody>

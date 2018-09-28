@@ -5,7 +5,7 @@
  */
 package models.database;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import models.Model;
 
 /**
@@ -50,10 +50,10 @@ public class Migration extends Model{
         this.batch = batch;
     }
 
-    public Migration(ArrayList<String> cols) {
+    public Migration(HashMap<String, String> cols) {
         super(cols);
-        this.id = Integer.parseInt(cols.get(0));
-        this.name = cols.get(1);
-        this.batch = Integer.parseInt(cols.get(2));
+        this.id = Integer.parseInt(cols.get("id"));
+        this.name = cols.get("name");
+        this.batch = Integer.parseInt(cols.get("batch"));
     }
 }

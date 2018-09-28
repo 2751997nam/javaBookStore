@@ -22,6 +22,7 @@
                     <th><%= Lang.getKey(language, "Num.") %></th>
                     <th><%= Lang.getKey(language, "Fullname") %></th>
                     <th>Email</th>
+                    <th>Role ID</th>
                     <th><%= Lang.getKey(language, "Created") %></th>
                     <th><%= Lang.getKey(language, "Updated") %></th>
                 </tr>
@@ -33,6 +34,7 @@
                     <td><%= ++num %></td>
                     <td><%= user.getName()%></td>
                     <td><%= user.getEmail()%></td>
+                    <td><%= user.getRole_id() %></td>
                     <td><%= user.getCreated_at()%></td>
                     <td><%= user.getUpdated_at()%></td>
                 </tr>

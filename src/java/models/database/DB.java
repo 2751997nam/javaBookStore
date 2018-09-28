@@ -52,7 +52,7 @@ public class DB {
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e);
         }
-        this.class_name = class_name;
+        this.class_name = "models." + class_name;
     }
 
     public String getQuery() {
@@ -71,12 +71,12 @@ public class DB {
 
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
-                List<String> cols = new ArrayList();
+                HashMap<String, String> cols = new HashMap();
                 int length = rs.getMetaData().getColumnCount();
                 for (int i = 1; i <= length; i++) {
-                    cols.add(rs.getString(i));
+                    cols.put(rs.getMetaData().getColumnName(i), rs.getString(i));
                 }
-                result.add(Class.forName(this.class_name).getConstructor(ArrayList.class).newInstance(cols));
+                result.add(Class.forName(this.class_name).getConstructor(HashMap.class).newInstance(cols));
             }
             this.connection.close();
         } catch (InstantiationException | IllegalAccessException

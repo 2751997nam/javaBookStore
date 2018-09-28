@@ -2,49 +2,34 @@ package models;
 
 import config.Database;
 import models.database.DB;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 public class User extends Model {
 
-    protected int id;
     protected String name;
     protected String email;
     protected String password;
     protected String remember_token;
+    protected int role_id;
 
     public User() {
         super();
-        this.id = 0;
         this.name = "";
         this.email = "";
         this.password = "";
         this.remember_token = "";
+        this.role_id = 0;
     }
 
-    public User(int id, String name, String password) {
-        super();
-        this.id = id;
-        this.name = name;
-        this.password = password;
-    }
-
-    public User(ArrayList<String> cols) {
+    public User(HashMap<String, String> cols) {
         super(cols);
-        this.id = Integer.parseInt(cols.get(0));
-        this.name = cols.get(1);
-        this.email = cols.get(2);
-        this.password = cols.get(3);
-        this.remember_token = cols.get(4);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.name = cols.get("name");
+        this.email = cols.get("email");
+        this.password = cols.get("password");
+        this.remember_token = cols.get("remember_token");
+        this.role_id = Integer.parseInt(cols.get("role_id"));
     }
 
     public String getEmail() {
@@ -83,17 +68,24 @@ public class User extends Model {
         return name.equals("username") && password.equals("password");
     }
 
+    public int getRole_id() {
+        return role_id;
+    }
+
+    public void setRole_id(int role_id) {
+        this.role_id = role_id;
+    }
+    
     @Override
     public String toString() {
         return "User [id=" + id + ", name=" + name + ", password=" + password + "]";
     }
 
     public List getAllUser(HttpServletRequest request) {
-        return new DB("users", "models.User")
+        return new DB("users", "User")
                 .orderBy("name")
                 .paginate(request,
                         Integer.parseInt(new Database().get("paginate"))
                 ).get();       
     }
-
 }

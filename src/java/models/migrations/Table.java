@@ -23,9 +23,11 @@ public class Table {
         this.query.setColumns("(");
     }
     
-    public void alter() {
+    public Table alter() {
         this.query.setColumns("");
         this.query.setCommand("ALTER TABLE ");
+        
+        return this;
     }
     
     public Table addColumn() {
@@ -40,91 +42,135 @@ public class Table {
         return this;        
     }
     
-    public void dropColumn(String name) {
+    public Table dropColumn(String name) {
         this.query.setColumns(this.query.getColumns() + "Drop COLUMN " + name + ", ");
+        
+        return this;
     }
     
-    public void addNullable(String key, String value) {
+    public Table addNullable(String key, String value) {
         this.query.setColumns(this.query.getColumns() + key + " " + value + ", ");
+        
+        return this;
     }
     
-    public void addNullable(String key, String value, String type) {
+    public Table addNullable(String key, String value, String type) {
         this.query.setColumns(this.query.getColumns() + key + " " + value + " " + type + ", ");
+        
+        return this;
     }
     
-    public void add(String key, String value, String type) {
+    public Table add(String key, String value, String type) {
         this.addNullable(key, value, "NOT NULL " + type);
+        
+        return this;
     }
     
-    public void add(String key, String value) {
+    public Table add(String key, String value) {
         this.addNullable(key, value, "NOT NULL");
+        
+        return this;
     }
     
-    public void string(String key, int length) {
+    public Table string(String key, int length) {
         this.add(key, "VARCHAR(" + length + ")");
+        
+        return this;
     }
     
-    public void string(String key) {
+    public Table string(String key) {
         this.add(key, "VARCHAR(191)");
+        
+        return this;
     }
     
-    public void text(String key) {
+    public Table text(String key) {
         this.add(key, "TEXT");
+        
+        return this;
     }
     
-    public void integer(String key) {
+    public Table integer(String key) {
         this.add(key, "INT");
+        
+        return this;
     }
     
-    public void bigInteger(String key) {
-        this.add(key, "BIGINT");
+    public Table bigInteger(String key) {
+        this.add(key, "BIGINT");        
+        
+        return this;
     }
     
-    public void decimal(String key) {
+    public Table decimal(String key) {
         this.add(key, "DOUBLE");
+        
+        return this;
     }
     
-    public void addID() {
+    public Table addID() {
         this.query.setColumns(this.query.getColumns() + "`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY");
         this.query.setColumns(this.query.getColumns() + ", INDEX(`id`), ");
+        
+        return this;
     }
     
-    public void addForeign(String column, String table, String references) {
+    public Table addForeign(String column, String table, String references) {
         this.query.setColumns(this.query.getColumns() + "CONSTRAINT FK_" + this.query.getFrom() + table + " FOREIGN KEY (" + column + ")\n" +
                                                             "REFERENCES " + table + "(" + references + ")" + " ON DELETE CASCADE, " );
+        
+        return this;
     }
     
-    public void addTimestamps() {
+    public Table addForeign(String column, String table) {
+        this.addForeign(column, table, "id");
+        
+        return this;
+    }
+    
+    public Table addTimestamps() {
         this.add("created_at", "TIMESTAMP", "DEFAULT CURRENT_TIMESTAMP");
-         this.query.setColumns(this.query.getColumns() + "updated_at" + " " + "TIMESTAMP" + " " + "DEFAULT CURRENT_TIMESTAMP");
+        this.query.setColumns(this.query.getColumns() + "updated_at" + " " + "TIMESTAMP" + " " + "DEFAULT CURRENT_TIMESTAMP");
+        
+        return this;
     }
     
-    public void create() {
+    public Table create() {
         this.query.setCommand("CREATE TABLE");
         this.query.setColumns(this.query.getColumns() + ")");
         new DB().executeQuery(this.query.toString());
+        
+        return this;
     }
     
-    public void execute() {
+    public Table execute() {
         String sql = this.query.toString().trim();
         if(sql.charAt(sql.length() - 1) == 44) {
             sql = sql.substring(0, sql.length() - 1);
         }
         
         new DB().executeQuery(sql);
+        
+        return this;
     }
     
-    public void createWithTimestamps() {
+    public Table createWithTimestamps() {
         this.addTimestamps();
         this.create();
+        
+        return this;
     }
     
-    public void drop() {
+    public Table drop() {
         new DB().executeQuery("Drop Table " +  this.query.getFrom());
+        
+        return this;
     }
     
-    public void dropForeign(String name) {
-        this.query.setColumns("Drop FOREIGN KEY " + name + ", ");
+    public Table dropForeign(String name) {
+        this.query.setColumns(this.query.getColumns() + "Drop FOREIGN KEY " + name + ", ");
+        
+        return this;
     }
     
     public boolean exists(String name) {
@@ -132,5 +178,17 @@ public class Table {
                 .select("*")
                 .where(new String[]{"name = '" + name + "'"})
                 .checkQuery();
+    }
+    
+    public Table unique(String name) {
+        this.query.setColumns(this.query.getColumns() + "CONSTRAINT UNI_" + name + " UNIQUE (" + name + "), ");
+        
+        return this;
+    }
+    
+    public Table dropUnique(String name) {
+        this.query.setColumns(this.query.getColumns() + "Drop INDEX UNI_" + name + ", ");
+        
+        return this;
     }
 }

@@ -6,7 +6,7 @@
 package models.migrations;
 
 import java.lang.reflect.InvocationTargetException;
-import models.migrations.migrations.CreateProductsTable;
+import models.migrations.migrations.CreateBooksTable;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -16,8 +16,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import models.database.DB;
 import models.database.MySQLConnect;
+import models.migrations.migrations.AddColumnsInBooksTable;
+import models.migrations.migrations.CreateBookCategoryPivotTable;
+import models.migrations.migrations.CreateCategoriesTable;
+import models.migrations.migrations.CreateImagesTable;
 import models.migrations.migrations.CreateMigrationsTable;
-import models.migrations.migrations.CreateProductUserPivotTable;
+import models.migrations.migrations.CreateBookUserPivotTable;
+import models.migrations.migrations.CreateOrderDetailsTable;
+import models.migrations.migrations.CreateOrdersTable;
+import models.migrations.migrations.CreateProfilesTable;
+import models.migrations.migrations.CreateRatesTable;
 import models.migrations.migrations.CreateRolesTable;
 import models.migrations.migrations.CreateUsersTable;
 
@@ -39,9 +47,17 @@ public class Migration {
 
     public void up() {
         new CreateUsersTable().up();
-        new CreateProductsTable().up();
-        new CreateProductUserPivotTable().up();
+        new CreateBooksTable().up();
+        new CreateBookUserPivotTable().up();
         new CreateRolesTable().up();
+        new CreateProfilesTable().up();
+        new CreateImagesTable().up();
+        new AddColumnsInBooksTable().up();
+        new CreateCategoriesTable().up();
+        new CreateBookCategoryPivotTable().up();
+        new CreateOrdersTable().up();
+        new CreateOrderDetailsTable().up();
+        new CreateRatesTable().up();
     }
 
     public void down() {

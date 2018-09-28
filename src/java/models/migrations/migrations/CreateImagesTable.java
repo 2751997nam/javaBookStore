@@ -12,28 +12,27 @@ import models.migrations.Table;
  *
  * @author ASUS
  */
-public class CreateProductUserPivotTable extends Migration{
+public class CreateImagesTable extends Migration {
     public void up() {
         if(this.exists()) {
             return;
         }
         this.addMigration(this.getClass().getName());
-        Table tb = new Table("product_user");
+        Table tb = new Table("images");
         tb.addID();
-        tb.integer("product_id");
-        tb.integer("user_id");
-        tb.integer("quantity");
-        tb.addForeign("user_id", "users", "id");
-        tb.addForeign("product_id", "products", "id");
+        tb.string("link");
+        tb.string("alternative");
+        tb.integer("book_id");
+        tb.addForeign("book_id", "books", "id");
         tb.createWithTimestamps();
     }
     
     public void down() {
-        Table table = new Table("product_user");
-        if (!this.exists()) {
+        if(!this.exists()) {
             return;
         }
-        table.drop();
+        Table tb = new Table("images");
+        tb.drop();
         this.removeMigration(this.getClass().getName());
     }
 }
