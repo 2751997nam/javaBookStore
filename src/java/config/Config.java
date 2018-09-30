@@ -43,11 +43,14 @@ public class Config {
         try {
             JSONObject object = (JSONObject) parser.parse(new InputStreamReader(new FileInputStream(this.path), "UTF-8"));
             value = (String) object.get(key);
-        } catch (ParseException | FileNotFoundException ex) {
+        } catch (ParseException ex) {
             Logger.getLogger(Config.class.getName()).log(Level.SEVERE, null, ex);
+        } catch ( FileNotFoundException ex) {
+            System.out.println("File Not Found:" + this.path);
         } catch (IOException ex) {
             Logger.getLogger(Config.class.getName()).log(Level.SEVERE, null, ex);
         }
+            
         
         return value;
     }

@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -63,6 +64,7 @@ public class DB {
         return this.connection;
     }
 
+    // thực hiện câu truy vấn select, trả về List các model
     public List execute(String query) {
         List result = new ArrayList();
         try {
@@ -88,6 +90,7 @@ public class DB {
         return result;
     }
 
+    //thực hiện câu truy vấn select, kết quả trả về List HashMap<String, String>
     public List excuteWithoutClass(String query) {
         List result = new ArrayList();
         try {
@@ -112,6 +115,7 @@ public class DB {
         return result;
     }
 
+    //kiểm tra câu truy vấn select có trả về kết quả gì không
     public boolean checkQuery(String query) {
         try {
             System.out.println(query);
@@ -130,10 +134,12 @@ public class DB {
         return false;
     }
 
+    //kiểm tra câu truy vấn select có trả về kết quả gì không
     public boolean checkQuery() {
         return this.checkQuery(this.query.toString());
     }
 
+    // chạy các câu truy vấn insert, update, delete
     public void executeQuery(String sql) {
         try {
             Statement statement = this.connection.createStatement();
@@ -144,6 +150,7 @@ public class DB {
         }
     }
 
+    // chạy các câu truy vấn insert, update, delete
     public void execute() {
         this.executeQuery(this.query.toString());
     }
@@ -152,52 +159,30 @@ public class DB {
         this.query = new Query();
     }
 
+    // trả về tất cả bản ghi trong 1 bảng
     public List all() {
         return execute("Select * from " + this.table);
     }
 
-    public String getColumns() {
-        String columns = "(";
-        try {
-            Class.forName(this.class_name).getDeclaredFields();
-            Field[] fields = Stream.concat(
-                    Arrays.stream(Class.forName(this.class_name).getDeclaredFields()),
-                    Arrays.stream(Class.forName(this.class_name).getSuperclass().getDeclaredFields())
-            ).toArray(Field[]::new);
-
-            for (Field f : fields) {
-                columns += f.getName();
-                if (!f.equals(fields[fields.length - 1])) {
-                    columns += ", ";
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        columns += ")";
-
-        return columns;
-    }
-
-    public String getValues(String values[]) {
-        String columnValues = "(";
-        columnValues += "NULL, ";
-        for (String value : values) {
-            columnValues += "'" + value + "'";
-            if (value.compareTo(values[values.length - 1]) != 0) {
-                columnValues += ", ";
-            }
-        }
-        columnValues += ", CURRENT_TIMESTAMP, CURRENT_TIMESTAMP";
-        columnValues += ")";
-
-        return columnValues;
-    }
-
-    public DB insert(String values[]) {
+    //insert 1 số trường trong 1 bảng
+    public DB insert(Map<String, String> map) {
         this.query.setCommand("INSERT INTO");
         this.query.setFrom(this.table);
-        this.query.setColumnValues("VALUES " + this.getValues(values));
+        this.query.setColumns("(");
+        this.query.setColumnValues(" Values ( ");
+        Iterator<Map.Entry<String, String>> iter = map.entrySet().iterator();
+        map.entrySet().forEach((entry) -> {
+            String key = this.query.getColumns() + entry.getKey();
+            String value = this.query.getColumnValues() + "\'" + entry.getValue() + "\'";
+            iter.next();
+            if (iter.hasNext()) {
+                this.query.setColumns(key + ", ");
+                this.query.setColumnValues(value + ", ");
+            } else {
+                this.query.setColumns(key + " )");
+                this.query.setColumnValues(value + ")");
+            }
+        });
         this.execute();
 
         return this;
@@ -246,7 +231,8 @@ public class DB {
 
         return this;
     }
-
+    
+    // chọn bảng cho câu truy vấn
     public DB table(String table) {
         this.query.setFrom(table);
 
@@ -259,7 +245,7 @@ public class DB {
         for (String where : wheres) {
             allWhere += where;
             if (where.compareTo(wheres[length - 1]) != 0) {
-                allWhere += "AND";
+                allWhere += " AND ";
             }
         }
         this.query.setWhere(allWhere);
@@ -292,6 +278,7 @@ public class DB {
         return this;
     }
 
+    //thực hiện câu truy vấn select
     public List get() {
         if (this.class_name != null) {
             return execute(this.query.toString());
@@ -300,6 +287,7 @@ public class DB {
         }
     }
 
+    // phân trang
     public DB paginate(HttpServletRequest request, int limit) {
         int current = 1;
         if (request.getParameter("page") != null) {
@@ -313,6 +301,7 @@ public class DB {
         return this;
     }
 
+    // tìm tổng số trong trong phân trang
     public int getPageNumber(int limit, int offset) {
         int page_number = 0;
         try {
@@ -338,6 +327,7 @@ public class DB {
         return page_number;
     }
 
+    // tìm 1 model theo id
     public Object find(int id) {
         Object obj = new Object();
 
@@ -346,6 +336,7 @@ public class DB {
         return obj;
     }
 
+    // lấy số lượng bản ghi tối đa trong câu truy vấn
     public DB limit(int limit) {
         this.query.setLimit(limit);
 

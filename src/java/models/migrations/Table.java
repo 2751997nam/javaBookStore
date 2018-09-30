@@ -43,7 +43,7 @@ public class Table {
     }
     
     public Table dropColumn(String name) {
-        this.query.setColumns(this.query.getColumns() + "Drop COLUMN " + name + ", ");
+        this.query.setColumns(this.query.getColumns() + "Drop " + name + ", ");
         
         return this;
     }

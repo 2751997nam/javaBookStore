@@ -15,25 +15,25 @@ import models.migrations.Table;
 public class CreateUsersTable extends Migration {
 
     public void up() {
-        if (this.exists()) {
+        if (this.exists()) { // neu da co trong bang migrations thi se ko chay nua
             return;
         }
-        this.addMigration(this.getClass().getName());
-        Table table = new Table("users");
-        table.addID();
-        table.string("name", 255);
+        this.addMigration(this.getClass().getName()); // add ten file nay vao trong bang migrations
+        Table table = new Table("users"); 
+        table.addID(); // thêm id
+        table.string("name", 255); // thêm 1 cột dạng VARCHAR độ dài 255 ký tự
         table.string("email", 255);
         table.string("password", 255);
         table.string("remember_token", 100);
-        table.createWithTimestamps();
+        table.createWithTimestamps(); // thêm 2 cột created_at và updated_at đồng thời tạo bảng users trong db
     }
 
     public void down() {
-        Table table = new Table("users");
-        if (!this.exists()) {
+        if (!this.exists()) { // neu khong co trong bang migrations thi se ko chay nua
             return;
         }
-        table.drop();
-        this.removeMigration(this.getClass().getName());
+        Table table = new Table("users"); // gọi đến bảng users
+        table.drop(); // xóa bảng user
+        this.removeMigration(this.getClass().getName()); // xoa ten file nay trong bảng migration
     }
 }

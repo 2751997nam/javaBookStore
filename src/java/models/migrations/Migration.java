@@ -105,7 +105,9 @@ public class Migration {
             max_batch = Integer.parseInt(list.get(0).get("batch"));
         }
         max_batch++;
-        new DB("migrations").insert(new String[]{name, "" + max_batch});
+        HashMap<String, String> map = new HashMap();
+        map.put(name, "" + max_batch);
+        new DB("migrations").insert(map);
     }
 
     public void removeMigration(String name) {
