@@ -13,13 +13,22 @@
     </head>
     <body>
         <%@include file="langForm.jsp" %>
-            
+        <% if (session.getAttribute("user") == null) {%>
+        <a href="login">Login</a>
+        <% } else {%>
+        <% User user = (User) session.getAttribute("user");%>
+        <a href="javascript:void(0)"><%= user.getName()%></a>
+        <form action="logout" method="Post" id="logout">
+            <a href="javascript:document.querySelector('#logout').submit()" role="button">Log out</a>
+        </form>
+        <% } %>            
         <% ArrayList<Book> books = (ArrayList<Book>) request.getAttribute("books"); %>
         <table>
             <thead>
                 <tr>
                     <th><%= Lang.getKey(language, "ID") %></th>
                     <th><%= Lang.getKey(language, "Product Name") %></th>
+                    <th><%= Lang.getKey(language, "Thumbnail") %></th>
                     <th><%= Lang.getKey(language, "Price") %></th>
                     <th><%= Lang.getKey(language, "Description") %></th>
                     <th><%= Lang.getKey(language, "Created") %></th>
@@ -31,6 +40,7 @@
                 <tr>
                     <td><%= book.getId()%></td>
                     <td><%= book.getName()%></td>
+                    <td><%= book.images().get(0).getAlternative() %></td>
                     <td><%= book.showPrice()%></td>
                     <td><%= book.getDescription()%></td>
                     <td><%= book.getCreated_at()%></td>

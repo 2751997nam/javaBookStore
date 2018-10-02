@@ -37,7 +37,7 @@ public class Table {
     }
     
     public Table modifyColumn() {
-        this.query.setColumns(this.query.getColumns() + "MODIFY ");
+        this.query.setColumns(this.query.getColumns() + "MODIFY COLUMN ");
         
         return this;        
     }
@@ -168,7 +168,7 @@ public class Table {
     }
     
     public Table dropForeign(String name) {
-        this.query.setColumns(this.query.getColumns() + "Drop FOREIGN KEY " + name + ", ");
+        this.query.setColumns(this.query.getColumns() + "Drop INDEX " + name + ", ");
         
         return this;
     }

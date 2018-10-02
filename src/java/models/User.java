@@ -64,8 +64,17 @@ public class User extends Model {
         this.password = password;
     }
 
-    public static boolean checkAuth(String name, String password) {
-        return name.equals("username") && password.equals("password");
+    public static boolean checkAuth(String email, String password) {
+        return new DB("users")
+                .where("email", "=", email)
+                .where("password", "=", password)
+                .checkQuery();
+    }
+    
+    public static boolean checkAuth(String remember) {
+        return new DB("users")
+                    .where("remember_token", "=", remember)
+                    .checkQuery();
     }
 
     public int getRole_id() {
@@ -87,5 +96,9 @@ public class User extends Model {
                 .paginate(request,
                         Integer.parseInt(new Database().get("paginate"))
                 ).get();       
+    }
+    
+    public Role role() {
+        return (Role) this.hasOne("roles", "Role");
     }
 }

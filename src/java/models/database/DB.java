@@ -188,7 +188,7 @@ public class DB {
         return this;
     }
 
-    public DB update(Map<String, String> map) {
+    public void update(Map<String, String> map) {
         this.query.setCommand("Update");
         this.query.setFrom(this.table);
         String sql = "SET ";
@@ -204,8 +204,17 @@ public class DB {
             }
         }
         this.query.setUpdate(sql);
+        this.execute();
 
-        return this;
+    }
+    
+    public void update(Object obj) {
+        this.query.setCommand("Update");
+        this.query.setFrom(this.table);        
+        String sql = "SET ";
+        
+        
+        this.execute();
     }
 
     public DB delete() {
@@ -252,6 +261,17 @@ public class DB {
 
         return this;
     }
+    
+    public DB where(String key, String operator, String value) {
+        String where = this.query.getWhere() + " AND ";
+        if(this.query.getWhere().isEmpty()) {
+            where = "WHERE ";
+        }
+        where += key + " " + operator + " \'" + value + "\' ";
+        this.query.setWhere(where);
+        
+        return this;
+    }
 
     public DB whereIn(String column, String where) {
         String whereIn = "Where " + column + " IN (" + where + ")";
@@ -293,7 +313,6 @@ public class DB {
         if (request.getParameter("page") != null) {
             current = Integer.parseInt(request.getParameter("page"));
         }
-        new Paginate().setPaginate(request, getPageNumber(limit, current), limit, current);
 
         this.query.setLimit(limit);
         this.query.setPaginate("Offset " + limit * (current - 1));

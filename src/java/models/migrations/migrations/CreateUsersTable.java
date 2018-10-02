@@ -21,9 +21,9 @@ public class CreateUsersTable extends Migration {
         this.addMigration(this.getClass().getName()); // add ten file nay vao trong bang migrations
         Table table = new Table("users"); 
         table.addID(); // thêm id
-        table.string("name", 255); // thêm 1 cột dạng VARCHAR độ dài 255 ký tự
-        table.string("email", 255);
-        table.string("password", 255);
+        table.string("name");
+        table.string("email");
+        table.string("password");
         table.string("remember_token", 100);
         table.createWithTimestamps(); // thêm 2 cột created_at và updated_at đồng thời tạo bảng users trong db
     }

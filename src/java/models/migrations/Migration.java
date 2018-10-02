@@ -17,6 +17,8 @@ import java.util.logging.Logger;
 import models.database.DB;
 import models.database.MySQLConnect;
 import models.migrations.migrations.AddColumnsInBooksTable;
+import models.migrations.migrations.AddEmailUniqueOnUsersTable;
+import models.migrations.migrations.ChangeNullFieldOnSomeTables;
 import models.migrations.migrations.CreateBookCategoryPivotTable;
 import models.migrations.migrations.CreateCategoriesTable;
 import models.migrations.migrations.CreateImagesTable;
@@ -58,6 +60,8 @@ public class Migration {
         new CreateOrdersTable().up();
         new CreateOrderDetailsTable().up();
         new CreateRatesTable().up();
+        new ChangeNullFieldOnSomeTables().up();
+        new AddEmailUniqueOnUsersTable().up();
     }
 
     public void down() {
@@ -106,7 +110,8 @@ public class Migration {
         }
         max_batch++;
         HashMap<String, String> map = new HashMap();
-        map.put(name, "" + max_batch);
+        map.put("name", name);
+        map.put("batch", "" + max_batch);
         new DB("migrations").insert(map);
     }
 

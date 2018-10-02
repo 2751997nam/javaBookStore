@@ -91,4 +91,8 @@ public class Book extends Model{
     public String showPrice(){
         return String.format("%,d", this.getPrice());
     }
+    
+    public List<Image> images() {
+        return this.hasMany("images", "Image");
+    }
 }

@@ -12,23 +12,16 @@ import models.migrations.Table;
  *
  * @author ASUS
  */
-public class CreateRolesTable extends Migration {
+public class AddEmailUniqueOnUsersTable extends Migration {
 
     public void up() {
         if (this.exists()) {
             return;
         }
         this.addMigration(this.getClass().getName());
-
-        Table tb = new Table("roles");
-        tb.addID();
-        tb.add("name", "VARCHAR(191)");
-        tb.createWithTimestamps();
-        
-        tb = new Table("users");
+        Table tb = new Table("users");
         tb.alter();
-        tb.addColumn().add("role_id", "INT");
-        tb.addColumn().addForeign("role_id", "roles", "id");
+        tb.addColumn().unique("email");
         tb.execute();
     }
 
@@ -36,16 +29,12 @@ public class CreateRolesTable extends Migration {
         if (!this.exists()) {
             return;
         }
-        
-        Table table = new Table("users");
-        table.alter();
-        table.dropForeign("FK_usersroles");
-        table.dropColumn("role_id");
-        table.execute();
-        
-        table = new Table("roles");
-        table.drop();
-        
+
+        Table tb = new Table("users");
+        tb.alter();
+        tb.dropUnique("email");
+        tb.execute();
+
         this.removeMigration(this.getClass().getName());
     }
 }

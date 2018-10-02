@@ -5,6 +5,9 @@
  */
 package config;
 
+import java.util.Locale;
+import javax.servlet.http.HttpServletRequest;
+
 /**
  *
  * @author ASUS
@@ -22,5 +25,10 @@ public class Lang extends Config{
         }
         
         return key;
-    }    
+    }
+
+    public static String getKey(HttpServletRequest request, String key) {
+        Locale locale = new Locale((String) request.getParameter("locale"));
+        return Lang.getKey(locale.toString(), key);
+    }
 }
