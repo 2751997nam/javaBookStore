@@ -5,7 +5,7 @@
  */
 package models;
 
-import controllers.IndexController;
+import controllers.customer.IndexController;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

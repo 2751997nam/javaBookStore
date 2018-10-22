@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -51,6 +52,24 @@ public class LogoutController extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
+        if (user == null) {
+            session.invalidate();
+            response.sendRedirect("/bookstore");
+            return;
+        }
+        Cookie remember_cookie = null;
+        Cookie[] cookies = request.getCookies();
+        String remember = "";
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().compareTo("bookstore.remember") == 0) {
+                remember = cookie.getValue();
+                cookie.setMaxAge(0);
+                cookie.setPath("");
+                response.addCookie(cookie);
+                break;
+            }
+        }
+
         HashMap<String, String> map = new HashMap();
         map.put("remember_token", "");
         new DB("users").where("id", "=", "" + user.getId()).update(map);

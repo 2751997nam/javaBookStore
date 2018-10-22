@@ -76,6 +76,13 @@ public class User extends Model {
                     .where("remember_token", "=", remember)
                     .checkQuery();
     }
+    
+    public static User auth(String remember) {
+        return (User) new DB("users", "User")
+                    .where("remember_token", "=", remember)
+                    .get()
+                    .get(0);
+    }
 
     public int getRole_id() {
         return role_id;

@@ -21,6 +21,7 @@ public class Query {
     private String orderBy;
     private String paginate;
     private String limit;
+    private String join;
     
     public Query() {
         this.command = "Select *";
@@ -34,6 +35,7 @@ public class Query {
         this.having = "";
         this.paginate = "";
         this.limit = "";
+        this.join = "";
     }
 
     public String getPaginate() {
@@ -123,6 +125,14 @@ public class Query {
     public void setLimit(int limit) {
         this.limit = "Limit " + limit;
     }
+
+    public String getJoin() {
+        return join;
+    }
+
+    public void setJoin(String join) {
+        this.join = join;
+    }
     
     @Override
     public String toString() {
@@ -131,6 +141,7 @@ public class Query {
                 + update + " "
                 + columns + " " 
                 + columnValues + " " 
+                + join + " "
                 + where + " " 
                 + groupBy + " " 
                 + having + " " 

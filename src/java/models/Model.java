@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import models.database.DB;
 
-public class Model {
+public class Model extends Object{
 
     protected int id;
     protected String created_at;
@@ -80,5 +80,14 @@ public class Model {
 
     public List hasMany(String table, String model) {
         return new DB(table, model).where(getColumnId(this.getClass().getSimpleName()), "=", "" + this.id).get();
+    }
+    
+    public List belongsToMany(String table, String model, String pivot, String id, String key) {
+        return new DB(table, model)
+            .join(pivot, table + ".id", key)
+            .select(table + ".*, " + pivot + "." + key + ", " + pivot + "." + id)
+            .where(pivot + "." + id, "=",  "" + this.getId())
+            .where(table + ".id", "=", pivot + "." + key)
+            .get();
     }
 }

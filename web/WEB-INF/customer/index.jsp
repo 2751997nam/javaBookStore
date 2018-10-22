@@ -2,7 +2,7 @@
 <%@ page import="models.User"%>
 <%@ page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="language.jsp" %>
+<%@include file="../language.jsp" %>
 <!DOCTYPE html>
 <html lang="<%= language%>">
     <head>
@@ -12,7 +12,7 @@
     </head>
     <body>
 
-        <%@include file="langForm.jsp" %>
+        <%@include file="../langForm.jsp" %>
 
         <% if (session.getAttribute("user") == null) {%>
         <a href="login">Login</a>
@@ -52,7 +52,7 @@
         </table>
 
         <div class="paginate">
-            <%@include  file="paginate.jsp"%>
+            <%@include  file="../paginate.jsp"%>
         </div> 
 
     </body>

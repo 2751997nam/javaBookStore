@@ -1,3 +1,6 @@
 {
-    "paginate": "10"
+    "paginate": "10",
+    "thumbnail": "/bookstore/images/default.jpg",
+    "img_path": "/bookstore/images/",
+    "save_img_path": "images"
 }

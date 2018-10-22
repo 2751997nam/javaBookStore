@@ -198,22 +198,19 @@ public class DB {
         });
 
         for (String set : sets) {
-            sql += set;
-            if (set.compareTo(sets.get(sets.size() - 1)) != 0) {
-                sql += ", ";
-            }
+            sql += set + ", ";
         }
+        sql += "updated_at = CURRENT_TIMESTAMP";
         this.query.setUpdate(sql);
         this.execute();
 
     }
-    
+
     public void update(Object obj) {
         this.query.setCommand("Update");
-        this.query.setFrom(this.table);        
+        this.query.setFrom(this.table);
         String sql = "SET ";
-        
-        
+
         this.execute();
     }
 
@@ -240,7 +237,7 @@ public class DB {
 
         return this;
     }
-    
+
     // chọn bảng cho câu truy vấn
     public DB table(String table) {
         this.query.setFrom(table);
@@ -261,15 +258,21 @@ public class DB {
 
         return this;
     }
-    
+
     public DB where(String key, String operator, String value) {
         String where = this.query.getWhere() + " AND ";
-        if(this.query.getWhere().isEmpty()) {
+        if (this.query.getWhere().isEmpty()) {
             where = "WHERE ";
         }
-        where += key + " " + operator + " \'" + value + "\' ";
+        where += key + " " + operator;
+        if(value.matches("\\s+")) {
+            where += " \'" + value + "\' ";
+        }
+        else {
+            where += value;
+        }
         this.query.setWhere(where);
-        
+
         return this;
     }
 
@@ -364,5 +367,19 @@ public class DB {
 
     public String getClassName(String column) {
         return "models." + column.toUpperCase().charAt(0) + column.substring(1, column.length() - 3);
+    }
+
+    public DB join(String table, String col1, String opt, String col2) {
+        String sql = "Inner Join " + table + " ON " + col1 + " " + opt + " " + col2 + "\n";
+        this.query.setJoin(sql);
+
+        return this;
+    }
+
+    public DB join(String table, String col1, String col2) {
+        String sql = "Inner Join " + table + " ON " + col1 + " = " + col2 + "\n";
+        this.query.setJoin(sql);
+
+        return this;
     }
 }

@@ -21,6 +21,8 @@ public class Book extends Model{
     protected String description;
     protected String publisher;
     protected String author;
+    protected int quantity;
+    protected List images;
 
     public Book() {
         super();
@@ -29,6 +31,7 @@ public class Book extends Model{
         this.description = "";
         this.publisher = "";
         this.author = "";
+        this.quantity = 0;
     }
 
     public Book(HashMap<String, String> cols) {
@@ -38,6 +41,15 @@ public class Book extends Model{
         this.description = cols.get("description");
         this.publisher = cols.get("publisher");
         this.author = cols.get("author");
+        this.quantity = Integer.parseInt(cols.get("quantity"));
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public String getName() {
@@ -57,7 +69,7 @@ public class Book extends Model{
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description) {
@@ -82,7 +94,7 @@ public class Book extends Model{
     
     public List getAllBook(HttpServletRequest request) {
         return new DB("books", "Book")
-                .orderBy("name")
+                .orderBy("updated_at DESC")
                 .paginate(request,
                         Integer.parseInt(new Database().get("paginate"))
                 ).get();           
@@ -93,6 +105,15 @@ public class Book extends Model{
     }
     
     public List<Image> images() {
-        return this.hasMany("images", "Image");
+        if (this.images == null) {
+            this.images = this.hasMany("images", "Image");
+        }
+        
+        return this.images;
+    }
+    
+    public List<Category> categories()
+    {
+        return this.belongsToMany("categories", "Category", "book_category", "book_id", "category_id");
     }
 }

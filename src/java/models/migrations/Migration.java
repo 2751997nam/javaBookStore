@@ -18,6 +18,7 @@ import models.database.DB;
 import models.database.MySQLConnect;
 import models.migrations.migrations.AddColumnsInBooksTable;
 import models.migrations.migrations.AddEmailUniqueOnUsersTable;
+import models.migrations.migrations.AddMoreColumnsInBooksTable;
 import models.migrations.migrations.ChangeNullFieldOnSomeTables;
 import models.migrations.migrations.CreateBookCategoryPivotTable;
 import models.migrations.migrations.CreateCategoriesTable;
@@ -30,6 +31,7 @@ import models.migrations.migrations.CreateProfilesTable;
 import models.migrations.migrations.CreateRatesTable;
 import models.migrations.migrations.CreateRolesTable;
 import models.migrations.migrations.CreateUsersTable;
+import models.migrations.migrations.RemoveAlternativeColumnInImagesTable;
 
 /**
  *
@@ -62,6 +64,8 @@ public class Migration {
         new CreateRatesTable().up();
         new ChangeNullFieldOnSomeTables().up();
         new AddEmailUniqueOnUsersTable().up();
+        new AddMoreColumnsInBooksTable().up();
+        new RemoveAlternativeColumnInImagesTable().up();
     }
 
     public void down() {

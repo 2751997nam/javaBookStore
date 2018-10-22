@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package controllers.customer;
 
 import config.Database;
+import controllers.Controller;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -46,9 +47,6 @@ public class IndexController extends Controller {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         this.auth(request);
-//        List users =  new User().getAllUser(request);
-        //select tất cả các user, sắp xếp theo tên, và phân trang
-        //kết quả trả về là 1 List các model User
         List users = new DB("users", "User")
                 .orderBy("name")
                 .paginate(request,
@@ -58,39 +56,6 @@ public class IndexController extends Controller {
                 // để thực hiện câu select thì luôn phải có get ở cuối
                 .get();
         this.setPaginate(request, "users");
-
-//        //slect name, email trong bảng users order theo name
-//        // kết quả trả về là 1 List các HashMap<String, String>
-//        List u = new DB("users").select("name, email")
-//                //where nhận tham số là 1 mảng String
-//                .where(new String[]{
-//            "role_id > 1",
-//            "name LIKE '%a%'"
-//        })
-//                .orderBy("name")
-//                .get();
-//
-//        //insert
-//        HashMap<String, String> map = new HashMap();
-//        map.put("link", "facebook.com");
-//        map.put("alternative", "fb");
-//        map.put("book_id", "2");
-//
-//        new DB("images").insert(map);
-//
-//        //update
-//        HashMap<String, String> map2 = new HashMap();
-//        map2.put("book_id", "3");
-//        //update book_id = 3 khi id = 2
-//        new DB("images").update(map2)
-//                .where(new String[]{"id = '2'"})
-//                .execute();
-//
-//        //delete
-//        // xoa tat ca ban ghi co book_id > 1
-//        new DB("images").delete()
-//                .where(new String[]{"book_id > 1"})
-//                .execute();
         request.setAttribute("users", users);
         RequestDispatcher dispatcher = request.getRequestDispatcher("indexView");
         dispatcher.forward(request, response);
