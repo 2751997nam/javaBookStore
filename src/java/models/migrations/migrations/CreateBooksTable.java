@@ -25,6 +25,7 @@ public class CreateBooksTable extends Migration {
         table.string("name");
         table.bigInteger("price");
         table.text("description");
+
         table.createWithTimestamps();
     }
 

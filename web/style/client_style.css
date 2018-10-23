@@ -1,0 +1,1419 @@
+body{
+    width: 100%;
+    display: block;
+}
+.container{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.container .header{
+    width: 100%;
+    margin-top: 5px;
+}
+/*-- HEADER TOP : HEADER --*/
+.header .header_top{
+    width: 100%;
+    height: 75px;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+}
+.header_top .ht_left{
+    width: 33%;
+    display: inline-block;
+    justify-content: center;
+    text-align: center;
+    margin-top: 25px;
+}
+.header_top .logo{
+    width: 33%;
+    height: 50px;
+    display: inline-block;
+    justify-content: center;
+    text-align: center;	
+    position: relative;
+}
+.header_top .ht_right{
+    width: 33%;
+    display:inline-block;
+    justify-content: center;
+    text-align: center;
+}
+.ht_left .search input[type="text"]{
+    text-decoration: none;
+    font-size: 16px;
+    color: #3399ff;
+    padding: 7px 30px;
+    border-radius: 15px;
+    border: 1.2px #3399ff solid;
+    outline: none;
+}
+.logo a img{
+    width: 100px;
+    height: 50px;
+}
+.ht_right ul{
+}
+.ht_right ul li{
+
+    display: inline-block;
+}
+.ht_right ul li:first-child{
+    padding-left: 30px;
+}
+.ht_right ul li a{
+    text-decoration: none;
+    font-size: 17px;
+    color: #000;
+    padding: 7px 20px 7px 20px;
+}
+
+/*<!-- SLIDESHOW : HEADER -->*/
+.header .slideShow{
+    width: 100%;
+}
+.slideShow .mySlides{
+    width: 100%;
+    height: 760px;
+    overflow: hidden;
+    background-image: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
+
+/*<!-- CATEGORIES : HEADER -->*/
+.header .categories{
+    width: 100%;
+    margin: 10px 0;
+}
+.categories ul{
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    list-style: none;
+}
+.categories ul li{
+    display: inline-block;
+    margin: 10px 0 10px 15px;
+}
+.categories ul li a{
+    text-decoration: none;
+    font-size: 18px;
+    color: #000;
+    padding: 7px 15px;
+    border: 1px rgba(255, 255, 255, 0) solid;
+}
+.categories ul li a:hover{
+    color: #3399ff;
+    border: 1px #3399ff solid;
+    border-radius: 13px;
+    transition: 0.2s ease;
+}
+
+/*<!-- BODY -->*/
+.body{
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
+.body .prominent{
+    width: 100%;
+    display: block;
+    margin: 5px 0;
+}
+.prominent .my_prom{
+    width: 32%;
+    height: 202px;
+    display: inline-block;
+    overflow: hidden;
+    background-image: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin: 0 4px;
+    padding: 0;
+    border-radius: 5px;
+    border: 1px rgba(255, 255, 255, 0) solid;
+    cursor: pointer;
+}
+.prominent .my_prom:first-child{
+    margin-left: 0; 
+}
+.prominent .my_prom:last-child{
+    margin-right: 0; 
+}
+
+/*<!-- PRODUCT : BODY; -->*/
+.body .products{
+    width: 75%;
+    display: block;
+    margin: 5px 0;
+    float: left;
+}
+.products .header, .other_products .header{
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+.header .line{
+    width: 35%;
+    display: inline-block;
+}
+.header .line hr{
+    margin-top: 10px;
+}
+.header .title{
+    width: 30%;	
+    display: inline-block;
+}
+.header .title p{
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.products .prod_row{
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    margin-top: 10px;
+}
+.prod_row .pr_col{
+    width: 20%;
+    display: inline-block;
+    margin: 0; padding: 0;
+    justify-content: center;
+    text-align: center;
+}
+.pr_col .col_top{
+    width: 96%;
+    margin: 0 auto;
+    position: relative;
+    display: block;
+    margin-bottom: 10px;
+}
+.pr_col .col_top .offer{
+    position: absolute;
+    right: 0px;
+    top: 12px;
+    z-index: 99;
+    padding: 7px;
+    color: #fff;
+    background-color: #f7544a;
+    border-radius: 9px;
+}
+.image{
+    width: 140px;
+    height: 203px;
+    margin: 0 auto;
+    margin-top: 1px;
+    margin-bottom: 2px;
+    background-image: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    cursor: pointer;
+    border: 1px rgba(255, 255, 255, 0) solid;
+}
+.pr_col .col_top .image:hover{
+    border: 1px #3399ff solid;
+}
+.col_bottom{
+    width: 100%;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+.col_bottom .product_name{
+    color: #000;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+.col_bottom .author{
+    text-decoration: none;
+    font-size: 17px;
+    color: #999999;
+    letter-spacing: 0.8px;
+    margin: 5px 0;
+}
+
+.col_bottom .price{
+    text-decoration: none;
+    font-size: 15px;
+    color: #ff4040;
+    letter-spacing: 1.2px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/*<!-- OTHER DETAIL -->*/
+.other_detail{
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+.col_detail{
+    width: 49.5%;
+    margin: 0 auto;
+    display: inline-block;
+}
+.col_detail .detail{
+    width: 394px;
+    height: 220px;
+    margin: 0 auto;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    background-image: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.col_right .detail2{
+    width: 100%;
+    height: 144px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    background-image: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    cursor: pointer;
+}
+.col_right .detail2:first-child{
+    margin-bottom: 0;
+}
+
+/*<!-- HÀNG 3 -->*/
+.main_col{
+    width: 100%;
+    margin: 0 auto;
+}
+.main_col .col_left, .main_col .col_right{
+    width: 49%;
+    margin: 0 auto;
+    display: inline-block;
+}
+.main_col .col_left{
+    padding-right: 0.5%;
+}
+.main_col .col_right{
+    padding-left: 0.5%;
+}
+
+.main_col .prod_row .pr_col{
+    width: 45%;
+    display: inline-block;
+    margin: 0; padding: 0;
+    justify-content: center;
+    text-align: center;
+}
+
+/*<!-- OTHER PRODUCT -->*/
+.body .other_products{
+    width: 25%;
+    display: block;
+    margin: 5px 0;
+    margin-bottom: 30px;
+    float: left;
+}
+.other_products .extend{
+    width: 86%;
+    display: block;
+    margin-left: 7%;
+    padding-left: 5%;
+    margin-right: 2.5%;
+    border: 1px #000 solid;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+.other_producs .line{
+    width: 25%;
+}
+.other_products .title{
+    width: 50%;
+}
+.other_products .title p{
+    font-size: 14px;
+    margin-top: 3px;
+}
+
+.other_products .ex_col{
+    width: 100%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin: 10px 0;
+}
+.other_products .ex_row{
+    width: 100%;
+    display: block;	
+}
+.other_products .exr_left{
+    width: 33%;
+    margin: 0 2% 0 3%;
+    float: left;
+}
+.other_products .exr_right{
+    width: 55%;
+    float: right;
+    margin: 0 2% 0 3%;
+    height: 105px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.other_products .image{
+    width: 70px;
+    height: 101px;
+    margin: 0 auto;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    background-image: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    cursor: pointer;
+    border: 1px rgba(255, 255, 255, 0) solid;
+}
+.other_products .col_bottom{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.other_products .product_name{
+    font-size: 16px;
+}
+.other_products .author{
+    font-size: 15px;
+}
+.other_products .price{
+    font-size: 14px
+}
+/*.other_products .product_name{
+        position: absolute;
+        top: -55px;
+}*/
+
+
+/*<!-- HẾT BODY -->*/
+
+
+/*<!-- SOCIAL -->*/
+.social{
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 80px;
+}
+.social a{
+    width: 70px;
+    height: 70px;
+    display: inline-block;
+    margin-right: 56px;
+    background: url('../images/sm.png') no-repeat;
+}
+.social a:last-child{
+    margin-right: 0;
+}
+.social a.fb{
+    background-position: 0 0;
+}
+.social a.t{
+    background-position: -71px 0;
+}
+.social a.d{
+    background-position: -142px 0;
+}
+.social a.g{
+    background-position: -213px 0;
+}
+
+.social a:hover{
+    background: url('../images/sm_hover.png') no-repeat;
+}
+.social a.fb:hover{
+    background-position: 0 0;
+}
+.social a.t:hover{
+    background-position: -71px 0;
+}
+.social a.d:hover{
+    background-position: -142px 0;
+}
+.social a.g:hover{
+    background-position: -213px 0;
+}
+/*<!-- HẾT SOCIAL-->*/
+
+
+/*-- FOOTER --*/
+.footer{
+    background: #3b3b3b;
+    padding: 100px 0;
+    overflow: hidden;
+}
+.wrapper{
+    width: 100%;
+    justify-content: center;
+    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+.footer .f_cols{
+    width: 20%;
+    height: auto;
+    float: left;
+    margin: 0 1%;
+}
+.footer .f_cols:first-child{
+    margin-left: 10%;
+}
+
+.footer .f_cols h3{
+    font-family: 'open_semibold', arial;
+    font-weight: bold;
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+.footer .f_cols p{
+    font-family: 'open_regular', arial;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: 1px;
+    color: #ebebeb;
+    margin-bottom: 20px;
+}
+.footer .f_cols span.phone{
+    display: block;
+    font-family: 'open_bold', arial;
+    font-weight: bold;
+    color: #b5b5b5;
+}
+.footer .f_cols a{
+    display: inline-block;
+    font-family: 'open_regular', arial;
+    color: #b5b5b5;
+}
+.footer .f_cols a:hover{
+    color: #ebebeb;
+}
+.footer .f_cols ul{
+    padding-left: 0;
+}
+.footer .f_cols ul li{
+    list-style: none;
+    margin-bottom: 15px;
+}
+.footer .f_cols ul li a{
+    text-decoration: none;
+    color: #ebebeb;
+    font-family: 'open_regular', arial;
+    font-family: 14px;
+    border-bottom: 1px #3b3b3b solid;
+}
+.footer .f_cols ul li a:hover{
+    border-bottom: 1px #ebebeb solid;
+}
+/*<!-- HẾT FOOTER -->*/
+
+
+/*-- RESPONSIVE --*/
+@media(min-width: 320px) and (max-width: 375px){
+    .container{
+        width: 320px;
+        margin: 0;
+    }
+}
+@media(min-width: 375px) and (max-width: 440px){
+    .container{		
+        margin: 0 auto;
+    }
+    .header_top .ht_left, .header_top .logo, .header_top .ht_right{
+        width: 32%;
+    }
+    .ht_left .search input[type="text"]{
+        font-size: 7px;
+        padding: 5px 10px;
+    }
+    .ht_right ul li a{
+        font-size: 7px;
+        padding: 5px 7px;
+    }
+    .slideShow .mySlides{
+        height: 210px;
+    }
+    .categories ul li{
+        margin: 5px 0 5px 5px;
+    }
+    .categories ul li a{
+        font-size: 6px;
+        padding: 3px;
+    }
+    .prominent .my_prom{
+        width: 31.5%;
+        height: 59px;
+        margin: 0 auto;
+    }
+    .products .header, .other_products .header{
+        margin-top: 9px;
+    }
+    .header .line{
+        width: 20%;
+    }
+    .header .title{
+        width: 50%;
+    }
+    .header .title p{
+        font-size: 7.5px;
+        margin-top: 5px;
+    }
+    .pr_col .col_top .offer{
+        top: 5px;
+        padding: 3.5px;
+        right: -3px;
+        font-size: 7px;
+    }
+    .products .image{
+        width: 40px;
+        height: 59px;
+    }
+    .col_bottom{
+        margin-top: 9px;
+    }
+    .col_bottom .product_name{
+        font-size: 5.5px;
+        letter-spacing: 1px;
+    }
+    .col_bottom .author{
+        font-size: 5px;
+    }
+    .col_bottom .price{
+        font-size: 5.3px;
+        letter-spacing: 1px;
+    }
+    .col_detail{
+        width: 49.1%;
+    }
+    .col_detail .detail{
+        width: 108px;
+        height: 60px;
+    }
+    .other_detail{
+        margin-top: 10px;
+    }
+    .main_col .col_left, .main_col .col_right{
+        width: 48.6%;
+    }
+    .other_products .line{
+        width: 20%;
+    }
+    .other_products .title{
+        width: 50%;
+    }
+    .other_products .title p{
+        font-size: 4px;
+        margin-top: 9px;
+    }
+    .other_products .exr_right{
+        height: 30px;
+    }
+    .other_products .image{
+        width: 19px;
+        height: 29px;
+    }
+    .other_products .product_name{
+        font-size: 4.5px;
+        letter-spacing: 0.5px;
+    }
+    .other_products .author{
+        font-size: 3.5px;
+        letter-spacing: 0.5px;
+        margin: 2px 0 0 0;
+    }
+    .other_products .price{
+        font-size: 3.5px;
+        letter-spacing: 0.5px;
+        margin: 2px 0;
+    }
+    .extend:last-child{
+        margin-bottom: 10px;
+    }
+    .social{
+        width: 100%;
+        margin-bottom: 30px;
+    }
+}
+
+@media(min-width: 440px) and (max-width: 480px){
+    .container{
+        width: 440px;
+        margin: 0;
+    }
+    .header_top .ht_left, .header_top .logo, .header_top .ht_right{
+        width: 32%;
+    }
+    .ht_left .search input[type="text"]{
+        font-size: 8px;
+        padding: 5px 10px;
+    }
+    .ht_right ul li a{
+        font-size: 8px;
+        padding: 5px 7px;
+    }
+    .slideShow .mySlides{
+        height: 247px;
+    }
+    .categories ul li{
+        margin: 7px 0 7px 8px;
+    }
+    .categories ul li a{
+        font-size: 7px;
+        padding: 5px 5px;
+    }
+    .prominent .my_prom{
+        width: 31.5%;
+        height: 69px;
+        margin: 0 1px;
+    }
+    .products .header, .other_products .header{
+        margin-top: 9px;
+    }
+    .header .line{
+        width: 27%;
+    }
+    .header .title{
+        width: 46%;
+    }
+    .header .title p{
+        font-size: 9px;
+        margin-top: 5px;
+    }
+    .pr_col .col_top .offer{
+        top: 5px;
+        padding: 3.5px;
+        right: -3px;
+        font-size: 7.5px;
+    }
+    .products .image{
+        width: 47px;
+        height: 69px;
+    }
+    .col_bottom{
+        margin-top: 8px;
+    }
+    .col_bottom .product_name{
+        font-size: 7.5px;
+        letter-spacing: 1px;
+    }
+    .col_bottom .author{
+        font-size: 6px;
+    }
+    .col_bottom .price{
+        font-size: 6.3px;
+        letter-spacing: 1px;
+    }
+    .col_detail{
+        width: 49.2%;
+    }
+    .col_detail .detail{
+        width: 128px;
+        height: 71px;
+    }
+    .other_detail{
+        margin-top: 20px;
+    }
+    .main_col .col_left, .main_col .col_right{
+        width: 48.7%;
+    }
+    .other_products .line{
+        width: 27%;
+    }
+    .other_products .title{
+        width: 46%;
+    }
+    .other_products .title p{
+        font-size: 5.5px;
+        margin-top: 8px;
+    }
+    .other_products .exr_right{
+        height: 35px;
+    }
+    .other_products .image{
+        width: 23px;
+        height: 34px;
+    }
+    .other_products .product_name{
+        font-size: 6.5px;
+        letter-spacing: 0.5px;
+    }
+    .other_products .author{
+        font-size: 5px;
+        letter-spacing: 0.5px;
+        margin: 2px 0 0 0;
+    }
+    .other_products .price{
+        font-size: 5.8px;
+        letter-spacing: 0.5px;
+        margin: 2px 0;
+    }
+    .extend:last-child{
+        margin-bottom: 10px;
+    }
+    .social{
+        width: 100%;
+        margin-bottom: 30px;
+    }
+}
+@media(min-width: 480px) and (max-width: 568px){
+    .container{
+        margin: 0;
+    }
+    .header_top .ht_left, .header_top .logo, .header_top .ht_right{
+        width: 32%;
+    }
+    .ht_left .search input[type="text"]{
+        font-size: 8px;
+        padding: 5px 10px;
+    }
+    .ht_right ul li a{
+        font-size: 8px;
+        padding: 5px 7px;
+    }
+    .slideShow .mySlides{
+        height: 270px;
+    }
+    .categories ul li{
+        margin: 7px 0 7px 10px;
+    }
+    .categories ul li a{
+        font-size: 8px;
+        padding: 5px 7px;
+    }
+    .prominent .my_prom{
+        width: 31.5%;
+        height: 75px;
+        margin: 0 1px;
+    }
+    .products .header, .other_products .header{
+        margin-top: 9px;
+    }
+    .header .line{
+        width: 27%;
+    }
+    .header .title{
+        width: 46%;
+    }
+    .header .title p{
+        font-size: 11px;
+        margin-top: 5px;
+    }
+    .pr_col .col_top .offer{
+        top: 5px;
+        padding: 3.5px;
+        right: -3px;
+        font-size: 10px;
+    }
+    .products .image{
+        width: 52px;
+        height: 76px;
+    }
+    .col_bottom{
+        margin-top: 8px;
+    }
+    .col_bottom .product_name{
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+    .col_bottom .author{
+        font-size: 7px;
+    }
+    .col_bottom .price{
+        font-size: 7.3px;
+        letter-spacing: 1px;
+    }
+    .col_detail{
+        width: 49.3%;
+    }
+    .col_detail .detail{
+        width: 140px;
+        height: 78px;
+    }
+    .other_detail{
+        margin-top: 20px;
+    }
+    .main_col .col_left, .main_col .col_right{
+        width: 48.8%;
+    }
+    .other_products .line{
+        width: 27%;
+    }
+    .other_products .title{
+        width: 46%;
+    }
+    .other_products .title p{
+        font-size: 7px;
+        margin-top: 7px;
+    }
+    .other_products .exr_right{
+        height: 38px;
+    }
+    .other_products .image{
+        width: 25px;
+        height: 37px;
+    }
+    .other_products .product_name{
+        font-size: 7.3px;
+        letter-spacing: 0.5px;
+    }
+    .other_products .author{
+        font-size: 6px;
+        letter-spacing: 0.5px;
+        margin: 2px 0 0 0;
+    }
+    .other_products .price{
+        font-size: 7px;
+        letter-spacing: 0.5px;
+        margin: 2px 0;
+    }
+    .extend:last-child{
+        margin-bottom: 10px;
+    }
+    .social{
+        width: 100%;
+        margin-bottom: 30px;
+    }
+}
+@media(min-width: 568px) and (max-width: 667px){
+    .container{
+        margin: 0;
+    }
+    .header_top .ht_left, .header_top .logo, .header_top .ht_right{
+        width: 32%;
+    }
+    .ht_left .search input[type="text"]{
+        font-size: 10.5px;
+        padding: 5px 12px;
+    }
+    .ht_right ul li a{
+        font-size: 11px;
+    }
+    .slideShow .mySlides{
+        height: 319px;
+    }
+}
+/*-- Iphone 678 nam ngang --*/
+@media(min-width: 667px) and (max-width: 736px){
+    .container{
+        width: 667px;
+        margin: 0 auto;
+    }
+    .header_top .ht_left, .header_top .logo, .header_top .ht_right{
+        width: 32%;
+    }
+    .ht_left .search input[type="text"]{
+        font-size: 12px;
+        padding: 5px 12px;
+    }
+    .ht_right ul li a{
+        font-size: 11.5px;
+    }
+    .slideShow .mySlides{
+        height: 375px;
+    }
+    .categories ul li a{
+        font-size: 12px;
+        padding: 5px 7px;
+    }
+    .prominent .my_prom{
+        width: 31.5%;
+        height: 105px;
+        margin: 0 3px;
+    }
+    .products .header, .other_products .header{
+        margin-top: 9px;
+    }
+    .header .line{
+        width: 27%;
+    }
+    .header .title{
+        width: 46%;
+    }
+    .header .title p{
+        font-size: 13px;
+        margin-top:4px;
+    }
+    .pr_col .col_top .offer{
+        top: 5px;
+        padding: 3.5px;
+        right: -3px;
+        font-size: 11px;
+    }
+    .products .image{
+        width: 73px;
+        height: 106px;
+    }
+    .col_bottom{
+        margin-top: 10px;
+    }
+    .col_bottom .product_name{
+        font-size: 11px;
+        letter-spacing: 1px;
+    }
+    .col_bottom .author{
+        font-size: 9.33px;
+    }
+    .col_bottom .price{
+        font-size: 9.3px;
+        letter-spacing: 1px;
+    }
+    .col_detail .detail{
+        width: 194px;
+        height: 108px;
+    }
+    .other_detail{
+        margin-top: 20px;
+    }
+    .other_products .line{
+        width: 27%;
+    }
+    .other_products .title{
+        width: 46%;
+    }
+    .other_products .title p{
+        font-size: 9px;
+        margin-top: 6px;
+    }
+    .other_products .exr_right{
+        height: 53px;
+    }
+    .other_products .image{
+        width: 35px;
+        height: 51px;
+    }
+    .other_products .product_name{
+        font-size: 10px;
+    }
+    .other_products .author{
+        font-size: 9px;
+    }
+    .other_products .price{
+        font-size: 8.5px
+    }
+    .extend:last-child{
+        margin-bottom: 30px;
+    }
+    .social{
+        margin-bottom: 30px;
+    }
+}
+
+/*-- màn 736 - 342 = iphone 678 plus nằm ngang ; --*/
+@media(min-width: 736px) and (max-width: 768px){
+    .container{
+        width: 736px;
+        margin: 0 auto;
+    }
+    .header_top .ht_left, .header_top .logo, .header_top .ht_right{
+        width: 32%;
+    }
+    .ht_left .search input[type="text"]{
+        font-size: 12px;
+        padding: 5px 12px;
+    }
+    .ht_right ul li{
+
+    }
+    .ht_right ul li a{
+        font-size: 11.5px;
+    }
+    .slideShow .mySlides{
+        height: 414px;
+    }
+    .categories ul li a{
+        font-size: 12px;
+        padding: 5px 7px;
+    }
+    .prominent .my_prom{
+        width: 31.5%;
+        height: 116px;
+    }
+    .products .header, .other_products .header{
+        margin-top: 9px;
+    }
+    .header .line{
+        width: 27%;
+    }
+    .header .title{
+        width: 46%;
+    }
+    .header .title p{
+        font-size: 13px;
+        margin-top:4px;
+    }
+    .pr_col .col_top .offer{
+        top: 5px;
+        padding: 3.5px;
+        right: -3px;
+        font-size: 11px;
+    }
+    .products .image{
+        width: 81px;
+        height: 117px;
+    }
+    .col_bottom{
+        margin-top: 10px;
+    }
+    .col_bottom .product_name{
+        font-size: 11px;
+        letter-spacing: 1px;
+    }
+    .col_bottom .author{
+        font-size: 10px;
+    }
+    .col_bottom .price{
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+    .col_detail .detail{
+        width: 214px;
+        height: 119px;
+    }
+    .other_detail{
+        margin-top: 20px;
+    }
+    .other_products .line{
+        width: 27%;
+    }
+    .other_products .title{
+        width: 46%;
+    }
+    .other_products .title p{
+        font-size: 9px;
+        margin-top: 6px;
+    }
+    .other_products .exr_right{
+        height: 59px;
+    }
+    .other_products .image{
+        width: 39px;
+        height: 57px;
+    }
+    .other_products .product_name{
+        font-size: 10px;
+    }
+    .other_products .author{
+        font-size: 9px;
+    }
+    .other_products .price{
+        font-size: 8.5px
+    }
+    .extend:last-child{
+        margin-bottom: 30px;
+    }
+    .social{
+        margin-bottom: 30px;
+    }
+}
+/* Ipad màn dọc = zoom 175%*/
+@media(min-width: 768px) and (max-width: 800px){
+    .container{
+        width: 768px;
+        margin: 0 auto;
+    }
+    .header_top .ht_left, .header_top .logo, .header_top .ht_right{
+        width: 32%;
+    }
+    .ht_left .search input[type="text"]{
+        font-size: 13px;
+        padding: 6px 15px;
+    }
+    .ht_right ul li a{
+        font-size: 14px;
+    }
+    .slideShow .mySlides{
+        height: 432px;
+    }
+    .categories ul li a{
+        font-size: 13px;
+        padding: 5px 8px;
+    }
+    .prominent .my_prom{
+        width: 31.5%;
+        height: 121px;
+    }
+    .products .header, .other_products .header{
+        margin-top: 9px;
+    }
+    .header .line{
+        width: 27%;
+    }
+    .header .title{
+        width: 46%;
+    }
+    .header .title p{
+        font-size: 14px;
+        margin-top: 5px;
+    }
+    .pr_col .col_top .offer{
+        top: 5px;
+        padding: 3.5px;
+        right: -3px;
+        font-size: 11.5px;
+    }
+    .products .image{
+        width: 85px;
+        height: 123px;
+    }
+    .col_bottom .product_name{
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+    .col_bottom .author{
+        font-size: 10.5px;
+    }
+    .col_bottom .price{
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+    .col_detail .detail{
+        width: 224px;
+        height: 125px;
+    }
+    .other_products .title p{
+        font-size: 9.5px;
+        margin-top: 6px;
+    }
+    .other_products .exr_right{
+        height: 62px;
+    }
+    .other_products .image{
+        width: 41px;
+        height: 60px;
+    }
+    .other_products .product_name{
+        font-size: 11px;
+    }
+    .other_products .author{
+        font-size: 10px;
+    }
+    .other_products .price{
+        font-size: 8px
+    }
+    .extend:last-child{
+        margin-bottom: 40px;
+    }
+    .social{
+        margin-bottom: 30px;
+    }
+}
+
+/*-- iphoneX nằm ngang = zoom 150% --*/
+@media(min-width: 800px) and (max-width: 1024px){
+    .container{
+        width: 812px;
+        margin: 0 auto;
+    }
+    .header .search{
+        margin-left: 10%;
+    }
+    .header .search input[type="text"]{
+        font-size: 15px;
+        padding: 7px 20px;
+    }
+    .slideShow .mySlides{
+        height: 458px;
+    }
+    .categories ul li{
+        margin: 8px 0 8px 10px;
+    }
+    .categories ul li a{
+        font-size: 15px;
+        padding: 5px 10px;
+    }
+    .prominent .my_prom{
+        width: 31.5%;
+        height: 121px;
+    }
+    .products .header, .other_products .header{
+        margin-top: 10px;
+    }
+    .header .line{
+        width: 27%;
+    }
+    .header .title{
+        width: 46%;
+    }
+    .header .title p{
+        font-size: 16px;
+    }
+    .pr_col .col_top .offer{
+        top: 5px;
+        padding: 3.5px;
+        right: -3px;
+        font-size: 12px;
+    }
+    .products .image{
+        width: 90px;
+        height: 130px;
+    }
+    .col_bottom .product_name{
+        font-size: 13px;
+        letter-spacing: 1px;
+    }
+    .col_bottom .author{
+        font-size: 11px;
+    }
+    .col_bottom .price{
+        font-size: 10.5px;
+        letter-spacing: 1px;
+    }
+    .other_detail {
+        margin-top: 13px;
+        margin-bottom: 7px
+    }
+    .col_detail .detail{
+        width: 237px;
+        height: 132px;
+    }
+    .other_products .title p{
+        font-size: 10.5px;
+        margin-top: 6px;
+    }
+    .other_products .exr_right{
+        height: 66px;
+    }
+    .other_products .image{
+        width: 44px;
+        height: 63px;
+    }
+    .other_products .product_name{
+        font-size: 12px;
+    }
+    .other_products .author{
+        font-size: 11px;
+    }
+    .other_products .price{
+        font-size: 9px
+    }
+    .social{
+        margin-bottom: 40px;
+    }
+}
+
+/* máy tính bảng nằm ngang = zoom 125% */
+@media(min-width: 1024px) and (max-width: 1280px){
+    .container{
+        width: 1024px;
+        margin: 0 auto;
+    }
+    .slideShow .mySlides{
+        height: 577px; 
+        /* chia lại height */
+    }
+    .categories ul li{
+        margin: 7px 0 7px 10px;
+    }
+    .categories ul li a{
+        font-size: 16px;
+    }
+    .pr_col .col_top .offer{
+        top: 7px;
+        padding: 4px;
+        font-size: 14px;
+    }
+    .products .image{
+        width: 106px;
+        height: 154px;
+    }
+    .col_bottom .product_name{
+        font-size: 14px;
+    }
+    .col_bottom .author{
+        font-size: 13px;
+    }
+    .col_bottom .price{
+        font-size: 11px;
+    }
+    .col_detail .detail{
+        width: 298px;
+        height: 166px;
+    }
+    .products .header, .other_products .header{
+        margin-top: 25px;
+    }
+    .other_products .title p{
+        font-size: 11.5px;
+        margin-top: 4px;
+    }
+    .other_products .exr_right{
+        height: 80px;
+    }
+    .other_products .image{
+        width: 53px;
+        height: 76px;
+    }
+}
+/*@media(min-width: 1141px) and (max-width: 1280px){
+        .container{
+                width: 100%;
+                margin: 0 auto;
+        }
+}*/
+@media(min-width: 1280px) and (max-width: 1366px){
+    .container{
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+@media(min-width: 1366px) and (max-width: 1440px){
+    .container{
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+@media(min-width: 1440px) and (max-width: 6000px){
+    .container{
+        width: 1350px;
+        margin: 0 auto;
+    }
+}
+
+/* END RESPOSIVE*/
+/*menu dropdown*/
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}

@@ -288,7 +288,6 @@ public class DB {
 
     public DB orderBy(String order) {
         this.query.setOrderBy("Order By " + order);
-
         return this;
     }
 

@@ -1,0 +1,85 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none!important;
+}
+.text-error {
+    color: red!important;
+}
+.content {
+    width: 100%;
+    height: auto;
+    background-color: white;
+}
+.content .form {
+    width: 500px;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 20px;
+    height: 650px;
+    box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+}
+.content .form .top{
+    background-color: #57B846; 
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 20px;
+    text-align: center;
+}
+.content .form .top p {
+    font-family: SourceSansPro-Bold;
+    color: white;
+    font-size: 35px;
+    font-weight: bolder;
+}
+.content .form .mid {
+    width: 100%;
+}
+.content .form .mid .form-input {
+    text-align: center;
+    width: 100%;
+}
+.content .form .mid .form-input div {
+    width: 100%;
+    padding: 10px 65px;;
+    position: relative;
+}
+.content .form .mid .form-input div p {
+    /*text-align: right;*/
+    float: right;
+}
+.content .form .mid .form-input div span {
+    color: #999999;
+}
+.content .form .mid .form-input div a {
+    color: #57b846;
+}
+.content .form .mid .form-input div:last-child a {
+    font-weight: bolder;
+}
+.content .form .mid .form-input div a:hover {
+    color: #1b3815;
+    cursor: pointer;
+}
+.content .form .mid .form-input div button {
+    background: #57B846;
+    color: white;
+    font-size: 15px;
+    font-weight: bolder;
+}
+.content .form .mid .form-input div button:hover {
+    background-color: #1b3815;
+    cursor: pointer;
+}
+.input-round {
+    width: 100%;
+    border-radius: 30px;
+    padding: 20px;
+    border: none;
+    background: #ebebeb;
+    font-size: 15px;
+    font-weight: 600;
+}

@@ -32,6 +32,12 @@ public class User extends Model {
         this.role_id = Integer.parseInt(cols.get("role_id"));
     }
 
+    public User(String email, String password) {
+        super();
+        this.email = email;
+        this.password = password;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -76,7 +82,13 @@ public class User extends Model {
                     .where("remember_token", "=", remember)
                     .checkQuery();
     }
-
+    
+    public static boolean checkExist(String email) {
+        return new DB("users")
+                    .where("email", "=", email)
+                    .checkQuery();
+    }
+    
     public int getRole_id() {
         return role_id;
     }

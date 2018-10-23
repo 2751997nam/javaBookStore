@@ -27,6 +27,10 @@ public class Controller extends HttpServlet {
     public void auth(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
         String remember = "";
+        if(cookies == null) {
+            return;
+        }
+        
         for (Cookie cookie : cookies) {
             if (cookie.getName().compareTo("remember") == 0) {
                 remember = cookie.getValue();

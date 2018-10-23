@@ -29,7 +29,7 @@ import models.database.DB;
  *
  * @author ASUS
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/login"})
+@WebServlet(name = "LoginController", urlPatterns = {"/admin/login"})
 public class LoginController extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -65,7 +65,7 @@ public class LoginController extends HttpServlet {
         HttpSession session = request.getSession();
         String url = (String) request.getHeader("Referer");
         if (!User.checkAuth(email, password)) {
-            session.setAttribute("message", "Username or password incorrect");
+            session.setAttribute("message", "Email or password incorrect");
             response.sendRedirect(url);
             return;
         }
