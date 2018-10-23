@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package controllers.admin;
 
+import controllers.Controller;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -32,11 +33,12 @@ public class BookController extends Controller {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        this.auth(request);
         List books = new Book().getAllBook(request);
         request.setAttribute("books", books);
         this.setPaginate(request, "books");
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("bookView");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/admin/books/book.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -51,6 +53,6 @@ public class BookController extends Controller {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
     }
 }

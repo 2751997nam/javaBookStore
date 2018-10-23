@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="logo">
-                    <a href="home"><img src="images/logo.jpg"></a>
+                    <a href=""><img src="images/logo.jpg"></a>
                 </div>
 
                 <div class="ht_right">
@@ -88,7 +88,7 @@
 
                             <div class="row">
                                 <label>Số điện thoại</label>
-                                <input type="text" name="phone" class="infor_name" placeholder="Số điện thoại người dùng" value="<%=request.getAttribute("profile")%>">
+                                <input type="text" name="phone" class="infor_name" placeholder="Số điện thoại người dùng" value="">
                                 <div class="clear"></div>
                             </div>
 

@@ -34,3 +34,108 @@ a {
 .page-link:not(:disabled):not(.disabled) {
     cursor: pointer;
 }
+
+.lang-form {
+    display: inline-block;
+    margin-top: 12px;
+}
+
+.form-group {
+    width: 100%;
+    margin: 10px 0;
+    display: flex;
+}
+
+.form-control {
+    display: inline-block;
+    width: 79%;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.form-control.multiple {
+    height: 50px;
+}
+
+.form-text {
+    display: inline-block;
+    width: 79%;
+    border-radius: 5px;    
+}
+
+.form-label {
+    display: inline-block;
+    width: 20%;
+}
+
+.col-1 {
+    width: 10%;
+}
+
+.col-2 {
+    width: 20%;
+}
+
+.col-3 {
+    width: 30%;
+}
+
+.col-4 {
+    width: 40%;
+}
+
+.col-5 {
+    width: 50%;
+}
+
+.col-6 {
+    width: 60%;
+}
+
+.col-7 {
+    width: 70%;
+}
+
+.col-8 {
+    width: 80%;
+}
+
+.col-9 {
+    width: 90%;
+}
+
+.col-10 {
+    width: 100%;
+}
+
+.thumbnail {
+    width: 200px;
+    height: 300px;
+}
+
+.btn {
+    border-radius: 5px;
+    line-height: 45px;
+    padding: 10px;
+    color: white;
+}
+
+.btn.btn-primary {
+    background: #2175f3;
+}
+
+.btn.btn-success {
+    background: #029e0e;
+}
+
+.btn.btn-danger {
+    background: #e81212;
+}
+
+.btn.btn-light {
+    background: #ffffff;
+}
+
+.btn.btn-dark {
+    background: #000000;
+}

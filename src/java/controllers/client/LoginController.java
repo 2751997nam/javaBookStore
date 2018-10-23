@@ -6,6 +6,7 @@
 package controllers.client;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -51,7 +52,7 @@ public class LoginController extends HttpServlet {
                     response.addCookie(cookie);
                 }
             }
-           response.sendRedirect(request.getContextPath() + "/home"); 
+            response.sendRedirect(request.getContextPath() + "");
         }
     }
 
@@ -61,8 +62,10 @@ public class LoginController extends HttpServlet {
         String email = request.getParameter("email");
         String password = MD5.md5(request.getParameter("password"));
         if (!User.checkAuth(email, password)) {
-        request.setAttribute("error", "Email or password is incorrect.");
-        request.getRequestDispatcher("/WEB-INF/client/login.jsp").forward(request, response);
+            request.setAttribute("error", "Email or password is incorrect.");
+//            PrintWriter pw = response.getWriter();
+//            pw.println(password);
+            request.getRequestDispatcher("/WEB-INF/client/login.jsp").forward(request, response);
         } else {
             if (request.getParameter("remember") != null) {
                 Cookie cKEmail = new Cookie("email", email);
@@ -73,7 +76,7 @@ public class LoginController extends HttpServlet {
                 response.addCookie(cKPass);
             }
             session.setAttribute("email", email);
-            response.sendRedirect(request.getContextPath() + "/home");
+            response.sendRedirect(request.getContextPath() + "");
 
         }
     }

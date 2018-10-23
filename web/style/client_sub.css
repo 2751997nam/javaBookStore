@@ -1,5 +1,6 @@
-.categories{
-    margin-top: 20px;
+.header_top {
+    display: flex;
+    align-items: center;
 }
 .categories ul{
     border-top: 1px #3399ff dashed;

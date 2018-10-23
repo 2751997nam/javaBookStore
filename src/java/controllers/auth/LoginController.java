@@ -72,15 +72,19 @@ public class LoginController extends HttpServlet {
         User user = (User) new DB("users", "User").where("email", "=", email).get().get(0);
         session.setAttribute("user", user);
         
-        if (request.getParameter("remember").length() > 0) {
+        if (request.getParameter("remember") != null && request.getParameter("remember").length() > 0) {
             String token = RandomString.randomString(40);
             HashMap<String, String> map = new HashMap();
             map.put("remember_token", token);
             new DB("users").where("id", "=", "" + user.getId()).update(map);
             
-            Cookie cookie = new Cookie("remember", token);
+            Cookie cookie = new Cookie("bookstore.remember", token);
             cookie.setMaxAge(30 * 60 * 60 * 24);
             response.addCookie(cookie);
+        }
+        if(user.role().getName().compareTo("admin") == 0) {
+            response.sendRedirect("/bookstore/admin/books");
+            return;
         }
         response.sendRedirect("/bookstore");
     }

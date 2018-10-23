@@ -28,9 +28,9 @@ public class ProfileController extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         if(session.getAttribute("email") != null){
-            User user = (User)new DB("users", "User").where("email","=",(String)session.getAttribute("email")).get().get(0);
+            User user = (User) new DB("users", "User").where("email", "=", (String)session.getAttribute("email")).get().get(0);
             if(user == null){
-                response.sendRedirect(request.getContextPath() + "/home");
+                response.sendRedirect(request.getContextPath() + "");
             }
             request.setAttribute("name", user.getName());
             request.setAttribute("email", user.getEmail());
@@ -38,7 +38,7 @@ public class ProfileController extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/client/profile.jsp").forward(request, response);
         }
         else{
-            response.sendRedirect(request.getContextPath() + "/home");
+            response.sendRedirect(request.getContextPath() + "");
         }
     }
 
@@ -57,7 +57,7 @@ public class ProfileController extends HttpServlet {
         if(session.getAttribute("email") != null){
             User user = (User)new DB("users", "User").where("email","=",(String)session.getAttribute("email")).get().get(0);
             if(user == null){
-                response.sendRedirect(request.getContextPath() + "/home");
+                response.sendRedirect(request.getContextPath() + "");
             }
             DB db = new DB("profiles");
             HashMap<String, String> map = new HashMap();

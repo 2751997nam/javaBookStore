@@ -50,7 +50,6 @@ public class Config {
         } catch (IOException ex) {
             Logger.getLogger(Config.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
         
         return value;
     }

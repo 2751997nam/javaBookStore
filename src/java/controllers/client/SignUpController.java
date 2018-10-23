@@ -8,7 +8,6 @@ package controllers.client;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
-import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -37,10 +36,12 @@ public class SignUpController extends HttpServlet {
         String email = request.getParameter("email");
         String password = MD5.md5(request.getParameter("password"));
         String name = request.getParameter("name");
+//        PrintWriter out = response.getWriter();
+//        out.println(email);
+//        out.println(name);
+//        out.println(password);
         if (!User.checkExist(email)) {
-            request.setAttribute("name", name);
-            request.setAttribute("email", email);
-            Map<String, String> map = new HashMap<>();
+            HashMap<String, String> map = new HashMap<>();
             map.put("name", name);
             map.put("password", password);
             map.put("email", email);

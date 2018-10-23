@@ -1,11 +1,23 @@
 {
     "Num.": "STT",
     "Fullname": "Tài Khoản",
+    "Book Name": "Tên Sách",
     "Product Name": "Tên Sách",
     "Created": "Thời gian tạo",
     "Updated": "Thời gian cập nhật",
     "Price": "Giá",
     "Description": "Mô tả",
     "First": "Đầu",
-    "Last": "Cuối"
+    "Last": "Cuối",
+    "Add New Book": "Thêm Sách",
+    "Publisher": "Nhà Xuất Bản",
+    "Author": "Tác Giả",
+    "Submit": "Gửi",
+    "Thumbnail": "Ảnh Bìa",
+    "Categories": "Thể Loại",
+    "Discount": "Giảm Giá",
+    "Quantity": "Số Lượng",
+    "Author": "Tác Giả",
+    "Category": "Thể Loại",
+    "Categories": "Các Thể Loại"
 }

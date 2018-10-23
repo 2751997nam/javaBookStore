@@ -1,20 +1,17 @@
 package models.database;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Stream;
 import javax.servlet.http.HttpServletRequest;
 
 public class DB {
@@ -120,7 +117,6 @@ public class DB {
         try {
             System.out.println(query);
             Statement statement = this.connection.createStatement();
-
             ResultSet rs = statement.executeQuery(query);
             if (rs.next()) {
                 this.connection.close();
@@ -198,22 +194,19 @@ public class DB {
         });
 
         for (String set : sets) {
-            sql += set;
-            if (set.compareTo(sets.get(sets.size() - 1)) != 0) {
-                sql += ", ";
-            }
+            sql += set + ", ";
         }
+        sql += "updated_at = CURRENT_TIMESTAMP";
         this.query.setUpdate(sql);
         this.execute();
 
     }
-    
+
     public void update(Object obj) {
         this.query.setCommand("Update");
-        this.query.setFrom(this.table);        
+        this.query.setFrom(this.table);
         String sql = "SET ";
-        
-        
+
         this.execute();
     }
 
@@ -240,7 +233,7 @@ public class DB {
 
         return this;
     }
-    
+
     // chọn bảng cho câu truy vấn
     public DB table(String table) {
         this.query.setFrom(table);
@@ -261,7 +254,7 @@ public class DB {
 
         return this;
     }
-    
+
     public DB where(String key, String operator, String value) {
         String where = this.query.getWhere() + " AND ";
         if(this.query.getWhere().isEmpty()) {
@@ -293,7 +286,6 @@ public class DB {
 
     public DB having(String having) {
         this.query.setHaving("HAVING " + having);
-
         return this;
     }
 
@@ -363,5 +355,19 @@ public class DB {
 
     public String getClassName(String column) {
         return "models." + column.toUpperCase().charAt(0) + column.substring(1, column.length() - 3);
+    }
+
+    public DB join(String table, String col1, String opt, String col2) {
+        String sql = "Inner Join " + table + " ON " + col1 + " " + opt + " " + col2 + "\n";
+        this.query.setJoin(sql);
+
+        return this;
+    }
+
+    public DB join(String table, String col1, String col2) {
+        String sql = "Inner Join " + table + " ON " + col1 + " = " + col2 + "\n";
+        this.query.setJoin(sql);
+
+        return this;
     }
 }

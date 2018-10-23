@@ -2,12 +2,8 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <!--                   Controllers                       -->
     <servlet>
-        <servlet-name>IndexController</servlet-name>
-        <servlet-class>controllers.IndexController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>BookController</servlet-name>
-        <servlet-class>controllers.BookController</servlet-class>
+        <servlet-class>controllers.admin.BookController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoginController</servlet-name>
@@ -26,25 +22,14 @@
         <servlet-class>controllers.client.ProfileController</servlet-class>
     </servlet>
     <!--                      Views                             -->
-    <servlet>
-        <servlet-name>index view</servlet-name>
-        <jsp-file>/WEB-INF/index.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>IndexController</servlet-name>
-        <url-pattern/>
-    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>BookController</servlet-name>
-        <url-pattern>/book</url-pattern>
+        <url-pattern>/admin/books</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>index view</servlet-name>
-        <url-pattern>/indexView</url-pattern>
-    </servlet-mapping>
+    <!--                      Views                             -->
     <servlet>
         <servlet-name>book view</servlet-name>
-        <jsp-file>/WEB-INF/book.jsp</jsp-file>
+        <jsp-file>/WEB-INF/admin/books/book.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>book view</servlet-name>
@@ -57,7 +42,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
-        <url-pattern>/home</url-pattern>
+        <url-pattern/>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SignUpController</servlet-name>
@@ -69,8 +54,22 @@
     </servlet-mapping>
     <!--      end client      -->
     <welcome-file-list>
-        <welcome-file>client/index.jsp</welcome-file>
+        <welcome-file>WEB-INF/client/index.jsp</welcome-file>
     </welcome-file-list>
+    <servlet>   
+        <servlet-name>addBook</servlet-name>
+        <jsp-file>/WEB-INF/admin/books/add.jsp</jsp-file>
+        <multipart-config>
+            <location>/temp</location>
+            <max-file-size>20848820</max-file-size>
+            <max-request-size>418018841</max-request-size>
+            <file-size-threshold>1048576</file-size-threshold>
+        </multipart-config>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addBook</servlet-name>
+        <url-pattern>/addBook</url-pattern>
+    </servlet-mapping>
     <!--                      Sessions                          -->
     <session-config>
         <session-timeout>

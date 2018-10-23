@@ -34,8 +34,11 @@ public class User extends Model {
 
     public User(String email, String password) {
         super();
+        this.name = "";
         this.email = email;
         this.password = password;
+        this.remember_token = "";
+        this.role_id = 0;
     }
 
     public String getEmail() {
@@ -76,19 +79,26 @@ public class User extends Model {
                 .where("password", "=", password)
                 .checkQuery();
     }
-    
+
     public static boolean checkAuth(String remember) {
         return new DB("users")
-                    .where("remember_token", "=", remember)
-                    .checkQuery();
+                .where("remember_token", "=", remember)
+                .checkQuery();
     }
-    
+
+    public static User auth(String remember) {
+        return (User) new DB("users", "User")
+                .where("remember_token", "=", remember)
+                .get()
+                .get(0);
+    }
+
     public static boolean checkExist(String email) {
         return new DB("users")
-                    .where("email", "=", email)
-                    .checkQuery();
+                .where("email", "=", email)
+                .checkQuery();
     }
-    
+
     public int getRole_id() {
         return role_id;
     }
@@ -96,7 +106,7 @@ public class User extends Model {
     public void setRole_id(int role_id) {
         this.role_id = role_id;
     }
-    
+
     @Override
     public String toString() {
         return "User [id=" + id + ", name=" + name + ", password=" + password + "]";
@@ -107,9 +117,9 @@ public class User extends Model {
                 .orderBy("name")
                 .paginate(request,
                         Integer.parseInt(new Database().get("paginate"))
-                ).get();       
+                ).get();
     }
-    
+
     public Role role() {
         return (Role) this.hasOne("roles", "Role");
     }
