@@ -257,12 +257,18 @@ public class DB {
 
     public DB where(String key, String operator, String value) {
         String where = this.query.getWhere() + " AND ";
-        if(this.query.getWhere().isEmpty()) {
+        if (this.query.getWhere().isEmpty()) {
             where = "WHERE ";
         }
-        where += key + " " + operator + " \'" + value + "\' ";
+        where += key + " " + operator;
+        if(value.matches("\\s+")) {
+            where += " \'" + value + "\' ";
+        }
+        else {
+            where += value;
+        }
         this.query.setWhere(where);
-        
+
         return this;
     }
 
