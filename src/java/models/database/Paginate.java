@@ -20,17 +20,26 @@ public class Paginate {
 
     public void setPaginate(HttpServletRequest request, int page_number, int limit, int current) {
         StringBuffer current_url = request.getRequestURL();
+        String search = request.getParameter("search");
+        String url = current_url + "?";
+        
         String[] links = new String[5];
-        links[0] = current_url + "?page=1";
-        links[1] = current_url + "?page=" + (current != 1 ? current - 1 : 1);
-        links[2] = current_url + "?page=" + current;
-        links[3] = current_url + "?page=" + (current != page_number ? current + 1 : page_number);
-        links[4] = current_url + "?page=" + page_number;
+        for(int i = 0; i < 5; i++) {
+            links[i] += url;
+            if(search != null) {
+                links[i] += "&";
+            }
+        }
+        links[0] += "page=1";
+        links[1] += "page=" + (current != 1 ? current - 1 : 1);
+        links[2] += "page=" + current;
+        links[3] += "page=" + (current != page_number ? current + 1 : page_number);
+        links[4] += "page=" + page_number;
 
         request.setAttribute("page_number", page_number);
         request.setAttribute("links", links);
         request.setAttribute("current", current);
         request.setAttribute("perpage", limit);
-        request.setAttribute("url", current_url + "?page=");
+        request.setAttribute("url", url + "page=");
     }
 }

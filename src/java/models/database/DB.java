@@ -1,5 +1,6 @@
 package models.database;
 
+import static controllers.Controller.number;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -255,18 +256,26 @@ public class DB {
         return this;
     }
 
+    public DB whereNotString(String key, String operator, String value) {
+        String where = this.query.getWhere() + " AND ";
+        if (this.query.getWhere().isEmpty()) {
+            where = "WHERE ";
+        }
+        where += key + " " + operator + " ";
+        where += value;
+        this.query.setWhere(where);
+
+        return this;
+    }
+
     public DB where(String key, String operator, String value) {
         String where = this.query.getWhere() + " AND ";
         if (this.query.getWhere().isEmpty()) {
             where = "WHERE ";
         }
         where += key + " " + operator;
-        if(value.matches("\\s+")) {
-            where += " \'" + value + "\' ";
-        }
-        else {
-            where += value;
-        }
+        where += " \'" + value + "\' ";
+
         this.query.setWhere(where);
 
         return this;
@@ -306,10 +315,26 @@ public class DB {
 
     // phân trang
     public DB paginate(HttpServletRequest request, int limit) {
-        int current = 1;
+        int current = 1, page_number = 0;
         if (request.getParameter("page") != null) {
             current = Integer.parseInt(request.getParameter("page"));
         }
+        Query sql = this.query;
+        String command = this.query.getCommand();
+        sql.setCommand("SELECT count(*) as paginate");
+        try {
+            System.out.println(query);
+            Statement statement = this.connection.createStatement();
+
+            ResultSet rs = statement.executeQuery(sql.toString());
+            while (rs.next()) {
+                page_number = rs.getInt("paginate");
+            }
+        } catch (IllegalArgumentException | SQLException ex) {
+            Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.query.setCommand(command);
+        number = page_number % limit == 0 ? page_number / limit : page_number / limit + 1;
 
         this.query.setLimit(limit);
         this.query.setPaginate("Offset " + limit * (current - 1));

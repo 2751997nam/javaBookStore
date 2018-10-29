@@ -1,6 +1,6 @@
-function setId(id) {
-    document.getElementById("book_id").value = id;
-    if(confirm("Do you want to delete this book?")) {
-        document.getElementById("delete_book").submit();
+function setId(id, message) {
+    document.getElementById("item_id").value = id;
+    if(confirm(message)) {
+        document.getElementById("delete_item").submit();
     }
 }

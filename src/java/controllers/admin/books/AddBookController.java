@@ -41,6 +41,10 @@ public class AddBookController extends Controller {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        if(!this.auth(request)) {
+            response.sendRedirect("/bookstore/admin");
+            return;
+        }
         List categories = new DB("categories", "Category").orderBy("name").get();
         request.setAttribute("categories", categories);
         RequestDispatcher dispathcher = request.getRequestDispatcher("/WEB-INF/admin/books/add.jsp");
@@ -58,6 +62,10 @@ public class AddBookController extends Controller {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        if(!this.auth(request)) {
+            response.sendRedirect("/bookstore/admin");
+            return;
+        }
         try {
             HashMap<String, String> map = new HashMap();
             map.put("name", request.getParameter("name"));

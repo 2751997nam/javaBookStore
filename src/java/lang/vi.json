@@ -19,5 +19,20 @@
     "Quantity": "Số Lượng",
     "Author": "Tác Giả",
     "Category": "Thể Loại",
-    "Categories": "Các Thể Loại"
+    "Categories": "Thể Loại",
+    "Do you want to delete this book?": "Bạn có muốn xóa cuốn sách này không?",
+    "Do you want to delete this category": "Bạn có muốn xóa danh mục này không?",
+    "Edit": "Sửa",
+    "Delete": "Xóa",
+    "List": "Danh Sách",
+    "Create": "Tạo Mới",
+    "Orders": "Các Đơn Hàng",
+    "Bills": "Hóa Đơn",
+    "Users": "Người Dùng",
+    "Logout": "Đăng Xuất",
+    "Books": "Sách",
+    "Input your email here": "Nhập địa chỉ email",
+    "Input your password here": "Nhập password",
+    "Remember me": "Ghi nhớ",
+    "Welcome": "Xin chào"
 }

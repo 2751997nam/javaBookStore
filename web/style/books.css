@@ -272,7 +272,7 @@ body {
 }
 
 .infor-admin img{
-    width: 100;
+    width: 100px;
     height: 150px;
     float: left;
 }
@@ -298,4 +298,11 @@ body {
     padding-left: 50px;
     padding-top: 25px;
     border-top: 1px solid #616161;
+}
+
+.book-content {
+    overflow-x: scroll;
+    overflow-y: scroll;
+    height: 650px;
+    width: 100%;
 }
