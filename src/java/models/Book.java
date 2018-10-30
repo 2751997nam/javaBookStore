@@ -94,7 +94,9 @@ public class Book extends Model{
     }
     
     public List getAllBook(HttpServletRequest request) {
+        String search = request.getParameter("search") != null ? request.getParameter("search") : "";
         return new DB("books", "Book")
+                .where("name", "like", "%" + search + "%")
                 .orderBy("updated_at DESC")
                 .paginate(request,
                         Integer.parseInt(new Database().get("paginate"))

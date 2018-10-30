@@ -1,17 +1,15 @@
+package controllers.auth;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers.auth;
 
-import config.Lang;
+import controllers.Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URLEncoder;
-import java.nio.charset.Charset;
 import java.util.HashMap;
-import java.util.Random;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,8 +27,9 @@ import models.database.DB;
  *
  * @author ASUS
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/admin/login"})
-public class LoginController extends HttpServlet {
+@WebServlet(urlPatterns = {"/admin"})
+public class AdminLoginController extends Controller {
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -44,6 +43,10 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        if(this.auth(request)) {
+            response.sendRedirect("/bookstore/admin/books");
+            return;
+        }
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/login.jsp");
         dispatcher.forward(request, response);
     }
@@ -86,6 +89,6 @@ public class LoginController extends HttpServlet {
             response.sendRedirect("/bookstore/admin/books");
             return;
         }
-        response.sendRedirect("/bookstore");
+        response.sendRedirect("/bookstore/admin");
     }
 }

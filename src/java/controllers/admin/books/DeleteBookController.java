@@ -21,6 +21,7 @@ import models.database.DB;
  */
 @WebServlet(name = "DeleteBookController", urlPatterns = {"/admin/books/delete"})
 public class DeleteBookController extends Controller {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -37,15 +38,19 @@ public class DeleteBookController extends Controller {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        if (!this.auth(request)) {
+            response.sendRedirect("/bookstore/admin");
+            return;
+        }
         int id = Integer.parseInt(request.getParameter("id"));
         ArrayList<Image> images = (ArrayList<Image>) new DB("images", "Image")
-                                    .where("book_id", "=", "" + id)
-                                    .get();
-        for(Image img: images) {
+                .where("book_id", "=", "" + id)
+                .get();
+        for (Image img : images) {
             deleteFile(request, img.getLink());
         }
         new DB("books").delete().where("id", "=", "" + id).execute();
-        
+
         String url = (String) request.getHeader("Referer");
         response.sendRedirect(url);
     }

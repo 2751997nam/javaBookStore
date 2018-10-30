@@ -13,7 +13,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title><%= Lang.getKey(language, "Books Manager") %></title>
+        <title><%= Lang.getKey(language, "Books Manager")%></title>
         <link rel="stylesheet" href="../style/books.css">
         <link rel="stylesheet" href="../style/style.css">
         <link href="../style/font-awsome.css" rel="stylesheet" />
@@ -24,57 +24,69 @@
             <%@include file="../sidebar.jsp" %>
 
             <% ArrayList<Book> books = (ArrayList<Book>) request.getAttribute("books");%>
-            
+
             <div class="content-right-data">
-                <a href="books/add" role="button" class="btn btn-success"><%= Lang.getKey(language, "Add New Book")%></a>
-                <table class="table-data">
-                    <tr>
-                        <th style="min-width: 50px;"><%= Lang.getKey(language, "ID")%></th>
-                        <th style="min-width: 300px;"><%= Lang.getKey(language, "Product Name")%></th>
-                        <th style="min-width: 200px;"><%= Lang.getKey(language, "Thumbnail")%></th>
-                        <th style="min-width: 150px;"><%= Lang.getKey(language, "Price")%></th>
-                        <th style="min-width: 200px;"><%= Lang.getKey(language, "Categories")%></th>
-                        <th style="min-width: 150px;"><%= Lang.getKey(language, "Quantity")%></th>
-                        <th style="min-width: 200px;"><%= Lang.getKey(language, "Author")%></th>
-                        <th style="min-width: 300px;"><%= Lang.getKey(language, "Description")%></th>
-                        <th style="min-width: 200px;"><%= Lang.getKey(language, "Publisher")%></th>
-                        <th style="min-width: 200px;"></th>                                                      
-                    </tr>
-                    <tr>
-                        <% int num = Integer.parseInt(request.getAttribute("perpage").toString()) * (Integer.parseInt(request.getAttribute("current").toString()) - 1); %>
-                        <% for (Book book : books) {%>
-                    <tr>
-                        <td><%= ++num%></td>
-                        <td><%= book.getName()%></td>
-                        <td>
-                            <img class="thumbnail" src="<%= book.images().size() > 0 ? book.images().get(0).link() : new Database().get("thumbnail")%>">
-                        </td>
-                        <td><%= book.showPrice()%></td>
-                        <% List<Category> categories = book.categories(); %>
-                        <td>
-                            <% for (Category cate : categories) {%>
-                            <a href="javascript:void(0)"><%= cate.getName()%></a>
-                            <% }%>
-                        </td>
-                        <td><%= book.getQuantity()%></td>
-                        <td><%= book.getAuthor()%></td>
-                        <td><%= book.getDescription()%></td>
-                        <td><%= book.getPublisher()%></td>
-                        <td>
-                            <a role="button" class="btn btn-primary" href="books/edit?id=<%= book.getId()%>">Edit</a>
-                            <a role="button" class="btn btn-danger" href="javascript:setId(<%= book.getId()%>)">Delete</a>
-                        </td>
-                    </tr>
-                    <% }
-                       %>
-                    </tr>
-                </table>
-                <div class="paginate">
-                    <%@include  file="/WEB-INF/paginate.jsp"%>
+                <div class="book-content">
+                    <a href="books/add" role="button" class="btn btn-success"><%= Lang.getKey(language, "Add New Book")%></a>
+                    <table class="table-data">
+                        <thead>
+                            <tr>
+                                <th class="col-min-1"><%= Lang.getKey(language, "ID")%></th>
+                                <th class="col-min-6"><%= Lang.getKey(language, "Product Name")%></th>
+                                <th class="col-min-4"><%= Lang.getKey(language, "Thumbnail")%></th>
+                                <th class="col-min-3"><%= Lang.getKey(language, "Price")%></th>
+                                <th class="col-min-4"><%= Lang.getKey(language, "Categories")%></th>
+                                <th class="col-min-3"><%= Lang.getKey(language, "Quantity")%></th>
+                                <th class="col-min-4"><%= Lang.getKey(language, "Author")%></th>
+                                <th class="col-min-6"><%= Lang.getKey(language, "Description")%></th>
+                                <th class="col-min-4"><%= Lang.getKey(language, "Publisher")%></th>
+                                <th class="col-min-4"></th>                                                      
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <% int num = Integer.parseInt(request.getAttribute("perpage").toString()) * (Integer.parseInt(request.getAttribute("current").toString()) - 1); %>
+                                <% for (Book book : books) {%>
+                            <tr>
+                                <td><%= ++num%></td>
+                                <td><%= book.getName()%></td>
+                                <td>
+                                    <img class="thumbnail" src="<%= book.images().size() > 0 ? book.images().get(0).link() : new Database().get("thumbnail")%>">
+                                </td>
+                                <td><%= book.showPrice()%></td>
+                                <% List<Category> categories = book.categories(); %>
+                                <td>
+                                    <% for (Category cate : categories) {%>
+                                    <a href="javascript:void(0)"><%= cate.getName()%></a>
+                                    <% }%>
+                                </td>
+                                <td><%= book.getQuantity()%></td>
+                                <td><%= book.getAuthor()%></td>
+                                <td><%= book.getDescription()%></td>
+                                <td><%= book.getPublisher()%></td>
+                                <td>
+                                    <a role="button" class="btn btn-primary" href="books/edit?id=<%= book.getId()%>"><%= Lang.getKey(language, "Edit")%></a>
+                                    <a role="button" class="btn btn-danger" 
+                                       href="javascript:setId(
+                                       <%= book.getId()%>, 
+                                       '<%= Lang.getKey(language, "Do you want to delete this book?")%>'
+                                       )">
+                                        <%= Lang.getKey(language, "Delete")%>
+                                    </a>
+                                </td>
+                            </tr>
+                            <% }
+                            %>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="paginate">
+                        <%@include  file="/WEB-INF/paginate.jsp"%>
+                    </div>
+                    <form action="books/delete" method="POST" id="delete_item">
+                        <input type="hidden" name="id" value="" id="item_id">
+                    </form>
                 </div>
-                <form action="books/delete" method="POST" id="delete_book">
-                    <input type="hidden" name="id" value="" id="book_id">
-                </form>
             </div>
         </div>
         <script src="/bookstore/js/admin/menu.js"></script>

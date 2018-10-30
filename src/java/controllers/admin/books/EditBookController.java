@@ -39,6 +39,10 @@ public class EditBookController extends Controller {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        if (!this.auth(request)) {
+            response.sendRedirect("/bookstore/admin");
+            return;
+        }
         int id = Integer.parseInt(request.getParameter("id"));
         Book book = (Book) new DB("books", "Book").find(id);
         ArrayList<Category> categories = (ArrayList<Category>) new DB("categories", "Category").orderBy("name").get();
@@ -61,6 +65,10 @@ public class EditBookController extends Controller {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        if(!this.auth(request)) {
+            response.sendRedirect("/bookstore/admin");
+            return;
+        }
         int id = Integer.parseInt(request.getParameter("id"));
         String[] cateIds = request.getParameterValues("categories");
         System.out.println(request.getParameter("categories"));
@@ -90,12 +98,12 @@ public class EditBookController extends Controller {
             map.put("link", image);
             if (images.size() > 0) {
                 new DB("images")
-                    .where("book_id", "=", "" + id)
-                    .update(map);
+                        .where("book_id", "=", "" + id)
+                        .update(map);
             } else {
                 map.put("book_id", "" + id);
                 new DB("images")
-                    .insert(map);
+                        .insert(map);
             }
         }
 

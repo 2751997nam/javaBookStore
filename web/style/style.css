@@ -108,6 +108,46 @@ a {
     width: 100%;
 }
 
+.col-min-1 {
+    min-width: 50px;
+}
+
+.col-min-2 {
+    min-width: 100px;
+}
+
+.col-min-3 {
+    min-width: 150px;
+}
+
+.col-min-4 {
+    min-width: 200px;
+}
+
+.col-min-5 {
+    min-width: 250px;
+}
+
+.col-min-6 {
+    min-width: 300px;
+}
+
+.col-min-7 {
+    min-width: 350px;
+}
+
+.col-min-8 {
+    min-width: 400px;
+}
+
+.col-min-9 {
+    min-width: 450px;
+}
+
+.col-min-10 {
+    min-width: 500px;
+}
+
 .thumbnail {
     width: 200px;
     height: 300px;

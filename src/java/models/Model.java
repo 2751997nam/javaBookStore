@@ -65,7 +65,7 @@ public class Model extends Object{
             field.setAccessible(true);
             int column = (int) field.get(this);
             return new DB(table, model)
-                    .where(
+                    .whereNotString(
                         "id",
                         "=",
                         "" + column
@@ -79,15 +79,15 @@ public class Model extends Object{
     }
 
     public List hasMany(String table, String model) {
-        return new DB(table, model).where(getColumnId(this.getClass().getSimpleName()), "=", "" + this.id).get();
+        return new DB(table, model).whereNotString(getColumnId(this.getClass().getSimpleName()), "=", "" + this.id).get();
     }
     
     public List belongsToMany(String table, String model, String pivot, String id, String key) {
         return new DB(table, model)
             .join(pivot, table + ".id", key)
             .select(table + ".*, " + pivot + "." + key + ", " + pivot + "." + id)
-            .where(pivot + "." + id, "=",  "" + this.getId())
-            .where(table + ".id", "=", pivot + "." + key)
+            .whereNotString(pivot + "." + id, "=",  "" + this.getId())
+            .whereNotString(table + ".id", "=", pivot + "." + key)
             .get();
     }
 }

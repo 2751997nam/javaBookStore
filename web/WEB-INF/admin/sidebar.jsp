@@ -1,37 +1,37 @@
 <div class="sidebar">
     <ul>
-        <li class="accordion"><img src="/bookstore/images/categorys.png"><a href="javascipt:void(0)">Category</a></li>
+        <li class="accordion"><img src="/bookstore/images/books.png"><a  href="javascipt:void(0)"><%= Lang.getKey(language, "Books") %></a></li>
         <div class="item">
             <ul>               
-                <li><a class="panel" href="category.html">List</a></li>
-                <li><a class="panel" href="createcategory.html">Create</a></li>
+                <li><a class="panel" href="/bookstore/admin/books"><%= Lang.getKey(language, "List") %></a></li>
+                <li><a class="panel" href="/bookstore/admin/books/add"><%= Lang.getKey(language, "Create") %></a></li>
             </ul>
         </div>
-        <li class="accordion"><img src="/bookstore/images/books.png"><a  href="javascipt:void(0)">Product</a></li>
+        <li class="accordion"><img src="/bookstore/images/categorys.png"><a href="javascipt:void(0)"><%= Lang.getKey(language, "Categories") %></a></li>
         <div class="item">
             <ul>               
-                <li><a class="panel" href="books.html">List</a></li>
-                <li><a class="panel" href="createbooks.html">Create</a></li>
+                <li><a class="panel" href="/bookstore/admin/categories"><%= Lang.getKey(language, "List") %></a></li>
+                <li><a class="panel" href="/bookstore/admin/categories/add"><%= Lang.getKey(language, "Create") %></a></li>
             </ul>
         </div>
-        <li class="accordion"><img src="/bookstore/images/orders.png"><a href="javascipt:void(0)">Order</a></li>
+        <li class="accordion"><img src="/bookstore/images/orders.png"><a href="javascipt:void(0)"><%= Lang.getKey(language, "Orders") %></a></li>
         <div class="item">
             <ul>               
-                <li><a class="panel" href="order.html">List</a></li>                      
+                <li><a class="panel" href="order.html"><%= Lang.getKey(language, "List") %></a></li>                      
             </ul>
         </div>
-        <li class="accordion"><img src="/bookstore/images/user.png"><a href="javascipt:void(0)">User</a></li>
+        <li class="accordion"><img src="/bookstore/images/user.png"><a href="javascipt:void(0)"><%= Lang.getKey(language, "Users") %></a></li>
         <div class="item">
             <ul>               
-                <li><a class="panel" href="user.html">List</a></li>
+                <li><a class="panel" href="user.html"><%= Lang.getKey(language, "List") %></a></li>
             </ul>
         </div>
-        <li class="accordion"><img src="/bookstore/images/bill.png"><a href="javascipt:void(0)">Bill</a></li>
+        <li class="accordion"><img src="/bookstore/images/bill.png"><a href="javascipt:void(0)"><%= Lang.getKey(language, "Bills") %></a></li>
         <div class="item">
             <ul>               
-                <li><a class="panel" href="bill.html">List</a></li>                      
+                <li><a class="panel" href="bill.html"><%= Lang.getKey(language, "List") %></a></li>                      
             </ul>
         </div>
-        <li class="accordion"><img src="/bookstore/images/logout.png"><a href="login-user.html">Logout</a></li>
+        <li class="accordion"><img src="/bookstore/images/logout.png"><a href="login-user.html"><%= Lang.getKey(language, "Logout") %></a></li>
     </ul>           
 </div>
