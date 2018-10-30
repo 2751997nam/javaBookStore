@@ -125,6 +125,7 @@ public class DB {
             this.connection.close();
         } catch (SQLException ex) {
             Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         }
 
         return false;
@@ -184,7 +185,7 @@ public class DB {
         return this;
     }
 
-    public void update(Map<String, String> map) {
+    public DB update(Map<String, String> map) {
         this.query.setCommand("Update");
         this.query.setFrom(this.table);
         String sql = "SET ";
@@ -198,8 +199,7 @@ public class DB {
         }
         sql += "updated_at = CURRENT_TIMESTAMP";
         this.query.setUpdate(sql);
-        this.execute();
-
+        return this;
     }
 
     public void update(Object obj) {
@@ -260,13 +260,13 @@ public class DB {
         if (this.query.getWhere().isEmpty()) {
             where = "WHERE ";
         }
-        where += key + " " + operator;
-        if(value.matches("\\s+")) {
+        where += key + operator;
+//        if(value.matches("\\s+")) {
             where += " \'" + value + "\' ";
-        }
-        else {
-            where += value;
-        }
+//        }
+//        else {
+//            where += value;
+//        }
         this.query.setWhere(where);
 
         return this;

@@ -66,7 +66,7 @@ public class AddBookController extends Controller {
             map.put("price", request.getParameter("price"));
             map.put("quantity", request.getParameter("quantity"));
             map.put("description", request.getParameter("description"));
-            
+            map.put("rating", 5 + "");
             String[] categories = request.getParameterValues("categories");
             
             String image = uploadFile(request);

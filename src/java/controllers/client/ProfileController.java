@@ -32,9 +32,9 @@ public class ProfileController extends HttpServlet {
             if(user == null){
                 response.sendRedirect(request.getContextPath() + "");
             }
-            request.setAttribute("name", user.getName());
-            request.setAttribute("email", user.getEmail());
-            request.setAttribute("profile", user.hasOne("profiles", "Profile"));
+            Profile profile = (Profile) new DB("profiles", "Profile").where("user_id", "=", user.getId() + "").get().get(0);
+            request.setAttribute("profile", profile);
+            request.setAttribute("user", user); 
             request.getRequestDispatcher("/WEB-INF/client/profile.jsp").forward(request, response);
         }
         else{
@@ -59,13 +59,14 @@ public class ProfileController extends HttpServlet {
             if(user == null){
                 response.sendRedirect(request.getContextPath() + "");
             }
-            DB db = new DB("profiles");
+            DB db = new DB("profiles","Profile");
             HashMap<String, String> map = new HashMap();
             map.put("user_id", "" + user.getId());
             map.put("phone", request.getParameter("phone"));
-            map.put("gender", (request.getParameter("gender") == "male" ? "0":"1"));
+            map.put("gender", (request.getParameter("gender").equals("male") ? "1":"0"));
             map.put("date_of_birth",request.getParameter("year") + "-" + request.getParameter("month") + "-" + request.getParameter("day"));
-            db.insert(map);
+            String[] tmp = {"user_id = " + user.getId()};
+            db.update(map).where(tmp).execute();
             response.sendRedirect(request.getContextPath() + "/profile");
         }
     }

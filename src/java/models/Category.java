@@ -6,6 +6,7 @@
 package models;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  *
@@ -31,7 +32,10 @@ public class Category extends Model {
     public void setName(String name) {
         this.name = name;
     }
-
+    public List<Book> books()
+    {
+        return this.belongsToMany("books", "Book", "book_category", "category_id", "book_id");
+    }
     @Override
     public String toString() {
         return "Category{ " + id + " " + name + " " + created_at + " " + updated_at + " }";

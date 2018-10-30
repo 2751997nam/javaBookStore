@@ -18,7 +18,7 @@
             <div class="form">
                 <div class="top row">
                     <div class="col-2">
-                        <a href=""><img src="images/back-arrow.png"/></a>
+                        <a href="/bookstore"><img src="images/back-arrow.png"/></a>
                     </div>
                     <div class="col-8">
                         <p>Login</p>

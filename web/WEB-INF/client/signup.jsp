@@ -4,9 +4,10 @@
     Author     : nguye
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
+    <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="style/client_reset.css">
@@ -18,7 +19,7 @@
             <div class="form">
                 <div class="top row">
                     <div class="col-2">
-                        <a href=""><img src="images/back-arrow.png"/></a>
+                        <a href="/bookstore"><img src="images/back-arrow.png"/></a>
                     </div>
                     <div class="col-8">
                         <p>Sign Up</p>

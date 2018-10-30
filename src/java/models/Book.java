@@ -6,6 +6,7 @@
 package models;
 
 import config.Database;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -115,5 +116,9 @@ public class Book extends Model{
     public List<Category> categories()
     {
         return this.belongsToMany("categories", "Category", "book_category", "book_id", "category_id");
+    }
+    public List<Book> topSell() {
+        return new DB("books", "Book")
+                .orderBy("updated_at DESC").limit(5).get();
     }
 }

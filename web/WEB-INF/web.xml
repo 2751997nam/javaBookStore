@@ -21,6 +21,10 @@
         <servlet-name>ProfileController</servlet-name>
         <servlet-class>controllers.client.ProfileController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DetailController</servlet-name>
+        <servlet-class>controllers.client.DetailController</servlet-class>
+    </servlet>
     <!--                      Views                             -->
     <servlet-mapping>
         <servlet-name>BookController</servlet-name>
@@ -52,11 +56,15 @@
         <servlet-name>ProfileController</servlet-name>
         <url-pattern>/profile</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetailController</servlet-name>
+        <url-pattern>/detail/*</url-pattern>
+    </servlet-mapping>
     <!--      end client      -->
     <welcome-file-list>
         <welcome-file>WEB-INF/client/index.jsp</welcome-file>
     </welcome-file-list>
-    <servlet>   
+    <servlet>
         <servlet-name>addBook</servlet-name>
         <jsp-file>/WEB-INF/admin/books/add.jsp</jsp-file>
         <multipart-config>

@@ -23,7 +23,7 @@ public class AddColumnsInBooksTable extends Migration{
         tb.alter();
         tb.addColumn().string("publisher");
         tb.addColumn().string("author");
-        tb.addColumn().addNullable("release", "DATE");
+        tb.addColumn().addNullable("`release`", "DATE");
         tb.addColumn().integer("rating");
         tb.execute();
     }
