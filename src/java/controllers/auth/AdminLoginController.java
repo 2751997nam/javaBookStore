@@ -72,10 +72,16 @@ public class AdminLoginController extends Controller {
             response.sendRedirect(url);
             return;
         }
+        System.out.println("");
+        System.out.println("LOgin");
+        System.out.println("");
         User user = (User) new DB("users", "User").where("email", "=", email).get().get(0);
         session.setAttribute("user", user);
         
         if (request.getParameter("remember") != null && request.getParameter("remember").length() > 0) {
+            System.out.println("");
+            System.out.println("Has Remember");
+            System.out.println("");
             String token = RandomString.randomString(40);
             HashMap<String, String> map = new HashMap();
             map.put("remember_token", token);

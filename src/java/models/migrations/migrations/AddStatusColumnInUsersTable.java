@@ -12,30 +12,29 @@ import models.migrations.Table;
  *
  * @author ASUS
  */
-public class AddColumnsInBooksTable extends Migration{
+public class AddStatusColumnInUsersTable extends Migration {
+
     public void up() {
-        if(this.exists()) {
+        if (this.exists()) {
             return;
         }
         this.addMigration(this.getClass().getName());
-        
-        Table tb = new Table("books");
+
+        Table tb = new Table("users");
         tb.alter();
-        tb.addColumn().string("publisher");
-        tb.addColumn().string("author");
+        tb.addColumn().integer("status");
         tb.execute();
     }
-    
+
     public void down() {
-        if(!this.exists()) {
+        if (!this.exists()) {
             return;
         }
-        
-        Table tb = new Table("books");
-        tb.dropColumn("author");
-        tb.dropColumn("publisher");
+
+        Table tb = new Table("users");
+        tb.dropColumn("status");
         tb.execute();
-        
+
         this.removeMigration(this.getClass().getName());
     }
 }

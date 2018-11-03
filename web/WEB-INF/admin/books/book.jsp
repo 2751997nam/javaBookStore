@@ -16,7 +16,7 @@
         <title><%= Lang.getKey(language, "Books Manager")%></title>
         <link rel="stylesheet" href="../style/books.css">
         <link rel="stylesheet" href="../style/style.css">
-        <link href="../style/font-awsome.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <%@include file="../header.jsp" %>
@@ -24,10 +24,9 @@
             <%@include file="../sidebar.jsp" %>
 
             <% ArrayList<Book> books = (ArrayList<Book>) request.getAttribute("books");%>
-
             <div class="content-right-data">
+                <a href="books/add" role="button" class="btn btn-success"><%= Lang.getKey(language, "Add New Book")%></a>
                 <div class="book-content">
-                    <a href="books/add" role="button" class="btn btn-success"><%= Lang.getKey(language, "Add New Book")%></a>
                     <table class="table-data">
                         <thead>
                             <tr>

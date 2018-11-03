@@ -34,5 +34,9 @@
     "Input your email here": "Nhập địa chỉ email",
     "Input your password here": "Nhập password",
     "Remember me": "Ghi nhớ",
-    "Welcome": "Xin chào"
+    "Welcome": "Xin chào",
+    "Block": "Khóa",
+    "Unblock": "Mở Khóa",
+    "Do you want to block this user?": "Bạn có muốn khóa người dùng này?",
+    "Do you want to unblock this user?": "Bạn có muốn mở khóa người dùng này?"
 }

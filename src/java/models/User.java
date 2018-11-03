@@ -13,6 +13,7 @@ public class User extends Model {
     protected String password;
     protected String remember_token;
     protected int role_id;
+    protected int status;
 
     public User() {
         super();
@@ -21,6 +22,7 @@ public class User extends Model {
         this.password = "";
         this.remember_token = "";
         this.role_id = 0;
+        this.status = 0;
     }
 
     public User(HashMap<String, String> cols) {
@@ -30,6 +32,7 @@ public class User extends Model {
         this.password = cols.get("password");
         this.remember_token = cols.get("remember_token");
         this.role_id = Integer.parseInt(cols.get("role_id"));
+        this.status = Integer.parseInt(cols.get("status"));
     }
 
     public User(String email, String password) {
@@ -39,7 +42,18 @@ public class User extends Model {
         this.password = password;
         this.remember_token = "";
         this.role_id = 0;
+        this.status = 0;
     }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+    
+    
 
     public String getEmail() {
         return email;
@@ -122,5 +136,9 @@ public class User extends Model {
 
     public Role role() {
         return (Role) this.hasOne("roles", "Role");
+    }
+    
+    public boolean blocked() {
+        return this.status == 2;
     }
 }

@@ -200,4 +200,9 @@ public class Controller extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher(getView(url));
         dispatcher.forward(request, response);
     }
+    
+    public void redirectBack(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String url = (String) request.getHeader("Referer");
+        response.sendRedirect(url);
+    }
 }

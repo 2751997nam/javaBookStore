@@ -1,5 +1,6 @@
 package models.database;
 
+import config.Database;
 import static controllers.Controller.number;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
@@ -200,6 +201,8 @@ public class DB {
         }
         sql += "updated_at = CURRENT_TIMESTAMP";
         this.query.setUpdate(sql);
+        this.execute();
+        
         return this;
     }
 
@@ -339,6 +342,13 @@ public class DB {
         this.query.setLimit(limit);
         this.query.setPaginate("Offset " + limit * (current - 1));
 
+        return this;
+    }
+    
+    public DB paginate(HttpServletRequest request)
+    {
+        this.paginate(request, Integer.parseInt(new Database().get("paginate")));
+        
         return this;
     }
 
