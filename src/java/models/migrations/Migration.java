@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import models.database.DB;
 import models.database.MySQLConnect;
+import models.migrations.migrations.AddBook_idColumnsInOrderDetailTable;
 import models.migrations.migrations.AddColumnsInBooksTable;
 import models.migrations.migrations.AddEmailUniqueOnUsersTable;
 import models.migrations.migrations.AddMoreColumnsInBooksTable;
@@ -68,6 +69,7 @@ public class Migration {
         new AddMoreColumnsInBooksTable().up();
         new RemoveAlternativeColumnInImagesTable().up();
         new AddStatusColumnInUsersTable().up();
+        new AddBook_idColumnsInOrderDetailTable().up();
     }
 
     public void down() {

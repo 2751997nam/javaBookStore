@@ -17,7 +17,7 @@
         <li class="accordion"><img src="/bookstore/images/orders.png"><a href="javascipt:void(0)"><%= Lang.getKey(language, "Orders")%></a></li>
         <div class="item">
             <ul>               
-                <li><a class="panel" href="order.html"><%= Lang.getKey(language, "List")%></a></li>                      
+                <li><a class="panel" href="/bookstore/admin/orders"><%= Lang.getKey(language, "List")%></a></li>                      
             </ul>
         </div>
         <li class="accordion"><img src="/bookstore/images/user.png"><a href="/bookstore/admin/users"><%= Lang.getKey(language, "Users")%></a></li>

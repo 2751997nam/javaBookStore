@@ -29,7 +29,7 @@ public class Controller extends HttpServlet {
 
     public static final String SAVE_DIRECTORY = "images";
     public static int number = 0;
-    
+
     public boolean auth(HttpServletRequest request) {
         HttpSession session = request.getSession();
         if (session.getAttribute("user") != null) {
@@ -200,7 +200,7 @@ public class Controller extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher(getView(url));
         dispatcher.forward(request, response);
     }
-    
+
     public void redirectBack(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String url = (String) request.getHeader("Referer");
         response.sendRedirect(url);

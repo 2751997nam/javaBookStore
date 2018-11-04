@@ -90,4 +90,8 @@ public class Model extends Object{
             .whereNotString(table + ".id", "=", pivot + "." + key)
             .get();
     }
+    
+    public Object belongsTo(String table, String model, int id) {
+        return new DB(table, model).find(id);
+    }
 }
