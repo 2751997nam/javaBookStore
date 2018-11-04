@@ -95,42 +95,16 @@ body{
 }
 
 /*<!-- CATEGORIES : HEADER -->*/
-.header .categories{
-    width: 100%;
-    margin: 10px 0;
+.category{
+    
 }
-.categories ul{
-    width: 100%;
-    text-align: center;
-    justify-content: center;
-    display: flex;
-    list-style: none;
-}
-.categories ul li{
-    display: inline-block;
-    margin: 10px 0 10px 15px;
-}
-.categories ul li a{
-    text-decoration: none;
-    font-size: 18px;
-    color: #000;
-    padding: 7px 15px;
-    border: 1px rgba(255, 255, 255, 0) solid;
-}
-.categories ul li a:hover{
-    color: #3399ff;
-    border: 1px #3399ff solid;
-    border-radius: 13px;
-    transition: 0.2s ease;
-}
-
 /*<!-- BODY -->*/
 .body{
-    width: 80%;
+    width: 90%;
     height: auto;
     margin: 0 auto;
     display: block;
-    padding: 40px 0;
+    margin-top: 30px;
 }
 .body .prominent{
     width: 100%;
@@ -172,7 +146,6 @@ body{
     text-align: center;
     display: flex;
     margin-top: 10px;
-    margin-bottom: 10px;
 }
 .header .line{
     width: 35%;
@@ -188,7 +161,6 @@ body{
 .header .title p{
     text-decoration: none;
     font-size: 18px;
-    font-weight: bold;
     text-transform: uppercase;
 }
 .products .prod_row{
@@ -201,15 +173,15 @@ body{
 .prod_row .pr_col{
     width: 20%;
     padding: 10px 0;
-/*    display: inline-block;
-    justify-content: center;
-    text-align: center;*/
+    /*    display: inline-block;
+        justify-content: center;
+        text-align: center;*/
     background: white;
     border-radius: 2px;
-    margin: 0 5px;
+    /*margin: 0 5px;*/
 }
 .prod_row .pr_col:hover {
-   box-shadow: 0 0 20px rgba(0,0,0,.1);
+    box-shadow: 0 0 20px rgba(0,0,0,.1);
 }
 .pr_col .col_top{
     width: 96%;
@@ -335,12 +307,12 @@ body{
 
 .main_col .prod_row .pr_col{
     width: 50%;
-/*    display: inline-block;
-    justify-content: center;
-    text-align: center;*/
+    /*    display: inline-block;
+        justify-content: center;
+        text-align: center;*/
 }
 .main_col .prod_row .pr_col:hover {
-   box-shadow: 0 0 20px rgba(0,0,0,.1);
+    box-shadow: 0 0 20px rgba(0,0,0,.1);
 }
 
 /*<!-- OTHER PRODUCT -->*/
@@ -436,12 +408,10 @@ body{
 
 
 /*<!-- HẾT BODY -->*/
-
-
 /*<!-- SOCIAL -->*/
 .social{
     width: 100%;
-    margin: 40px auto;
+    margin: 30px auto;
     text-align: center;
     display: inline-block;
 }
@@ -488,8 +458,9 @@ body{
 
 /*-- FOOTER --*/
 .footer{
-    background: #3b3b3b;
-    padding: 100px 0;
+    border-top: 1px solid #ccc;
+    background: white;
+    padding: 50px 0;
     overflow: hidden;
     display: inline-block
 }
@@ -514,8 +485,8 @@ body{
     font-family: 'open_semibold', arial;
     font-weight: bold;
     font-size: 18px;
-    color: #ffffff;
-    margin-bottom: 30px;
+    color: black;
+    margin-bottom: 25px;
     letter-spacing: 1px;
 }
 .footer .f_cols p{
@@ -523,19 +494,19 @@ body{
     font-size: 14px;
     line-height: 22px;
     letter-spacing: 1px;
-    color: #ebebeb;
+    color: black;
     margin-bottom: 20px;
 }
 .footer .f_cols span.phone{
     display: block;
     font-family: 'open_bold', arial;
     font-weight: bold;
-    color: #b5b5b5;
+    color: black;
 }
 .footer .f_cols a{
     display: inline-block;
     font-family: 'open_regular', arial;
-    color: #b5b5b5;
+    color: black;
 }
 .footer .f_cols a:hover{
     color: #ebebeb;
@@ -549,10 +520,8 @@ body{
 }
 .footer .f_cols ul li a{
     text-decoration: none;
-    color: #ebebeb;
+    color: black;
     font-family: 'open_regular', arial;
-    font-family: 14px;
-    border-bottom: 1px #3b3b3b solid;
 }
 .footer .f_cols ul li a:hover{
     border-bottom: 1px #ebebeb solid;
@@ -584,13 +553,6 @@ body{
     }
     .slideShow .mySlides{
         height: 210px;
-    }
-    .categories ul li{
-        margin: 5px 0 5px 5px;
-    }
-    .categories ul li a{
-        font-size: 6px;
-        padding: 3px;
     }
     .prominent .my_prom{
         width: 31.5%;
@@ -706,13 +668,6 @@ body{
     .slideShow .mySlides{
         height: 247px;
     }
-    .categories ul li{
-        margin: 7px 0 7px 8px;
-    }
-    .categories ul li a{
-        font-size: 7px;
-        padding: 5px 5px;
-    }
     .prominent .my_prom{
         width: 31.5%;
         height: 69px;
@@ -824,13 +779,6 @@ body{
     }
     .slideShow .mySlides{
         height: 270px;
-    }
-    .categories ul li{
-        margin: 7px 0 7px 10px;
-    }
-    .categories ul li a{
-        font-size: 8px;
-        padding: 5px 7px;
     }
     .prominent .my_prom{
         width: 31.5%;
@@ -962,10 +910,6 @@ body{
     }
     .slideShow .mySlides{
         height: 375px;
-    }
-    .categories ul li a{
-        font-size: 12px;
-        padding: 5px 7px;
     }
     .prominent .my_prom{
         width: 31.5%;

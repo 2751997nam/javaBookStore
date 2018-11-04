@@ -25,7 +25,27 @@
         <servlet-name>DetailController</servlet-name>
         <servlet-class>controllers.client.DetailController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CartController</servlet-name>
+        <servlet-class>controllers.client.cart.CartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddCartController</servlet-name>
+        <servlet-class>controllers.client.cart.AddCartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchController</servlet-name>
+        <servlet-class>controllers.client.SearchController</servlet-class>
+    </servlet>
     <!--                      Views                             -->
+    <servlet>
+        <servlet-name>DeleteCartController</servlet-name>
+        <servlet-class>controllers.client.cart.DeleteCartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderController</servlet-name>
+        <servlet-class>controllers.client.OrderController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BookController</servlet-name>
         <url-pattern>/admin/books</url-pattern>
@@ -60,6 +80,18 @@
         <servlet-name>DetailController</servlet-name>
         <url-pattern>/detail/*</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartController</servlet-name>
+        <url-pattern>/cart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddCartController</servlet-name>
+        <url-pattern>/add-cart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchController</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
     <!--      end client      -->
     <welcome-file-list>
         <welcome-file>WEB-INF/client/index.jsp</welcome-file>
@@ -79,6 +111,14 @@
         <url-pattern>/addBook</url-pattern>
     </servlet-mapping>
     <!--                      Sessions                          -->
+    <servlet-mapping>
+        <servlet-name>DeleteCartController</servlet-name>
+        <url-pattern>/cart/delete/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderController</servlet-name>
+        <url-pattern>/order</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

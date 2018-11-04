@@ -1,0 +1,259 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 2, 2018, 8:57:57 PM
+    Author     : nguye
+*/
+#product-content{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    margin-top: 30px;
+}
+.col-md-3{
+    width: 25%;
+    margin: 0;
+}
+.sidebar-wrapper{
+    width: 90%;
+    margin-right: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+}
+.sb-top, .sb-bottom{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+.sb-logo{
+    display: flex;
+    justify-content: center;
+}
+.sb-social{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.social-list{
+    display: flex;
+    justify-content: center;
+}
+.fab{
+    font-size: 20px;
+    margin: 5px 10px;
+    text-decoration: none;
+    color: #999999;
+}
+.fab:hover{
+    color: #3399ff;
+}
+.sb-body{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 150px;
+}
+.sb-body .sb-list{
+    padding: 0;
+    list-style: none;
+    margin-top: 30px;
+}
+.sb-items{
+    margin-bottom: 10px;
+}
+.sb-items-link{
+    text-decoration: none;
+    color: #333333;
+    font-size: 0.95rem;
+    line-height: 1.4rem;
+    font-family: 'Mali', cursive;
+}
+.sb-items-link:hover{
+    color: #3399ff;
+}
+.sb-bottom{
+    margin-bottom: 20px;
+}
+.sb-bottom .map{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+.map iframe{
+    width: 100%;
+    height: auto;
+    border: 10px;
+}
+
+
+.col-md-9{
+    width: 75%;;
+}
+.product-wrapper{
+    max-width: 100%;
+    min-height: 800px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+}
+.product-wrapper .category_title{
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: left;
+    padding: 20px 10px;
+    border-bottom: 1px solid #ccc;
+}
+.product-wrapper .row .not-found {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.category_title p{
+    font-size: 20px;
+    color: #999999;
+}
+.main_row{
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.row .col-product{
+    position: relative;
+    width: 224px;
+    float: left;
+}
+.row .col-product:hover{
+    box-shadow: -5px -5px 5px -5px rgba(0, 0, 0, 0.19), 5px 5px 5px -5px rgba(0, 0, 0, 0.19), 5px -5px 5px -5px rgba(0, 0, 0, 0.19), -5px 5px 5px -5px rgba(0, 0, 0, 0.19);
+
+}
+.col-product .product-item{
+    display: block;
+    padding: 0 0 25px;
+    border: 1px solid transparent;
+    position: relative;
+    max-width: 100%;
+}
+.product-item>a{
+    display: block;
+    width: 200px;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: none;
+}
+.product-item .img-item{
+    overflow: hidden;
+    display: block;
+    position: relative;
+    margin: 25px auto 0;
+    text-align: center;
+    background: #fff;
+    height: 200px;
+    white-space: nowrap;
+}
+.img-item img{
+    width: 200px;
+    height: auto;
+}
+.product-item .title{
+    text-overflow: ellipsis;
+    position: relative;
+    text-align: left;
+    margin: 15px auto 0;
+    letter-spacing: .1px;
+    font-size: 13px;
+    font-weight: 300;
+    font-style: normal;
+    line-height: 1.38;
+    color: #242424;
+    max-height: 40px;
+    display: -webkit-box;
+    overflow: hidden;
+    font-family: 'Mali', cursive;
+}
+.product-item .author{
+    color: #3399ff;
+    margin: 3px 0;
+    font-size: 12px;
+    font-family: 'Mali', cursive;
+}
+.product-item .price-sale{
+    font-size: 13px;
+    color: #242424;
+    font-weight: bold;
+    text-align: left;
+}
+.product-item .price-sale .price-regular{
+    font-size: 11px;
+    color: #a2a2a2;
+    text-decoration: line-through;
+    text-align: left;
+    font-weight: 300;
+    margin-left: 15px;
+}
+.product-item .sale-tag{
+    color: #FF3B26;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+
+.dropdown-btn {
+    text-decoration: none;
+    display: block;
+    border: none;
+    background: none;
+    width:100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+    color: #333333;
+    font-size: 0.95rem;
+    padding: 0;
+    line-height: 1.4rem;
+    margin-bottom: 7px;
+    font-family: 'Mali', cursive;
+}
+.dropdown-btn span{
+    margin-left: auto;
+}
+.sb-items a:hover, .dropdown-btn:hover {
+    color: #3399ff;
+}
+.dropdown-container {
+    display: none;
+    background-color: white;
+    padding-left: 8px;
+}
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+    float: right;
+    padding-right: 8px;
+}
+/* Add an active class to the active dropdown button */
+.active {
+}
+.dropdown-container a{
+    display: block;
+    color: #f74d18;
+    font-size: 0.95rem;
+    padding: 0;
+    line-height: 1.4rem;
+    text-decoration: none;
+    margin-bottom: 10px;
+}

@@ -15,13 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.MD5;
 import models.User;
+import models.database.DB;
 
 /**
  *
  * @author nguye
  */
 public class LoginController extends HttpServlet {
-
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -40,22 +41,13 @@ public class LoginController extends HttpServlet {
                 }
             }
         } else {
+            session.removeAttribute("book_cart");
             session.removeAttribute("email");
-            Cookie[] cookies = request.getCookies();
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equalsIgnoreCase("email")) {
-                    cookie.setMaxAge(0);
-                    response.addCookie(cookie);
-                }
-                if (cookie.getName().equalsIgnoreCase("password")) {
-                    cookie.setMaxAge(0);
-                    response.addCookie(cookie);
-                }
-            }
+            deleteCookie(request.getCookies(), response);
             response.sendRedirect(request.getContextPath() + "");
         }
     }
-
+    
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -68,19 +60,17 @@ public class LoginController extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/client/login.jsp").forward(request, response);
         } else {
             if (request.getParameter("remember") != null) {
-                Cookie cKEmail = new Cookie("email", email);
-                cKEmail.setMaxAge(36000);
-                response.addCookie(cKEmail);
-                Cookie cKPass = new Cookie("password", password);
-                cKPass.setMaxAge(36000);
-                response.addCookie(cKPass);
+                addCookie(email, password, response);
             }
+            User user = (User) new DB("users", "User").where("email", "=", email).get().get(0);
+            int book_cart = new DB("book_user").where("user_id", "=", "" + user.getId()).get().size();
             session.setAttribute("email", email);
+            session.setAttribute("book_cart", book_cart);
             response.sendRedirect(request.getContextPath() + "");
-
+            
         }
     }
-
+    
     private User checkCookie(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
         String email = "";
@@ -97,5 +87,27 @@ public class LoginController extends HttpServlet {
             return new User(email, password);
         }
         return null;
+    }
+    
+    private void addCookie(String email, String password, HttpServletResponse response) {
+        Cookie cKEmail = new Cookie("email", email);
+        cKEmail.setMaxAge(36000);
+        response.addCookie(cKEmail);
+        Cookie cKPass = new Cookie("password", password);
+        cKPass.setMaxAge(36000);
+        response.addCookie(cKPass);
+    }
+
+    private void deleteCookie(Cookie[] cookies, HttpServletResponse response) {
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equalsIgnoreCase("email")) {
+                cookie.setMaxAge(0);
+                response.addCookie(cookie);
+            }
+            if (cookie.getName().equalsIgnoreCase("password")) {
+                cookie.setMaxAge(0);
+                response.addCookie(cookie);
+            }
+        }
     }
 }

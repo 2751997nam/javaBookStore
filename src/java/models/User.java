@@ -1,6 +1,7 @@
 package models;
 
 import config.Database;
+import java.util.ArrayList;
 import models.database.DB;
 import java.util.HashMap;
 import java.util.List;
@@ -119,6 +120,13 @@ public class User extends Model {
 
     public void setRole_id(int role_id) {
         this.role_id = role_id;
+    }
+
+    public List<Book> getBooksInCart() {
+        String q = "SELECT books.id, books.name, books.author, books.price, books.description, book_user.quantity, books.publisher, books.created_at, books.updated_at "
+                + "FROM books "
+                + "INNER JOIN book_user ON book_user.book_id = books.id AND book_user.user_id = " + this.getId();
+        return new DB("books", "Book").execute(q);
     }
 
     @Override

@@ -1,23 +1,17 @@
 *{
     box-sizing: border-box;
 }
-.categories ul{
-    border-top: 1px #3399ff dashed;
-    border-bottom: 1px #3399ff dashed;
-    padding: 3px 0;
-}
 .body{
-    width: 1240px;
-    padding: 40px;
+    width: 90%;
     min-height: 400px;
     padding-bottom: 40px;
+    margin-top: 30px;
 }
 
 .body .sidebar{
     width: 240px;
     float: left;
     margin-top: 40px;
-
 }
 .body .title{
     margin: 10px 0;
@@ -73,11 +67,11 @@
     display: flex;
     text-align: center;
     justify-content: center;
+    background: white;
 }
-
 .row .col-product{
     position: relative;
-    width: 232px;
+    width: 20%;
     float: left;
 }
 .row .col-product:hover{
@@ -348,7 +342,7 @@
     color: rgba(0,0,0,.54);
 }
 .media-body .commenter {
-    
+
 }
 .body .other_products{
     width: 100%;
@@ -642,26 +636,38 @@
 }
 
 /*-- PURCHASE --*/
-
+.cart-header {
+    color: #333;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin-bottom: 12px;
+}
+.cart-header span {
+    font-size: 14px;
+    text-transform: none;
+    font-weight: 300;
+}
 #purchase-left{
-    margin-right: 0;
-    margin-left: 0;
-    width: 983px;
+    width: 70%;
     position: relative;
     min-height: 1px;
-    padding-left: 15px;
-    padding-right: 15px;
-    float: left;
+    padding: 0 15px;
+    background: white;
+    border-radius: 5px;
 }
 .shopping-cart-item{
     background-color: #fff;
-    padding: 28px 20px;
+    padding: 20px;
     margin: 0;
-    display: table;
+    display: flex;
     content: " ";
+    border-bottom: 1px solid #ccc;
 }
 .shopping-cart-item .thumnail{
-    width: 150px;position: relative;
+    width: 150px;
+    height: 170px;
+    position: relative;
     min-height: 1px;
     padding-right: 15px;
     float: left;
@@ -674,7 +680,6 @@
 }
 .info-item{
     float: left;
-    width: 758px;
 }
 .box-info-product{
     width: 522px;
@@ -734,11 +739,10 @@
 }
 .info-item .quantity{
     float: left;
-    width: 105px;
 }
-.quantity .button-group p{
-    margin: 0 auto;
-    margin-bottom: 5px;
+.quantity .button-group{
+    display: flex;
+    align-items: center;
 }
 .quantity .button-group .number{
     margin: 10px;
@@ -746,21 +750,23 @@
 }
 
 #purchase-right{
-    width: 217px;
+    width: 30%;
     padding-left: 0;
     position: relative;
     min-height: 1px;
-    padding-right: 15px;
-    float: left;
 }
 #purchase-right .row{
     width: 100%;
     clear: both;
-    padding-top: 20px;
+    padding: 20px;
+    margin-left: 10px;
+    background: white;
+    border-radius: 5px;
 }
 .sub-row{
     padding: 12px 15px;
     background-color: #fff;
+    width: 100%;
 }
 .sub-row p{
     margin: 5px 0;
@@ -779,9 +785,9 @@
 }
 
 .sub-row .text-right{
-    float: right;
     font-size: 12px;
     margin: 10px 0 20px 0;
+    text-align: right;
 }
 .checkout, .sent-gift{
     margin-top: 10px;

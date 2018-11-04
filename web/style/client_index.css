@@ -1,0 +1,381 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 1, 2018, 8:46:24 PM
+    Author     : nguye
+*/
+.head {
+    height: 120px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
+.head .head-top {
+    height: 30px;
+    width: 100%;
+    background: #F74D18;
+    padding: 0 5%;
+}
+.head .head-top .row {
+    justify-content: space-between!important;
+    height: 100%;
+}
+.head .row .col-4:first-child {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.head .row .col-4:last-child {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.head .head-top .row .col-4 .language {
+    border-radius: 5px;
+}
+.head-user {
+    margin: 0 20px;
+}
+.head-user a {
+    display: flex;
+    align-items: center;
+}
+.head-user a img {
+    width: 17px;
+    height: 17px;
+    margin: 0 5px;
+}
+.head-user a .login {
+    border-radius: 50%;
+}
+.head .head-top .row .col-4 span {
+    color: white;
+    margin-right: 5px;
+    font-size: 13px;
+}
+.head .head-bot {
+    height: 90px;
+    width: 100%;
+    background: #FF541E;
+    padding: 0 5%;
+}
+.head .head-bot .logo svg {
+    color: white;
+    fill: currentColor;
+    width: 115px;
+}
+.head .head-bot .logo {
+    display: flex;
+    align-items: center;
+}
+.head .head-bot .logo a {
+    margin-left: 20px;
+}
+.head .head-bot .search {
+    display: flex;
+    align-items: center;
+}
+.head .head-bot .search .form-search {
+    width: 100%;
+    box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,.09);
+}
+.head .head-bot .search .form-search form {
+    width: 100%;
+    height: 40px;
+    background: white;
+    display: flex;
+    align-items: center;
+}
+.head .head-bot .search .form-search  input {
+    outline: none;
+    border: antiquewhite;
+    height: 100%;
+    padding: 20px;
+    width: 90%;
+}
+.head .head-bot .search .form-search button {
+    height: 30px;
+    width: 9%;
+    border: none;
+    background: #FF541F;
+    color: white;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.09);
+    border-radius: 2px;
+    cursor: pointer;
+}
+.head .head-bot .cart-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.head .head-bot .cart-icon a {
+    position: relative;
+}
+.noti{
+    position: absolute;
+    top: 0;
+    left: 20px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50px;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: red;
+    font-size: 13px;
+}
+.main_row .list-item {
+    background: white;
+    border-radius: 3px; 
+    border: 1px solid #e4e4e4;
+    border-top: none;
+}
+.main_row .list-item .items {
+    padding: 30px 10px 10px 10px;
+    max-width: 100%;
+}
+.main_row .list-item .items:hover {
+    box-shadow: 0 0 20px rgba(0,0,0,.1);
+}
+.main_row .list-item .items .item-img {
+    text-align: center;
+}
+.main_row .list-item .items img {
+    width: 200px;
+    height: 250px;
+    object-fit: contain;
+}
+.main_row .list-item .items .item-text {
+    padding: 10px;
+}
+.main_row .list-item .items .item-name {
+    text-overflow: ellipsis;
+    text-align: left;
+    letter-spacing: .1px;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.38;
+    color: #242424;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.main_row .list-item .items .item-author {
+    color: #999999;
+    font-size: 14px;
+}
+.main_row .list-item .items .item-price {
+    color: red;
+    font-size: 17px;
+    font-weight: 400;
+    margin-top: 5px;
+}
+.see-more {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px dotted #189eff;
+    margin-top: 10px;
+
+}
+.see-more a {
+    padding: 10px;
+    border: 1px solid #189eff;
+    border-radius: 5px;
+    width: 150px;
+    font-size: 15px;
+    text-align: center;
+    color: #189eff;
+}
+.see-more a:hover {
+    background-color: #189eff;
+    color: white
+}
+.products .main_row .list-item .header{
+    text-align: left;
+    justify-content: left;
+    padding: 5px 20px;
+    border-bottom: 1px dotted #189eff;
+}
+.products .main_row .list-item .header .title {
+    display: flex;
+}
+.products .main_row .list-item .header .title div {
+    margin-right: 10px; 
+}
+.products .main_row .list-item .header .title p {
+    color: #FF541E;
+}
+.products .main_row .list-item .header .title span {
+    font-size: 14px;
+}
+.slider-nav .row {
+    border-radius: 5px;
+    /*height: 298px;*/
+}
+.slider-nav .row .sn-left {
+    padding: 0 15px;
+    background: white;
+    border: 1px solid #e1e1e1;
+    border-radius: 4px;
+}
+.slider-nav .row .sn-right {
+    padding: 0 30px;
+} 
+.slider-nav .nav .nav-item{
+    display: grid;
+}
+.slider-nav .nav .nav-item a{
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    color: #444;
+    border-radius: 4px;
+    font-size: 15px;
+    position: relative;
+}
+.slider-nav .nav .nav-item a img {
+    margin-right: 10px;
+    width: 16px;
+}
+.slider-nav .nav .nav-item a .nav-icon-hide{
+    display: none;
+}
+.slider-nav .nav .nav-item a:hover{
+    background: #FF541E;
+    color: white;
+    box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,.09);
+}
+.slider-nav .nav .nav-item a:hover .nav-icon-hide{
+    display: block;
+}
+.slider-nav .nav .nav-item a:hover .nav-icon{
+    display: none;
+}
+.slider-nav .slider {
+    height: 100%;
+    position: relative;
+    border: 1px solid #e1e1e1;
+    border-radius: 4px;
+}
+.slider-nav .slider .slide-item {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.slider-nav .slider .slide-item img {
+    width: 100%;
+    object-fit: contain;
+    max-height: 296px;
+}
+.slide-none{
+    display: none;
+}
+.prev {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.next {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    height: 100%;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.prev p,.next p {
+    cursor: pointer;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+}
+.prev p {
+    margin-left: -10px;
+    border-radius: 0 3px 3px 0;
+}
+.next p {
+    border-radius: 3px 0 0 3px;
+    margin-right: -10px;
+}
+.prev p:hover ,.next p:hover {
+    background-color: white;
+    color: black;
+}
+.forward {
+    font-size: 10px;
+    position: absolute;
+    right: 10px;
+}
+.item-left {
+    background: white;
+    padding: 10px;
+    border: 1px solid #e4e4e4;
+    height: 100%;
+    border-top: none; 
+}
+.item-left .items {
+    display: flex;
+    border-top: 1px solid #e4e4e4;
+    padding: 10px 5px;
+}
+.item-left a:first-child .items{
+    border-top: none;
+}
+.item-left .items .item-img {
+    width: 50px;
+    height: 60px;
+    object-fit: contain;
+    text-align: center;
+}
+.item-left .items .item-text {
+    width: 100%;
+    padding: 5px 10px;
+}
+.item-left .items .item-text .item-name {
+    font-size: 17px;
+    color: #242424;
+}
+.item-left .items .item-text .item-author {
+    font-size: 14px;
+    color: #999999;
+}
+.item-left .items .item-text .item-price {
+    font-size: 15px;
+    color: red;
+    margin-top: 10px;
+}
+.recommend {
+    background: white;
+    border: 1px solid #e4e4e4;
+}
+.recommend .header {
+    text-align: left;
+    justify-content: left;  
+    padding: 10px 20px;
+    border-bottom: 1px dotted #189eff;
+}
+.recommend .header .title {
+    display: flex;
+    align-items: center;
+}
+.recommend .header .title div {
+    margin-right: 10px;
+}

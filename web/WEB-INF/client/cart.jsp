@@ -1,33 +1,34 @@
 <%-- 
-    Document   : detail
-    Created on : Oct 29, 2018, 9:13:45 AM
+    Document   : cart
+    Created on : Nov 3, 2018, 12:28:10 PM
     Author     : nguye
 --%>
-
-<%@page import="config.Lang"%>
-<%@page import="java.util.List"%>
 <%@page import="config.Database"%>
+<%@page import="java.util.List"%>
 <%@page import="models.Book"%>
-<%@include file="../language.jsp" %>
+<%@page import="config.Lang"%>
+<%@ page import="models.User"%>
+<%@ page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="../language.jsp" %>
 <!DOCTYPE html>
 <html lang="<%= language%>">
     <head>
-        <title>Detail Now</title>
+        <title>My Cart</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="../style/client_style.css">
-        <link rel="stylesheet" type="text/css" href="../style/client_sub.css">
-        <link rel="stylesheet" type="text/css" href="../style/client_reset.css">
-        <link rel="stylesheet" type="text/css" href="../style/client_index.css">
+        <link rel="stylesheet" type="text/css" href="style/client_reset.css">       
+        <link rel="stylesheet" type="text/css" href="style/client_style.css">
+        <link rel="stylesheet" type="text/css" href="style/client_index.css">
+        <link rel="stylesheet" type="text/css" href="style/client_sub.css">
     </head>
     <body>
         <%
-            Book book = (Book) request.getAttribute("book");
-            List<Book> top_sell = (List) request.getAttribute("top_sell");
+            List<Book> books = (List) request.getAttribute("books");
+            long total = 0;
         %>
         <div class="container">
-            <!-- HEADER TOP : HEADER -->
+            <!-- HEADER -->
             <div class="head">
                 <div class="head-top">
                     <div class="row">
@@ -39,30 +40,30 @@
                             <% if (session.getAttribute("email") != null) {%>
                             <div class="head-user">
                                 <a href="#" title="">
-                                    <img src="../images/ring.png" alt="">
+                                    <img src="images/ring.png" alt="">
                                     <span><%= Lang.getKey(language, "Notifications")%></span>
                                 </a>
                             </div>
                             <div class="head-user dropdown">
                                 <a href="#">
-                                    <img src="../images/user.jpg" alt="" class="login">
+                                    <img src="images/user.jpg" alt="" class="login">
                                     <span><%=session.getAttribute("email")%></span>
                                 </a>
                                 <div class="dropdown-content">
-                                    <a href="/bookstore/profile" class="fa fa-user">  <%= Lang.getKey(language, "Profile")%></a>
-                                    <a href="/bookstore/login?action=logout" class="fa fa-logout">  <%= Lang.getKey(language, "Logout")%></a>
+                                    <a href="profile" class="fa fa-user">  <%= Lang.getKey(language, "Profile")%></a>
+                                    <a href="login?action=logout" class="fa fa-logout">  <%= Lang.getKey(language, "Logout")%></a>
                                 </div>
                             </div>
                             <%} else {%>
                             <div class="head-user">
-                                <a href="/bookstore/login" title="">
-                                    <img src="../images/login.png" alt="">
+                                <a href="login" title="">
+                                    <img src="images/login.png" alt="">
                                     <span><%= Lang.getKey(language, "Login")%></span>
                                 </a>
                             </div>
                             <div class="head-user">
-                                <a href="/bookstore/sign-up" title="">
-                                    <img src="../images/link.png" alt="">
+                                <a href="sign-up" title="">
+                                    <img src="images/link.png" alt="">
                                     <span><%= Lang.getKey(language, "Signup")%></span>
                                 </a>
                             </div>
@@ -81,13 +82,13 @@
                             <div class="form-search">
                                 <form action="search" method="get">
                                     <input type="text" name="q" placeholder="<%= Lang.getKey(language, "Search books, categories")%>">
-                                    <button type="submit"><img src="../images/search.png" alt=""></button>
+                                    <button type="submit"><img src="images/search.png" alt=""></button>
                                 </form>
                             </div>
                         </div>
                         <div class="cart-icon col-2">
                             <a href="/bookstore/cart" title="">
-                                <img src="../images/shopping-cart.png" alt="">
+                                <img src="images/shopping-cart.png" alt="">
                                 <% if (session.getAttribute("book_cart") != null) {%>
                                 <div class="noti"><%= session.getAttribute("book_cart")%></div>
                                 <%}%>
@@ -95,46 +96,45 @@
                         </div>
                     </div>
                 </div>
-            </div>	
+            </div>
             <div class="wrapper-color">
+                <div class="bread-crumb">
+                    <a href="#">Home</a>
+                    <span>❯ <%= Lang.getKey(language, "My Cart")%></span>
+                </div>
                 <div class="body">
-                    <div class="detail_product">
-                        <div class="row">
-                            <div class="col-left">
-                                <a href="#"><img src="<%= book.images().size() > 0 ? book.images().get(0).link() : new Database().get("thumbnail")%>"></a>
-                            </div>
-                            <div class="col-right">
-                                <div class="row1">
-                                    <div class="product_name"><%= book.getName()%></div>
-                                    <div class="item-rating">
-                                        <p class="rating">
-                                            <span class="rating-box">
-                                                <i><img src="../images/star.png"></i>
-                                                <i><img src="../images/star.png"></i>
-                                                <i><img src="../images/star.png"></i>
-                                                <i><img src="../images/starwhite.png"></i>
-                                                <i><img src="../images/starwhite.png"></i>
-                                            </span>
-                                        </p>
-                                    </div>
-                                    <p><%= Lang.getKey(language, "Author")%>: <a class="author" href="#"><%= book.getAuthor()%></a></p>
+                    <div class="row">
+                        <div class="cart-title">
+                            <h5 class="cart-header"><%= Lang.getKey(language, "My Cart")%> <span>( <%= books.size()%> <%= Lang.getKey(language, "items")%> )</span></h5>
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <% if (!books.isEmpty()) { %>
+                        <div class="col-left" id="purchase-left">
+                            <% for (Book book : books) {%>
+                            <% total += book.getPrice()*book.getQuantity();%>
+                            <div class="shopping-cart-item">
+                                <div class="thumnail">
+                                    <img src="<%= book.images().size() > 0 ? book.images().get(0).link() : new Database().get("thumbnail")%>">
                                 </div>
-                                <div class="row1">
-                                    <div class="price">
-                                        <span class="spiral"></span>
-                                        <%= book.showPrice()%> ₫
+                                <div class="info-item">
+                                    <div class="box-info-product">
+                                        <p class="name"><%= book.getName()%></p>
+                                        <p class="note"> - <%= Lang.getKey(language, "Author")%>: <a href="" target=""><%= book.getAuthor()%></a></p>
                                     </div>
-                                    <!--                                    <p class="original-price">Giá thị trường: <label>93.000 ₫</label></p>
-                                                                        <p class="saving">Tiếp kiệm: <label>30.000 ₫</label></p>-->
-                                </div>
-
-                                <div class="row1">
-                                    <form action="/bookstore/add-cart" method="post">
-                                        <div class="quantity">
-                                            <input name="book_id" type="hidden" value="<%= book.getId()%>"/>
-                                            <div class="button-group">
-                                                <p><%= Lang.getKey(language,"Quantity")%></p>
-                                                <select class="number" name="quantity">
+                                    <div class="box-price">
+                                        <p class="price"><%= book.showPrice()%> ₫</p>
+                                        <!--                                        <p class="price2">119.000&nbsp;₫</p>
+                                                                                <p class="sale">-40%</p>-->
+                                    </div>
+                                    <div class="quantity">
+                                        <div class="button-group">
+                                            <p><%= Lang.getKey(language, "Quantity")%></p>
+                                            <form action="/bookstore/add-cart" method="post" id="<%= book.getId()%>">
+                                                <input type="hidden" value="change" name="action"/>
+                                                <input type="hidden" value="<%= book.getId()%>" name="book_id"/>
+                                                <select class="number" name="quantity" onchange="document.getElementById('<%= book.getId()%>').submit()">
+                                                    <option value="default"><%= book.getQuantity()%></option>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
                                                     <option value="3">3</option>
@@ -156,75 +156,47 @@
                                                     <option value="19">19</option>
                                                     <option value="20">20</option>
                                                 </select>
-                                            </div>
+                                            </form>
                                         </div>
-                                        <div class="addCart">
-                                            <button style="submit"><%= Lang.getKey(language, "Add To Cart")%></button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="clear"></div>
-                        <div class="description">
-                            <h3 class="section-name"><%= Lang.getKey(language,"Introduction")%></h3>
-                            <div class="des">
-                                <strong><span><%= book.getName()%>&nbsp;</span></strong>
-                                <p><%= book.getDescription()%></p>
-                                <div>&nbsp;</div>
-                            </div>
-                        </div>
-
-
-                        <div id="comment">
-                            <p class="card-head"><%= Lang.getKey(language, "Comments")%></p>
-                            <div class="card-body">
-                                <form>
-                                    <div class="form-group">
-                                        <textarea class="form-control" rows="3"></textarea>
+                                        <p><a href="/bookstore/cart/delete/<%= book.getId()%>" class="color-red"><%= Lang.getKey(language, "Delete")%></a></p>
                                     </div>
-                                    <button type="submit" class="btn-submit"><%= Lang.getKey(language, "Submit")%></button>
-                                </form>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="clear"> </div>
                             </div>
-                            <div class="row" id="media">
-                                <img src="http://placehold.it/50x50" class="rounded-circle">
-                                <div class="media-body">
-                                    <p class="commenter">Nhật Minh Lê Phan</p>
-                                    <p class="text-comment">Sách được bọc rất cẩn thận, giao hàng siêu nhanh. Mình mới nhận nên chưa review về nội dung của sách được. 5 sao cho dịch vụ của Team 09!
-                                        <br/>Team 09 giao hàng nhanh, sách đóng gói cẩn thận, không bị móp méo hay tróc chữ, nhân viên giao hàng thân thiện!
+                            <% }%>
+                        </div>
+                        <div class="col-right" id="purchase-right">
+                            <div class="row">
+                                <div class="sub-row">
+                                    <span class="text-label"><%= Lang.getKey(language, "Cash")%>: </span>
+                                    <div class="amount">
+                                        <p><strong><%= String.format("%,d", total)%>&nbsp;₫ </strong></p>
+                                    </div>
+                                    <p></p>
+                                </div>
+
+                                <div class="sub-row">
+                                    <span class="text-label"><%= Lang.getKey(language, "Merchandise Subtotal")%>: </span>
+                                    <div class="amount">
+                                        <p><strong class="color-red"><%= String.format("%,d", total + total * 10 / 100)%>&nbsp;₫ </strong></p>
+                                    </div>
+                                    <p class="text-right">
+                                        <small>(Đã bao gồm VAT)</small>
                                     </p>
                                 </div>
-                            </div>
-                            <div class="row" id="media">
-                                <img src="http://placehold.it/50x50" class="rounded-circle">
-                                <div class="media-body">
-                                    <p class="commenter">Nguyễn Thúy Hà</p>
-                                    <p class="text-comment">Sách đẹp và hay. Những chuyến đi luôn gắn kết con người lại với nhau</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="other_products">
-                            <h3 class="section-name"><%= Lang.getKey(language,"RECOMMEND RELATED PRODUCTS")%></h3>
-                            <div class="row">
-                                <% for (Book b : top_sell) {%>
-                                <div class="col-product">
-                                    <div class="product-item">
-                                        <a href="/bookstore/detail/<%= b.getId()%>">
-                                            <span class="img-item">
-                                                <img src="<%= b.images().size() > 0 ? b.images().get(0).link() : new Database().get("thumbnail")%>" style="display: inline;">
-                                            </span>
-                                            <span class="title"><%= b.getName()%></span>
-                                            <p class="price-sale"><%= b.showPrice()%> ₫
-                                                <span class="price-regular">99.000 ₫</span>
-                                                <span class="sale-tag">-30%</span>
-                                            </p>
-                                        </a>
-                                    </div>
-                                </div>
-                                <%}%>
+                                <button class="checkout">
+                                    Tiến hành đặt hàng
+                                </button>
+                                <button class="sent-gift">
+                                    Gửi quà tặng
+                                </button>
                             </div>
                         </div>
+                        <% } else {%>
+                        <p class="color-red" style="width: 100%;text-align: center;">Giỏ hàng còn trống</p>
+                        <% }%>
+                        <div class="clear"> </div>
                     </div>
                 </div>
                 <div class="clear"></div>
@@ -263,7 +235,8 @@
                         <p>Template made by Team 09</p>
                     </div>
                 </div>
-                <!-- HẾT FOOTER -->
             </div>
+            <!-- HẾT FOOTER -->
+        </div>
     </body>
 </html>

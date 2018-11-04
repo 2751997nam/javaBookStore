@@ -10,21 +10,23 @@
         <title><%= Lang.getKey(language, "Edit Category")%></title>
         <link rel="stylesheet" href="/bookstore/style/books.css">
         <link rel="stylesheet" href="/bookstore/style/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     </head>
     <body>
         <%@include file="../header.jsp" %>
         <div class="content">
             <%@include file="../sidebar.jsp" %>
-            <% Category category = (Category) request.getAttribute("category"); %>
+            <% Category category = (Category) request.getAttribute("category");%>
             <div id="content-right-createbooks" >
                 <div><h2 id="createbooks-header"><%= Lang.getKey(language, "Add New Category")%></h2></div>
                 <div class="createbooks">                
                     <form action="" class="col-5" method="POST">
                         <div class="form-group">
                             <label class="form-label"><%= Lang.getKey(language, "Name")%></label>
-                            <input type="text" name="name" value="<%= category.getName() %>" class="form-control" required>
+                            <input type="text" name="name" value="<%= category.getName()%>" class="form-control" required>
                         </div>
-                        <input type="hidden" name="id" value="<%= category.getId() %>">
+                        <input type="hidden" name="id" value="<%= category.getId()%>">
                         <div class="form-group">
                             <input id="save" type="submit" value="Save">
                         </div>                       

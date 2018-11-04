@@ -16,7 +16,8 @@ import models.database.DB;
  *
  * @author ASUS
  */
-public class Book extends Model{
+public class Book extends Model {
+
     protected String name;
     protected long price;
     protected String description;
@@ -92,7 +93,7 @@ public class Book extends Model{
     public void setAuthor(String author) {
         this.author = author;
     }
-    
+
     public List getAllBook(HttpServletRequest request) {
         String search = request.getParameter("search") != null ? request.getParameter("search") : "";
         return new DB("books", "Book")
@@ -100,27 +101,42 @@ public class Book extends Model{
                 .orderBy("updated_at DESC")
                 .paginate(request,
                         Integer.parseInt(new Database().get("paginate"))
-                ).get();           
+                ).get();
     }
-    
-    public String showPrice(){
+
+    public String showPrice() {
         return String.format("%,d", this.getPrice());
     }
-    
+
     public List<Image> images() {
         if (this.images == null) {
             this.images = this.hasMany("images", "Image");
         }
-        
+
         return this.images;
     }
-    
-    public List<Category> categories()
-    {
+
+    public List<Category> categories() {
         return this.belongsToMany("categories", "Category", "book_category", "book_id", "category_id");
     }
+
     public List<Book> topSell() {
         return new DB("books", "Book")
                 .orderBy("updated_at DESC").limit(5).get();
+    }
+
+    public List<Book> newBooks() {
+        return new DB("books", "Book")
+                .orderBy("created_at DESC").limit(5).get();
+    }
+
+    public List<Book> recommendBooks() {
+        return new DB("books", "Book")
+                .orderBy("quantity ASC").limit(7).get();
+    }
+
+    public List<Book> filter() {
+        return new DB("books", "Book")
+                .orderBy("quantity ASC").limit(7).get();
     }
 }
