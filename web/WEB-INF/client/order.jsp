@@ -3,6 +3,8 @@
     Created on : Oct 22, 2018, 8:47:16 PM
     Author     : nguye
 --%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="config.Lang"%>
 <%@page import="models.Profile"%>
 <%@page import="models.User"%>
@@ -23,6 +25,9 @@
         <link rel="stylesheet" type="text/css" href="style/client_account.css">
     </head>
     <body>
+        <%
+            List<HashMap> orders = (List) request.getAttribute("orders");
+        %>
         <div class="container">
             <!-- HEADER TOP : HEADER -->
             <div class="head">
@@ -137,45 +142,27 @@
                                         <div class="proid">Mã đơn hàng</div>
                                         <div class="prodate">Ngày mua</div>
                                         <div class="proname">Sản phẩm</div>
+                                        <div class="proprice">Số lượng</div>
                                         <div class="proprice">Tổng tiền</div>
                                         <div class="prostatus">Trạng thái</div>
                                     </div>
                                 </div>
 
                                 <div class="tbody">
-                                    <div class="tr">
-                                        <div class="proid">71770994</div>
-                                        <div class="prodate">20/11/2017</div>
-                                        <div class="proname">Bắt Sóng Cảm Xúc - Bí Mật Lực Hấp Dẫn</div>
-                                        <div class="proprice">26.705 ₫</div>
-                                        <div class="prostatus">Giao hàng thành công</div>
-                                    </div>
-
-                                    <div class="tr">
-                                        <div class="proid">28018742</div>
-                                        <div class="prodate">20/11/2017</div>
-                                        <div class="proname">Chuyện Con Mèo Dạy Hải Âu Bay (Tái Bản 2014)</div>
-                                        <div class="proprice">145.050 ₫</div>
-                                        <div class="prostatus">Giao hàng thành công</div>
-                                    </div>
-
-                                    <div class="tr">
-                                        <div class="proid">77888952</div>
-                                        <div class="prodate">08/11/2017</div>
-                                        <div class="proname">Tìm Đường Tuổi 20S</div>
-                                        <div class="proprice">116.000 ₫</div>
-                                        <div class="prostatus">Giao hàng thành công</div>
-                                    </div>
-
-                                    <div class="tr">
-                                        <div class="proid">91020369</div>
-                                        <div class="prodate">08/11/2017</div>
-                                        <div class="proname">Lịch sử Hà Nội</div>
-                                        <div class="proprice">	55.000 ₫</div>
-                                        <div class="prostatus">Giao hàng thành công</div>
-                                    </div>
-                                </div>
-
+                                    <% if (!orders.isEmpty()) {%>
+                                        <% for (HashMap order : orders) {%>
+                                            <div class="tr">
+                                                <div class="proid"><%= order.get("id")%></div>
+                                                <div class="prodate"><%= order.get("created_at")%></div>
+                                                <div class="proname"><%= order.get("name")%></div>
+                                                <div class="proprice"><%= order.get("quantity")%></div>
+                                                <div class="proprice"><%= order.get("price")%> ₫</div>
+                                                <div class="prostatus">Giao hàng thành công</div>
+                                            </div>
+                                         <% } %>
+                                    <% }else { %>
+                                        <p class="color-red">Hiện tại bạn chưa mua gì</p>
+                                    <% } %>
                                 <div class="tbottom">
                                     <div class="tr">
                                         <p>Cám ơn bạn đã mua hàng tại shop!!</p>
@@ -199,7 +186,6 @@
                         <p>Học viện Công nghệ Bưu chính Viễn thông - Nguyễn Trãi - Hà Đông - Hà Nội <span class="phone"> 01662228469 </span></p>
                         <a class="map" href="https://www.google.com/maps/place/H%E1%BB%8Dc+Vi%E1%BB%87n+C%C3%B4ng+ngh%E1%BB%87+B%C6%B0u+Ch%C3%ADnh+Vi%E1%BB%85n+Th%C3%B4ng/@20.9833077,105.7909336,15z/data=!4m5!3m4!1s0x3135accdcf7b0bd1:0xc1cf5dd00247628a!8m2!3d20.9813256!4d105.7874823">see it in the map <span class="arrow">&nbsp;&rarr;</span></a>
                     </div>
-
                     <div class="f_cols">
                         <h3>Company</h3>
                         <ul>

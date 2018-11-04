@@ -138,69 +138,40 @@
                         </div>
                     </div>
 
-                    <div class="col-md-9">
+                    <div class="col-md-9 accounts">
                         <div class="account-wrapper">
                             <h3>Thông tin tài khoản</h3>
                         </div>
                         <form action="profile?action=infor" method="post">
-                            <div class="account-infor">
-                                <div class="form-group">
-                                    <label class="control-label" for="full_name">Họ tên </label>
-                                    <div class="input-wrap">
-                                        <input type="text" name="full_name" class="form-control" id="full_name" value="<%= user.getName()%>" placeholder="Họ tên">
-                                        <span class="help-block"></span>
-                                    </div>
-                                    <div class="clear"></div>
+                            <div class="account-body">
+                                <div class="form-c">
+                                    <lable class="lb">Họ Tên</lable>
+                                    <input class="ai" type="text" name="name" value="<%= user.getName()%>" placeholder="Họ tên"/>
                                 </div>
-
-                                <div class="form-group ">
-                                    <label class="control-label" for="phone_number">Số điện thoại</label>
-                                    <div class="input-wrap update-phone">
-                                        <input type="text" placeholder="Hãy nhập SĐT để trải nghiệm tốt hơn" value="<%= profile.getPhone() == null ? " " : profile.getPhone()%>" class="form-control" name="phone" >
-                                        <span class="help-block"></span>
-                                    </div>
-                                    <div class="clear"></div>
+                                <div class="form-c">
+                                    <lable class="lb">Email</lable>
+                                    <input class="ai" type="text" name="email" value="<%= user.getEmail()%>" placeholder="Email" disabled/>
                                 </div>
-
-                                <div class="form-group">
-                                    <label class="control-label" for="email">Email</label>
-                                    <div class="input-wrap">
-                                        <input type="email" disabled="" value="<%= user.getEmail()%>" class="form-control" name="email" id="form_email" placeholder="Email">
+                                <div class="form-c">
+                                    <lable class="lb">Phone</lable>
+                                    <input class="ai" type="text" name="phone" value="<%= profile.getPhone() == null ? "" : profile.getPhone()%>" placeholder="Số điện thoại"/>
+                                </div> 
+                                <div class="form-c">
+                                    <lable class="lb">Address</lable>
+                                    <input class="ai" type="text" name="address" value="<%= profile.getAddress() == null ? "" : profile.getAddress()%>" placeholder="Địa chỉ"/>
+                                </div>  
+                                <div class="form-c">
+                                    <lable class="lb">Gender</lable>
+                                    <div class="row">
+                                        <div class="col-4"><input type="radio" name="gender" value="male" class="gender" <%= profile.getGender() == 1 ? "Checked" : ""%> ><span>Nam</span></div>
+                                        <div class="col-4"><input type="radio" name="gender" value="female" class="gender" <%= profile.getGender() == 0 ? "Checked" : ""%> ><span>Nữ</span></div>
                                     </div>
-                                    <div class="clear"></div>
                                 </div>
-
-                                <div class="form-group gender-select-wrap" id="register_name">
-                                    <label class="control-label" for="pasword">Giới tính</label>
-                                    <div class="input-wrap">
-                                        <div class="row-infor">
-                                            <div class="col-xs-4">
-                                                <label>
-                                                    <input type="radio" name="gender" value="male" id="gender_male" <%= profile.getGender() == 1 ? "Checked" : ""%> class="gender" checked="">
-                                                    <span><i class="ico"></i></span>Nam
-                                                </label>
-
-                                            </div>
-                                            <div class="col-xs-4">
-                                                <label>
-                                                    <input type="radio" name="gender" value="female" <%= profile.getGender() == 0 ? "Checked" : ""%> id="gender_female" class="gender">
-                                                    <span><i class="ico"></i></span>Nữ
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <span class="help-block">Vui lòng chọn giới tính</span>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-
-                                <div class="form-group ">
-                                    <label class="control-label no-lh" for="birthdate">
-                                        Ngày sinh
-                                        <span>(Không bắt buộc)</span>
-                                    </label>
-
+                                <div class="form-c">
+                                    <lable class="lb">Ngay Sinh</lable>
                                     <div class="input-wrap">
                                         <div id="birthday-picker" class="birthday-picker">
+                                            <fieldset class="birthday-picker">
                                                 <select class="birth-day form-control" name="day">
                                                     <option><%= day%></option>
                                                     <option value="1">1</option>
@@ -235,7 +206,7 @@
                                                     <option value="20">30</option>
                                                     <option value="20">31</option>
                                                 </select>
-                                                <select class="birth-month form-control" name="month">
+                                                <select class="birthday form-control" name="month">
                                                     <option><%= month%></option>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
@@ -250,7 +221,7 @@
                                                     <option value="11">11</option>
                                                     <option value="12">12</option>
                                                 </select>
-                                                <select class="birth-year form-control" name="year">
+                                                <select class="birthday form-control" name="year">
                                                     <option><%= year%></option>
                                                     <option value="2018">2018</option>
                                                     <option value="2017">2017</option>
@@ -281,16 +252,15 @@
                                                     <option value="1992">1992</option>
                                                     <option value="1991">1991</option>
                                                     <option value="1990">1990</option>
+
                                                 </select>
+                                            </fieldset>
                                         </div>
+                                        <span class="help-block"></span>
                                     </div>
-
-
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-wrap margin">
-                                        <button type="submit" class="btn btn-info btn-block btn-update">Cập nhật</button>
-                                    </div>
+                                </div>  
+                                <div class="form-c">
+                                    <button type="submit" >Save</button>
                                 </div>
                             </div>
                         </form>

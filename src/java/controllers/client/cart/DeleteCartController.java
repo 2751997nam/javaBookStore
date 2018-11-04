@@ -21,7 +21,6 @@ import models.database.DB;
  */
 public class DeleteCartController extends HttpServlet {
 
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -35,14 +34,18 @@ public class DeleteCartController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        if(session.getAttribute("email") != null){
+        if (session.getAttribute("email") != null) {
             User user = (User) new DB("users", "User").where("email", "=", session.getAttribute("email") + "").get().get(0);
             String id = request.getPathInfo().replace("/", "");
             new DB("book_user").where("book_id", "=", id).where("user_id", "=", user.getId() + "").delete().execute();
-            session.setAttribute("book_cart", (Integer.parseInt(session.getAttribute("book_cart") + "")- 1) + "");
+            String book_cart = "";
+            if (session.getAttribute("book_cart") == null || session.getAttribute("book_cart") == "") {
+                book_cart = "";
+            } else {
+                book_cart = (Integer.parseInt(session.getAttribute("book_cart") + "") - 1) + "";
+            }
+            session.setAttribute("book_cart", book_cart);
             response.sendRedirect(request.getHeader("Referer"));
-//            PrintWriter out = response.getWriter();
-//            out.println(new DB("book_user").where("id", "=", id).where("user_id", "=", user.getId() + "").delete().getQuery());
         }
     }
 

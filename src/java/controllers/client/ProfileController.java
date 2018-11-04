@@ -30,6 +30,8 @@ public class ProfileController extends HttpServlet {
         if(session.getAttribute("email") != null){
             User user = (User) new DB("users", "User").where("email", "=", (String)session.getAttribute("email")).get().get(0);
             if(user == null){
+                session.removeAttribute("email");
+                session.removeAttribute("book_cart");
                 response.sendRedirect(request.getContextPath() + "");
             }
             Profile profile = (Profile) new DB("profiles", "Profile").where("user_id", "=", user.getId() + "").get().get(0);
@@ -59,10 +61,17 @@ public class ProfileController extends HttpServlet {
             if(user == null){
                 response.sendRedirect(request.getContextPath() + "");
             }
+            if(user.getName().compareToIgnoreCase(request.getParameter("name") + "") != 0){
+                HashMap<String, String> userMap = new HashMap();
+                userMap.put("name", request.getParameter("name"));
+                new DB("users").update(userMap).where("id", "=", user.getId() + "").execute();
+            }
             DB db = new DB("profiles","Profile");
             HashMap<String, String> map = new HashMap();
             map.put("user_id", "" + user.getId());
             map.put("phone", request.getParameter("phone"));
+            map.put("phone", request.getParameter("phone"));
+            map.put("address", request.getParameter("address"));
             map.put("gender", (request.getParameter("gender").equals("male") ? "1":"0"));
             map.put("date_of_birth",request.getParameter("year") + "-" + request.getParameter("month") + "-" + request.getParameter("day"));
             String[] tmp = {"user_id = " + user.getId()};

@@ -1290,7 +1290,7 @@ body{
 /* máy tính bảng nằm ngang = zoom 125% */
 @media(min-width: 1024px) and (max-width: 1280px){
     .container{
-        width: 1024px;
+        /*width: 1024px;*/
         margin: 0 auto;
     }
     .slideShow .mySlides{

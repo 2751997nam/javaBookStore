@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.Book;
+import models.Profile;
 import models.User;
 import models.database.DB;
 
@@ -46,7 +47,10 @@ public class CartController extends HttpServlet {
             }
             User user = (User) list.get(0);
             List<Book> books = user.getBooksInCart();
+             Profile profile = (Profile) new DB("profiles", "Profile").where("user_id", "=", user.getId() + "").get().get(0);
             request.setAttribute("books", books);
+            request.setAttribute("profile", profile);
+            request.setAttribute("user", user);
             request.getRequestDispatcher("/WEB-INF/client/cart.jsp").forward(request, response);
         }else{
             response.sendRedirect("/bookstore/login");
