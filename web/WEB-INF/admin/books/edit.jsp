@@ -6,12 +6,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/language.jsp" %>
 <!DOCTYPE html>
-<html lang="<%=language%>">
+<html lang="<%= language %>">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><%= Lang.getKey(language, "Edit Book")%></title>
         <link rel="stylesheet" href="/bookstore/style/books.css">
         <link rel="stylesheet" href="/bookstore/style/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     </head>
     <body>
         <%@include file="../header.jsp" %>

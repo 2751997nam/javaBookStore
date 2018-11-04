@@ -54,4 +54,5 @@ public class BookUser extends Model{
     public void setBook(Book book) {
         this.book = book;
     }
+    
 }

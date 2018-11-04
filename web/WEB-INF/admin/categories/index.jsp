@@ -15,7 +15,8 @@
         <title><%= Lang.getKey(language, "Categories Manager")%></title>
         <link rel="stylesheet" href="../style/books.css">
         <link rel="stylesheet" href="../style/style.css">
-        <link href="../style/font-awsome.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     </head>
     <body>
         <%@include file="../header.jsp" %>
@@ -36,22 +37,22 @@
                         <% int num = Integer.parseInt(request.getAttribute("perpage").toString()) * (Integer.parseInt(request.getAttribute("current").toString()) - 1); %>
                         <% for (Category cate : categories) {%>
                         <tr>  
-                            <td><%= num++ %></td>
+                            <td><%= num++%></td>
                             <td><%= cate.getName()%></td>
                             <td><%= cate.getCreated_at()%></td>
                             <td><%= cate.getUpdated_at()%></td>
                             <td>
-                                <a role="button" class="btn btn-primary" href="categories/edit?id=<%= cate.getId()%>"><%= Lang.getKey(language, "Edit") %></a>
+                                <a role="button" class="btn btn-primary" href="categories/edit?id=<%= cate.getId()%>"><%= Lang.getKey(language, "Edit")%></a>
                                 <a role="button" class="btn btn-danger" 
-                               href="javascript:setId(
-                                <%= cate.getId()%>, 
-                                '<%= Lang.getKey(language, "Do you want to delete this book?") %>'
-                               )">
-                                <%= Lang.getKey(language, "Delete") %>
+                                   href="javascript:setId(
+                                   <%= cate.getId()%>, 
+                                   '<%= Lang.getKey(language, "Do you want to delete this book?")%>'
+                                   )">
+                                    <%= Lang.getKey(language, "Delete")%>
                             </td>
                         </tr>
                         <% }
-                           %>
+                        %>
                     </tbody>
                 </table>
                 <div class="paginate">

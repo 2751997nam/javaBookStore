@@ -1,0 +1,234 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 4, 2018, 2:21:58 PM
+    Author     : nguye
+*/
+
+.account-wrapper{
+    width: 100%;
+    margin-top: 10px;
+}
+.account-infor{
+    width: 100%;
+}
+.row-control{
+    margin-left: 30px;
+    display: flex;
+    width: 100%;
+}
+.row-control label{
+    width: 150px;
+    color: red;
+}
+.row-control input{
+    width: 80%;
+    padding: 7px 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.account-infor{
+    width: 60%;
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    position: relative;
+}
+.control-label{
+    float: left;
+    width: 20%;
+    font-size: 13px;
+    margin-bottom: 0;
+    font-weight: 400;
+    line-height: 34px;
+}
+.input-wrap{
+    float: left;
+    width: 405px;
+    margin: 0;
+
+}
+.form-control {
+    border-radius: 3px;
+    width: 100%;
+    height: 32px;
+    border: 1px solid #ddd;
+    color: #333;
+    font-size: 13px;
+    box-shadow: none;
+    padding: 6px 12px;
+    background-color: #fff;
+    line-height: 1.42857;
+    display: block;
+}
+.input-wrap.update-phone input{
+    width: 244px;
+    float: left;
+    border-radius: 3px 0 0 3px;
+    border-right: none;
+    line-height: 32px;
+}
+.input-wrap.update-phone a.btn-send-otp{
+    border-radius: 0 3px 3px 0;
+    color: #4a4a4a;
+    font-size: 13px;
+    background-color: #fdd835;
+    display: inline-block;
+    width: 161px;
+    height: 32px;
+    text-align: center;
+    line-height: 32px;
+    font-weight: bold;
+}
+a{
+    text-decoration: none;
+}
+
+.input-wrap .row-infor{
+    padding: 7px 0;
+    margin-left: -15px;
+    margin-right: -15px;
+    width: 100%;
+}
+label{
+    display: inline-block;
+}
+.col-xs-4{
+    width: 30%;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    float: left;
+}
+
+.gender-select-wrap .help-block {
+    display: none;
+}
+i.ico{
+    speak: none;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    font-style: normal;
+    cursor: pointer;
+    color: #a6a6a6;
+}
+.input-wrap label input[type=radio]+span{
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+}
+.form-group .control-label span{
+    display: block;
+    margin-top: 5px;
+    color: #4a4a4a;
+    font-size: 11px;
+}
+fieldset{
+    margin: 0;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+}
+.birthday-picker .form-control{
+    width: 30%;
+    display: inline-block;
+    border-radius: 3px;
+    height: 32px;
+    border: 1px solid #ddd;
+    color: #333;
+}
+.birthday-picker select[name="birth[month]"]{
+    margin: 0 5%;
+    display: inline-block;
+
+}
+.input-wrap.margin{
+    margin-left: 20%;
+    float: left;
+    width: 405px;
+}
+.form-group .btn-update{
+    background: #00b6f0;
+    border: none;
+    width: 176px;
+    height: 40px;
+    border-radius: 4px;
+    color: #4a4a4a;
+    font-size: 14px;
+    background-color: #fdd835;
+    cursor: pointer;
+}
+.myCart-wrapper{
+    max-width: 100%;
+    min-height: 800px;
+    border: 1px solid #ccc;
+    border-radius: 16px;
+    background-color: white;
+}
+.cart-table{
+    width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+.thead, .tbody{
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+.thead{
+    border-bottom: 1px solid #eeeeee;
+}
+.tr .proid, .tr .prodate{
+    width: 13%
+}
+.tr .proprice {
+   width: 15%;
+}
+.tr .prostatus{
+    width: 10%;
+}
+.tr .proname{
+    width: 45%;
+    text-align: left;
+}
+.tbody .tr{
+    cursor: pointer;
+}
+.tr div{
+    display: inline-block;
+    padding: 20px 2px;
+    font-size: 18px;
+    color: #424242;
+    font-size: 16px;
+    vertical-align: top;
+}
+.tbody .tr div{
+    font-size: 14px;
+}
+.tbody .tr div:hover{
+    color: #3399ff;
+}
+.tbody .tr:hover{
+    background-color: #eeeeee;
+}
+.tbottom{
+    width: 100%;
+    display: block;
+    text-align: center;
+    margin-top: 50px;
+}
+.tbottom p{
+    font-family: 'Mali', cursive;
+    font-size: 1.1rem;
+}
