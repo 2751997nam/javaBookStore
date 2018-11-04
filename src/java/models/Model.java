@@ -94,4 +94,8 @@ public class Model extends Object{
     public Object belongsTo(String table, String model, int id) {
         return new DB(table, model).find(id);
     }
+    
+    public String showPrice(long price){
+        return String.format("%,d", price);
+    }
 }

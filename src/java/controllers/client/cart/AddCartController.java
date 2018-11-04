@@ -49,7 +49,14 @@ public class AddCartController extends HttpServlet {
                 map.put("user_id", "" + user.getId());
                 map.put("quantity", quantity);
                 new DB("book_user").insert(map);
-                session.setAttribute("book_cart", Integer.parseInt(session.getAttribute("book_cart") + "") + 1);
+//                kiem tra t/h chua mua hang
+                String book_cart = "";
+                if(session.getAttribute("book_cart") == null || session.getAttribute("book_cart") == ""){
+                    book_cart = "1";
+                }else {
+                    book_cart = (Integer.parseInt(session.getAttribute("book_cart") + "") + 1) + "";
+                }
+                session.setAttribute("book_cart", book_cart);
             }
             response.sendRedirect(request.getHeader("Referer"));
         } else {

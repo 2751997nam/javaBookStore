@@ -7,12 +7,16 @@ package controllers.client;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.Book;
 import models.User;
+import models.Profile;
 import models.database.DB;
 
 /**
@@ -25,11 +29,18 @@ public class OrderController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        if(session.getAttribute("email") != null){
+        if (session.getAttribute("email") != null) {
             User user = (User) new DB("users", "User").where("email", "=", session.getAttribute("email") + "").get().get(0);
+            List tmp = new DB("orders").where("user_id", "=", user.getId() + "").orderBy("created_at DESC").get();
+            int order_id = -1;
+            if(!tmp.isEmpty()){
+                order_id = Integer.parseInt(((HashMap) tmp.get(0)).get("id") + "");
+            }
+            List<HashMap> orders = new DB("order_details").where("order_id", "=", order_id + "").get();
+            request.setAttribute("orders", orders);
             request.getRequestDispatcher("/WEB-INF/client/order.jsp").forward(request, response);
-        }else {
-            
+        } else {
+
         }
     }
 
@@ -44,6 +55,50 @@ public class OrderController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("email") != null) {
+
+            List list = new DB("users", "User").where("email", "=", session.getAttribute("email") + "").get();
+
+            if (list.isEmpty()) {
+                session.removeAttribute("email");
+                session.removeAttribute("book_cart");
+                response.sendRedirect("/bookstore/login");
+                return;
+            }
+            User user = (User) list.get(0);
+            List<Book> books = user.getBooksInCart();
+            if (books.isEmpty()) {
+                response.sendRedirect("/bookstore/cart");
+                return;
+            }
+            Profile profile = (Profile) new DB("profiles", "Profile").where("user_id", "=", user.getId() + "").get().get(0);
+
+            HashMap<String, String> order = new HashMap<>();
+            order.put("user_id", user.getId() + "");
+            order.put("address", request.getParameter("address"));
+            order.put("phone", request.getParameter("phone"));
+            order.put("note", request.getParameter("note"));
+
+            new DB("orders").insert(order);
+            int order_id = Integer.parseInt(((HashMap) new DB("orders").where("user_id", "=", user.getId() + "").orderBy("created_at DESC").get().get(0)).get("id") + "");
+
+            for (Book book : books) {
+                order.clear();
+                order.put("name", book.getName());
+                order.put("price", book.getPrice() + "");
+                order.put("quantity", book.getQuantity() + "");
+                order.put("order_id", order_id + "");
+                new DB("order_details").insert(order);
+                new DB("book_user").where("book_id", "=", book.getId() + "").delete().execute();
+            }
+            session.setAttribute("book_cart", "");
+            response.sendRedirect("/bookstore/order");
+            return;
+        } else {
+            response.sendRedirect("/bookstore/login");
+            return;
+        }
     }
 
 }

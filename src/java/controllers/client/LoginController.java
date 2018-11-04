@@ -55,8 +55,6 @@ public class LoginController extends HttpServlet {
         String password = MD5.md5(request.getParameter("password"));
         if (!User.checkAuth(email, password)) {
             request.setAttribute("error", "Email or password is incorrect.");
-            PrintWriter pw = response.getWriter();
-            pw.println(password);
             request.getRequestDispatcher("/WEB-INF/client/login.jsp").forward(request, response);
         } else {
             if (request.getParameter("remember") != null) {

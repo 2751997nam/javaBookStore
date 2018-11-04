@@ -11,6 +11,11 @@ and open the template in the editor.
 .account-wrapper{
     width: 100%;
     margin-top: 10px;
+    border-bottom: 1px solid #ccc;
+}
+.account-wrapper h3 {
+    font-size: 20px;
+    padding: 5px;
 }
 .account-infor{
     width: 100%;
@@ -25,10 +30,10 @@ and open the template in the editor.
     color: red;
 }
 .row-control input{
-    width: 80%;
+    width: 400px;
     padding: 7px 20px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 5px 5px;
 }
 .account-infor{
     width: 60%;
@@ -53,6 +58,8 @@ and open the template in the editor.
     margin: 0;
 
 }
+
+
 .form-control {
     border-radius: 3px;
     width: 100%;
@@ -66,6 +73,13 @@ and open the template in the editor.
     line-height: 1.42857;
     display: block;
 }
+.help-block {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: #737373;
+}
+
 .input-wrap.update-phone input{
     width: 244px;
     float: left;
@@ -193,13 +207,13 @@ fieldset{
     width: 13%
 }
 .tr .proprice {
-   width: 15%;
+    width: 12%;
 }
 .tr .prostatus{
     width: 10%;
 }
 .tr .proname{
-    width: 45%;
+    width: 35%;
     text-align: left;
 }
 .tbody .tr{
@@ -231,4 +245,65 @@ fieldset{
 .tbottom p{
     font-family: 'Mali', cursive;
     font-size: 1.1rem;
+}
+.account-body {
+    width: 60%;
+    width: 75%;
+    padding: 20px 50px;
+}
+
+.form-c {
+    display: flex;
+    padding:10px;
+    align-items: center;
+    width: 100%;
+}
+.lb {
+    width: 20%;
+    font-size: 15px;
+    margin-bottom: 0;
+    font-weight: 400;
+    line-height: 34px;
+}
+.ai {
+    border-radius: 3px;
+    width: 80%;
+    height: 32px;
+    border: 1px solid #ddd;
+    color: #333;
+    font-size: 13px;
+    box-shadow: none;
+    padding: 6px 12px;
+    background-color: #fff;
+    line-height: 1.42857;
+    display: block;
+}
+.form-c textarea {
+    height: auto;
+}
+.account-body .form-c .row {
+    width: 60%;
+}
+.account-body .form-c .row .col-4 {
+    display: flex;
+}
+.account-body .form-c .row .col-4 input {
+    margin-right: 15px;
+}
+.form-c button {
+    background: #00b6f0;
+    border: none;
+    width: 130px;
+    height: 35px;
+    border-radius: 4px;
+    color: #4a4a4a;
+    font-size: 14px;
+    background-color: #fdd835;
+    cursor: pointer
+}
+.accounts {
+    background: white;
+    padding: 5px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }

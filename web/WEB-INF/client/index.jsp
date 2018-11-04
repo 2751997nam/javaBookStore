@@ -84,8 +84,8 @@
                         <div class="cart-icon col-2">
                             <a href="/bookstore/cart" title="">
                                 <img src="images/shopping-cart.png" alt="">
-                                <% if (session.getAttribute("book_cart") != null) {%>
-                                <div class="noti"><%= session.getAttribute("book_cart")%></div>
+                                <% if (session.getAttribute("book_cart") != null && session.getAttribute("book_cart") != "") {%>
+                                    <div class="noti"><%= session.getAttribute("book_cart")%></div>
                                 <%}%>
                             </a>
                         </div>

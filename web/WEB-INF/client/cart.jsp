@@ -3,6 +3,7 @@
     Created on : Nov 3, 2018, 12:28:10 PM
     Author     : nguye
 --%>
+<%@page import="models.Profile"%>
 <%@page import="config.Database"%>
 <%@page import="java.util.List"%>
 <%@page import="models.Book"%>
@@ -21,11 +22,15 @@
         <link rel="stylesheet" type="text/css" href="style/client_style.css">
         <link rel="stylesheet" type="text/css" href="style/client_index.css">
         <link rel="stylesheet" type="text/css" href="style/client_sub.css">
+        <link rel="stylesheet" type="text/css" href="style/modal.css">
+        <link rel="stylesheet" type="text/css" href="style/client_account.css">
     </head>
     <body>
         <%
             List<Book> books = (List) request.getAttribute("books");
             long total = 0;
+            User user = (User) request.getAttribute("user");
+            Profile profile = (Profile) request.getAttribute("profile");
         %>
         <div class="container">
             <!-- HEADER -->
@@ -112,7 +117,7 @@
                         <% if (!books.isEmpty()) { %>
                         <div class="col-left" id="purchase-left">
                             <% for (Book book : books) {%>
-                            <% total += book.getPrice()*book.getQuantity();%>
+                            <% total += book.getPrice() * book.getQuantity();%>
                             <div class="shopping-cart-item">
                                 <div class="thumnail">
                                     <img src="<%= book.images().size() > 0 ? book.images().get(0).link() : new Database().get("thumbnail")%>">
@@ -185,16 +190,16 @@
                                         <small>(Đã bao gồm VAT)</small>
                                     </p>
                                 </div>
-                                <button class="checkout">
-                                    Tiến hành đặt hàng
-                                </button>
-                                <button class="sent-gift">
-                                    Gửi quà tặng
-                                </button>
+                                <div class="sub-row">
+                                    <button class="sent-gift" onclick="showModal()" >
+                                        <%= Lang.getKey(language, "Check Out")%>
+                                    </button>
+                                </div>
+
                             </div>
                         </div>
                         <% } else {%>
-                        <p class="color-red" style="width: 100%;text-align: center;">Giỏ hàng còn trống</p>
+                        <p class="color-red" style="width: 100%;text-align: center;"><%= Lang.getKey(language, "Your cart is empty.")%></p>
                         <% }%>
                         <div class="clear"> </div>
                     </div>
@@ -238,5 +243,52 @@
             </div>
             <!-- HẾT FOOTER -->
         </div>
+        <!--modal-->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <div class="model-head">
+                    <span class="close" onClick="hideModal()">&times;</span>
+                    <p>Xách Nhận Thông Tin</p>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="/bookstore/order">
+                        <input type="hidden" name="email" value="<%= user.getEmail()%>">
+                        <div class="form-c">
+                            <lable class="lb">Họ Tên</lable>
+                            <input class="ai" type="text" name="name" value="<%= user.getName() %>" required disabled placeholder="Họ tên"/>
+                        </div>
+                        <div class="form-c">
+                            <lable class="lb">Đỉa Chỉ</lable>
+                            <input class="ai" type="text" name="address" value="<%= profile.getAddress()%>" required  placeholder="Địa chỉ"/>
+                        </div>
+                        <div class="form-c">
+                            <lable class="lb">Điện Thoại</lable>
+                            <input class="ai" type="text" name="phone" value="<%= profile.getPhone()%>" required placeholder="Số điện thoại"/>
+                        </div>
+                        <div class="form-c">
+                            <lable class="lb">Ghi chú</lable>
+                            <textarea class="ai" rows="5" name="note">
+                            
+                            </textarea>
+                        </div>
+                        <div class="btn-bot">
+                            <button class="btnc" type="submit">Xac Nhan</button>
+                            <a class="btnc" onclick="hideModal()">Huy</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            function showModal() {
+                document.getElementById("myModal").style.display = "block";
+            }
+            function hideModal() {
+                document.getElementById("myModal").style.display = "none";
+            }
+        </script>
     </body>
 </html>

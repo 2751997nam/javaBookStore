@@ -197,6 +197,8 @@ public class Controller extends HttpServlet {
     }
 
     public void showView(HttpServletRequest request, HttpServletResponse response, String url) throws ServletException, IOException {
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
         RequestDispatcher dispatcher = request.getRequestDispatcher(getView(url));
         dispatcher.forward(request, response);
     }

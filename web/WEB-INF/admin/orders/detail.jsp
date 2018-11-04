@@ -10,42 +10,46 @@
 <%@ page import="java.util.ArrayList"%>
 <%@include file="/WEB-INF/language.jsp" %>
 
-<div>
-    <% Order order = (Order) request.getAttribute("order"); %>
-    <% ArrayList<OrderDetail> details = (ArrayList<OrderDetail>) request.getAttribute("details");%>
-    <table>
-        <tbody>
-        <td>
-        <th><%= Lang.getKey(language, "Email:")%></th>
-        <td><%= order.getNote()%></td>
-        </td>
-        <td>
-        <th><%= Lang.getKey(language, "Total:")%></th>
-        <td><%= request.getAttribute("total")%></td>
-        </td>
-        </tbody>
-    </table>
-    <table>
-        <thead>
+<td colspan="6">
+    <div>
+        <% Order order = (Order) request.getAttribute("order"); %>
+        <% ArrayList<OrderDetail> details = (ArrayList<OrderDetail>) request.getAttribute("details");%>
+        <table class="table-none-border">
             <tr>
-                <th class="col-min-1"><%= Lang.getKey(language, "Num.")%></th>
-                <th class="col-min-3"><%= Lang.getKey(language, "Name")%></th>
-                <th class="col-min-5"><%= Lang.getKey(language, "Price")%></th>
-                <th class="col-min-3"><%= Lang.getKey(language, "Quantity")%></th>
-                <th class="col-min-3"><%= Lang.getKey(language, "Order Id")%></th>
+                <td>
+                <th class="col-min-2"><%= Lang.getKey(language, "Email")%></th>
+                <td class="col-max-6"><%= order.user().getEmail()%></td>
+                </td>
+                <td>
+                <th class="col-min-2 text-danger"><%= Lang.getKey(language, "Total")%></th>
+                <td class="col-min-2 text-danger"><%= details.get(0).showPrice(Long.parseLong(request.getAttribute("total").toString()))%></td>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            <% int num = 1; %>
-            <% for (OrderDetail detail : details) {%>
-            <tr>
-                <td><%= num++%></td>
-                <td><%= detail.getName()%></td>
-                <td><%= detail.showPrice()%></td>
-                <td><%= detail.getQuantity()%></td>
-                <td><%= detail.getOrder_id()%></td>
-            </tr>
-            <% }%>
-        </tbody>
-    </table>
-</div>
+        </table>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="col-min-1"><%= Lang.getKey(language, "Num.")%></th>
+                    <th class="col-min-3"><%= Lang.getKey(language, "Order Id")%></th>
+                    <th class="col-min-3"><%= Lang.getKey(language, "Name")%></th>
+                    <th class="col-min-5"><%= Lang.getKey(language, "Price")%></th>
+                    <th class="col-min-3"><%= Lang.getKey(language, "Quantity")%></th>
+                    <th class="col-min-3 text-danger"><%= Lang.getKey(language, "Amount")%></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% int num = 1; %>
+                <% for (OrderDetail detail : details) {%>
+                <tr>
+                    <td><%= num++%></td>
+                    <td><%= detail.getOrder_id()%></td>
+                    <td><%= detail.getName()%></td>
+                    <td><%= detail.showPrice()%></td>
+                    <td><%= detail.getQuantity()%></td>
+                    <td class="text-danger"><%= detail.showPrice(detail.getPrice() * detail.getQuantity())%></td>
+                </tr>
+                <% }%>
+            </tbody>
+        </table>
+    </div>
+</td>

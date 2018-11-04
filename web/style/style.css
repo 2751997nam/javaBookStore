@@ -148,6 +148,46 @@ a {
     min-width: 500px;
 }
 
+.col-max-1 {
+    max-width: 50px;
+}
+
+.col-max-2 {
+    max-width: 100px;
+}
+
+.col-max-3 {
+    max-width: 150px;
+}
+
+.col-max-4 {
+    max-width: 200px;
+}
+
+.col-max-5 {
+    max-width: 250px;
+}
+
+.col-max-6 {
+    max-width: 300px;
+}
+
+.col-max-7 {
+    max-width: 350px;
+}
+
+.col-max-8 {
+    max-width: 400px;
+}
+
+.col-max-9 {
+    max-width: 450px;
+}
+
+.col-max-10 {
+    max-width: 500px;
+}
+
 .thumbnail {
     width: 200px;
     height: 300px;
@@ -178,4 +218,22 @@ a {
 
 .btn.btn-dark {
     background: #000000;
+}
+
+.table {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: inherit;
+}
+
+.table-none-border td, th {
+    border: none;
+}
+
+.text-danger {
+    color: #e81212;
+}
+
+.text-success {
+    color: #029e0e
 }

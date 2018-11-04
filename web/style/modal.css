@@ -1,0 +1,99 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 4, 2018, 9:09:58 PM
+    Author     : nguye
+*/
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 50px; 
+    z-index: 1000;
+}
+.modal p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.42857143;
+    color: #333;
+}
+.modal .modal-content {
+    width: 550px;
+    background: white;
+    margin: auto;
+    height: 450px;
+    border-radius: 5px;
+}
+.modal .modal-content .model-head {
+    height: 50px;
+    background: #FF541E;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+.modal .modal-content .model-head p {
+    line-height: 1.42857143;
+    margin-top: 6px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    font-size: 20px;
+    font-weight: 500;
+    color: white;
+}
+.modal .modal-content .modal-body {
+    height: 350px;
+    padding: 20px 40px;
+}
+.modal .modal-content .modal-footer{
+    padding: 15px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+}
+.modal .modal-content .btnc{
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    margin: 0 10px;
+    cursor: pointer;
+    background: #F5F5F5;
+}
+.modal .modal-content .btnc:hover {
+    background: #FF541E;
+    color: white;
+}
+.modal .modal-content .btn-bot{
+    display: flex;
+    justify-content: flex-end;
+}
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top-right-radius: 5px;
+    cursor: pointer;
+}
+.close:hover {
+    color: black;
+}

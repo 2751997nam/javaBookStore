@@ -7,12 +7,9 @@ function ajax(params, callback) {
     for (var prop in data) {
         send += "&" + prop + "=" + data[prop];
     }
-    
-    console.log(data);
 
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     send = send.substr(1);
-
-    console.log(send);
 
     request.send(send);
 

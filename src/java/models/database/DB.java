@@ -54,13 +54,37 @@ public class DB {
         }
         this.class_name = "models." + class_name;
     }
+    
+    public void flush() {
+        this.query = new Query();
+        this.table = null;
+        this.class_name = null;
+    }
+    
+    public DB newQuery(String table) {
+        flush();
+        this.table = table;
+        this.query.setFrom("From " + table);
+        
+        return this;
+    }
+    
+    public Connection getConnection()
+    {
+        return this.connection;
+    }
+    
+    public DB newQuery(String table, String class_name) {
+        flush();
+        this.table = table;
+        this.class_name = class_name;
+        this.query.setFrom("From " + table);
+        
+        return this;
+    }
 
     public String getQuery() {
         return this.query.toString();
-    }
-
-    public Connection getConnection() {
-        return this.connection;
     }
 
     // thực hiện câu truy vấn select, trả về List các model
