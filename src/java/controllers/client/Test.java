@@ -12,7 +12,7 @@ package controllers.client;
 public class Test {
 
     public static void main(String[] args) {
-        String x = null + "";
-        System.out.println(x.isEmpty());
+//        String x =  "";
+//        System.out.println(Integer.parseInt(null));
     }
 }

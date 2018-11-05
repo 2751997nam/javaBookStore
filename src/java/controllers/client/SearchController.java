@@ -5,6 +5,7 @@
  */
 package controllers.client;
 
+import controllers.Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -19,7 +20,7 @@ import models.database.DB;
  *
  * @author nguye
  */
-public class SearchController extends HttpServlet {
+public class SearchController extends Controller {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -33,8 +34,6 @@ public class SearchController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("utf-8");
         String q = request.getParameter("q");
         String filter = request.getParameter("filter");
         List<Book> books = null;
@@ -44,15 +43,15 @@ public class SearchController extends HttpServlet {
         } else {
             switch (filter) {
                 case "top sell":
-                    books = new Book().topSell();
+                    books = new Book().topSell(10);
                     request.setAttribute("filter", filter);
                     break;
                 case "new update":
-                    books = new Book().newBooks();
+                    books = new Book().newBooks(10);
                     request.setAttribute("filter", filter);
                     break;
                 case "recommend":
-                    books = new Book().recommendBooks();
+                    books = new Book().recommendBooks(10);
                     request.setAttribute("filter", filter);
                     break;
                 default:

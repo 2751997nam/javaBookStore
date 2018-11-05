@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import models.Book;
+import models.Comment;
 import models.database.DB;
 
 /**
@@ -35,10 +36,13 @@ public class DetailController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/client/detail.jsp");
+        
         String id = request.getPathInfo().replace("/", "");
         Book book = (Book) new DB("books", "Book").where("id", "=", id).get().get(0);
         request.setAttribute("book", book);
-        List<Book> top_sell = new Book().topSell();
+        List<Comment> comments = new DB("comments", "Comment").where("book_id", "=", book.getId() + "").get();
+        request.setAttribute("comments", comments);
+        List<Book> top_sell = new Book().topSell(5);
         request.setAttribute("top_sell", top_sell);
         dispatcher.forward(request, response);
     }

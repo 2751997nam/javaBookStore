@@ -305,6 +305,7 @@
     border-radius: .25rem;
     box-sizing: border-box;
     margin-bottom: 1rem;
+    height: auto;
 }
 .card-body .btn-submit{
     cursor: pointer;
