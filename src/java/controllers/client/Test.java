@@ -12,7 +12,7 @@ package controllers.client;
 public class Test {
 
     public static void main(String[] args) {
-        String x = "12345";
-        System.out.println(x.substring(0,2));
+        String x = null + "";
+        System.out.println(x.isEmpty());
     }
 }

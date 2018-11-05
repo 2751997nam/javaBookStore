@@ -44,6 +44,9 @@ and open the template in the editor.
     display: flex;
     align-items: center;
 }
+.head-user .dropdown-content img {
+    margin-right: 10px;
+}
 .head-user a img {
     width: 17px;
     height: 17px;

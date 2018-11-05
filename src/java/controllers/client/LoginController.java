@@ -63,7 +63,7 @@ public class LoginController extends HttpServlet {
             User user = (User) new DB("users", "User").where("email", "=", email).get().get(0);
             int book_cart = new DB("book_user").where("user_id", "=", "" + user.getId()).get().size();
             session.setAttribute("email", email);
-            session.setAttribute("book_cart", book_cart);
+            session.setAttribute("book_cart", book_cart == 0 ? "": book_cart);
             response.sendRedirect(request.getContextPath() + "");
             
         }

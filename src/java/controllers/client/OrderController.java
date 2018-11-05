@@ -89,6 +89,7 @@ public class OrderController extends HttpServlet {
                 order.put("price", book.getPrice() + "");
                 order.put("quantity", book.getQuantity() + "");
                 order.put("order_id", order_id + "");
+                order.put("book_id", book.getId() + "");
                 new DB("order_details").insert(order);
                 new DB("book_user").where("book_id", "=", book.getId() + "").delete().execute();
             }

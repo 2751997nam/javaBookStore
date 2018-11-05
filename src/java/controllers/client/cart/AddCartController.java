@@ -38,23 +38,31 @@ public class AddCartController extends HttpServlet {
                 HashMap<String, String> book_user = (HashMap) book_users.get(0);
                 if (action == null) {
                     map.put("quantity", (Integer.parseInt(quantity) + Integer.parseInt(book_user.get("quantity"))) + "");
-
                 } else {
                     map.put("quantity", Integer.parseInt(quantity) + "");
                 }
                 new DB("book_user").update(map).where("book_id", "=", book_id).where("user_id", "=", user.getId() + "").execute();
 
             } else {
+//                xet so hang trong cart
+//                int number = Integer.parseInt(session.getAttribute("book_cart") + "");
+//                if( number == 1){
+//                    request.setAttribute("error", "Cart is full");
+//                    PrintWriter out = response.getWriter();
+//                    out.println("Full r");
+//                    return;
+////                    request.getRequestDispatcher(request.getHeader("Referer")).forward(request, response);
+//                }
                 map.put("book_id", book_id);
                 map.put("user_id", "" + user.getId());
                 map.put("quantity", quantity);
                 new DB("book_user").insert(map);
 //                kiem tra t/h chua mua hang
-                String book_cart = "";
-                if(session.getAttribute("book_cart") == null || session.getAttribute("book_cart") == ""){
+                String book_cart = (String) session.getAttribute("book_cart");
+                if(book_cart.isEmpty()){
                     book_cart = "1";
-                }else {
-                    book_cart = (Integer.parseInt(session.getAttribute("book_cart") + "") + 1) + "";
+                }else{
+                     book_cart = (Integer.parseInt(book_cart) + 1) + "";
                 }
                 session.setAttribute("book_cart", book_cart);
             }
