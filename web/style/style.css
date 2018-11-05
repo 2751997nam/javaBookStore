@@ -193,11 +193,17 @@ a {
     height: 300px;
 }
 
+.thumbnail.preview {
+    width: 150px;
+    height: 220px;
+}
+
 .btn {
     border-radius: 5px;
     line-height: 45px;
     padding: 10px;
     color: white;
+    margin: 3px;
 }
 
 .btn.btn-primary {
@@ -214,6 +220,11 @@ a {
 
 .btn.btn-light {
     background: #ffffff;
+}
+
+.btn.btn-warning {
+    background: #ffc107;
+    color: #212529;
 }
 
 .btn.btn-dark {

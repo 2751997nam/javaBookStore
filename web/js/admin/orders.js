@@ -38,3 +38,25 @@ function cancel(id, element, message) {
         element.parentElement.removeChild(element);
     });
 }
+
+function accept(id, element, message) {
+    if(!confirm(message)) {
+        return;
+    }
+    
+    ajax({
+        url: "orders",
+        method: "post",
+        data: {id: id}
+    }, function (result) {
+       element.parentElement.removeChild(element.nextSibling.nextSibling);
+       element.parentElement.removeChild(element);
+    });
+}
+
+function filter(value)
+{
+    var ele = document.getElementById("item_id");
+    ele.value = value;
+    document.getElementById("filter").submit();
+}

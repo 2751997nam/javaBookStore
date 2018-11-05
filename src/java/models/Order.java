@@ -17,6 +17,7 @@ public class Order extends Model{
     protected String note;
     protected int user_id;
     protected User user;
+    protected int status;
 
     public Order(HashMap<String, String> cols) {
         super(cols);
@@ -24,9 +25,17 @@ public class Order extends Model{
         this.phone = cols.get("phone");
         this.note = cols.get("note");
         this.user_id = Integer.parseInt(cols.get("user_id"));
+        this.status = Integer.parseInt(cols.get("status"));
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
     
-
     public String getAddress() {
         return address;
     }
