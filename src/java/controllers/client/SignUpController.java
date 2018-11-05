@@ -47,6 +47,7 @@ public class SignUpController extends HttpServlet {
             mapUser.put("email", email);
             mapUser.put("remember_token", "");
             mapUser.put("role_id", 1 + "");
+            mapUser.put("status", 1 + "");
             DB userQuery = new DB("users");
             userQuery.insert(mapUser);
             User user = (User) new DB("users", "User").where("email", "=", email).get().get(0);
