@@ -11,7 +11,7 @@ and open the template in the editor.
     width: 90%;
     margin: auto;
     display: flex;
-    margin-top: 30px;
+    margin: 30px;
 }
 .col-md-3{
     width: 25%;

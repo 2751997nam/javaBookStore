@@ -63,12 +63,9 @@
                                     </div>
                                     <div class="box-price">
                                         <p class="price"><%= book.showPrice()%> ₫</p>
-                                        <!--                                        <p class="price2">119.000&nbsp;₫</p>
-                                                                                <p class="sale">-40%</p>-->
                                     </div>
                                     <div class="quantity">
                                         <div class="button-group">
-                                            <p><%= Lang.getKey(language, "Quantity")%></p>
                                             <form action="/bookstore/add-cart" method="post" id="<%= book.getId()%>">
                                                 <input type="hidden" value="change" name="action"/>
                                                 <input type="hidden" value="<%= book.getId()%>" name="book_id"/>

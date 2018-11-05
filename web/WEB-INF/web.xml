@@ -50,6 +50,10 @@
         <servlet-name>CommentController</servlet-name>
         <servlet-class>controllers.client.comment.CommentController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OrderDetailController</servlet-name>
+        <servlet-class>controllers.client.order.OrderDetailController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BookController</servlet-name>
         <url-pattern>/admin/books</url-pattern>
@@ -126,6 +130,10 @@
     <servlet-mapping>
         <servlet-name>CommentController</servlet-name>
         <url-pattern>/comment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderDetailController</servlet-name>
+        <url-pattern>/order_detail/*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

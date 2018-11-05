@@ -56,6 +56,7 @@ public class SignUpController extends HttpServlet {
             request.setAttribute("user", user);
             request.setAttribute("profile", profile);
             session.setAttribute("email", user.getEmail());
+            session.setAttribute("book_cart", "");
             response.sendRedirect(request.getContextPath() + "/profile");
             return;
         }
