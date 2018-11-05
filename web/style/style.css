@@ -198,6 +198,7 @@ a {
     line-height: 45px;
     padding: 10px;
     color: white;
+    margin: 3px;
 }
 
 .btn.btn-primary {
@@ -214,6 +215,11 @@ a {
 
 .btn.btn-light {
     background: #ffffff;
+}
+
+.btn.btn-warning {
+    background: #ffc107;
+    color: #212529;
 }
 
 .btn.btn-dark {

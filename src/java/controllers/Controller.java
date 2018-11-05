@@ -9,6 +9,7 @@ import config.Database;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -63,6 +64,33 @@ public class Controller extends HttpServlet {
         return false;
     }
 
+    public static HashMap<String, String> getQueryMap(StringBuffer query) {
+        String url = query + "";
+        String[] params = url.split("\\?");
+        HashMap<String, String> map = new HashMap<>();
+        if (params[1].compareTo("null") == 0) {
+            return map;
+        }
+
+        params = params[1].split("&");
+        if (params.length <= 1) {
+            params = params[0].split("=");
+            if (params.length > 1) {
+                map.put(params[0], params[1]);
+                              
+            }
+            return map; 
+        }
+
+        for (String param : params) {
+            String name = param.split("=")[0];
+            String value = param.split("=")[1];
+            map.put(name, value);
+        }
+
+        return map;
+    }
+
     public void setPaginate(HttpServletRequest request, int page_number) {
         int current = 1;
         if (request.getParameter("page") != null) {
@@ -73,16 +101,26 @@ public class Controller extends HttpServlet {
         StringBuffer current_url = request.getRequestURL();
         String search = request.getParameter("search");
         String url = current_url + "?";
-        if (search != null) {
-            url += "search=" + search;
+
+        StringBuffer fullUrl = request.getRequestURL().append('?').append(request.getQueryString());
+        HashMap<String, String> params = getQueryMap(fullUrl);
+        for (Map.Entry<String, String> entry : params.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            if(key.compareTo("page") != 0) url += key + "=" + value + "&";
         }
+
+//        if (search != null) {
+//            url += "search=" + search;
+//        }
         String[] links = new String[5];
         for (int i = 0; i < 5; i++) {
             links[i] = url;
-            if (search != null) {
-                links[i] += "&";
-            }
+//            if (search != null) {
+//                links[i] += "&";
+//            }
         }
+        
         links[0] += "page=1";
         links[1] += "page=" + (current != 1 ? current - 1 : 1);
         links[2] += "page=" + current;
@@ -93,7 +131,7 @@ public class Controller extends HttpServlet {
         request.setAttribute("links", links);
         request.setAttribute("current", current);
         request.setAttribute("perpage", limit);
-        request.setAttribute("url", url + "&page=");
+        request.setAttribute("url", url + "page=");
     }
 
     public boolean validate(HttpServletRequest request, HashMap<String, String[]> map) {

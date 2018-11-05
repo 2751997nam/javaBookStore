@@ -20,6 +20,7 @@ import models.migrations.migrations.AddBook_idColumnsInOrderDetailTable;
 import models.migrations.migrations.AddColumnsInBooksTable;
 import models.migrations.migrations.AddEmailUniqueOnUsersTable;
 import models.migrations.migrations.AddMoreColumnsInBooksTable;
+import models.migrations.migrations.AddStatusColumnInOrdersTable;
 import models.migrations.migrations.AddStatusColumnInUsersTable;
 import models.migrations.migrations.ChangeNullFieldOnSomeTables;
 import models.migrations.migrations.CreateBookCategoryPivotTable;
@@ -70,6 +71,7 @@ public class Migration {
         new RemoveAlternativeColumnInImagesTable().up();
         new AddStatusColumnInUsersTable().up();
         new AddBook_idColumnsInOrderDetailTable().up();
+        new AddStatusColumnInOrdersTable().up();
     }
 
     public void down() {
