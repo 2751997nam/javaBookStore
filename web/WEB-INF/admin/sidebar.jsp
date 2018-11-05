@@ -22,6 +22,6 @@
                 <li><a class="panel" href="bill.html"><%= Lang.getKey(language, "List")%></a></li>                      
             </ul>
         </div>
-        <li class="accordion"><img src="/bookstore/images/logout.png"><a href="login-user.html"><%= Lang.getKey(language, "Logout")%></a></li>
+        <li class="accordion"><img src="/bookstore/images/logout.png"><a href="javascript:document.querySelector('#logout').submit()"><%= Lang.getKey(language, "Logout")%></a></li>
     </ul>           
 </div>

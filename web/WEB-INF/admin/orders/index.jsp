@@ -18,7 +18,7 @@
         <title><%= Lang.getKey(language, "Orders Manager")%></title>
         <link rel="stylesheet" href="../style/books.css">
         <link rel="stylesheet" href="../style/style.css">
-        <link href="../style/font-awsome.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <%@include file="../header.jsp" %>
@@ -44,7 +44,7 @@
                         <tr>
                             <th class="col-min-1"><%= Lang.getKey(language, "Num.")%></th>
                             <th class="col-min-3"><%= Lang.getKey(language, "Name")%></th>
-                            <th class="col-min-5"><%= Lang.getKey(language, "Address")%></th>
+                            <th class="col-min-4"><%= Lang.getKey(language, "Email")%></th>
                             <th class="col-min-3"><%= Lang.getKey(language, "Phone")%></th>
                             <th class="col-min-4"><%= Lang.getKey(language, "Created")%></th>
                             <th class="col-min-5"></th>
@@ -56,7 +56,7 @@
                         <tr>  
                             <td><%= ++num%></td>
                             <td><%= order.get("name")%></td>
-                            <td><%= order.get("address")%></td>
+                            <td><%= order.get("email")%></td>
                             <td><%= order.get("phone")%></td>
                             <td><%= order.get("created_at")%></td>
                             <td>

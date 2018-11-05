@@ -193,6 +193,11 @@ a {
     height: 300px;
 }
 
+.thumbnail.preview {
+    width: 150px;
+    height: 220px;
+}
+
 .btn {
     border-radius: 5px;
     line-height: 45px;
