@@ -248,3 +248,7 @@ a {
 .text-success {
     color: #029e0e
 }
+
+.d-none {
+    display: none;
+}
