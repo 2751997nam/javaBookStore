@@ -80,5 +80,7 @@
     "Pending Orders": "Đơn Hàng Đang Chờ Xử Lý",
     "Paid Orders": "Đơn Hàng Đã Thanh Toán",
     "Preview": "Xem Chi Tiết",
-    "Accept": "Thanh Toán"
+    "Accept": "Thanh Toán",
+    "Order detail": "Chi tiết đơn hàng",
+    "Action": "Hoạt động"
 }

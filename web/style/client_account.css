@@ -190,7 +190,7 @@ fieldset{
     background-color: white;
 }
 .cart-table{
-    width: 860px;
+    /*width: 860px;*/
     margin-left: auto;
     margin-right: auto;
     margin-top: 30px;
@@ -203,14 +203,17 @@ fieldset{
 .thead{
     border-bottom: 1px solid #eeeeee;
 }
+.thead .tr {
+    display: flex;
+}
 .tr .proid, .tr .prodate{
-    width: 13%
+    width: 25%;
 }
 .tr .proprice {
-    width: 12%;
+    width: 25%;
 }
 .tr .prostatus{
-    width: 10%;
+    width: 25%;
 }
 .tr .proname{
     width: 35%;
@@ -218,6 +221,7 @@ fieldset{
 }
 .tbody .tr{
     cursor: pointer;
+    display: flex;
 }
 .tr div{
     display: inline-block;
@@ -241,6 +245,10 @@ fieldset{
     display: block;
     text-align: center;
     margin-top: 50px;
+}
+.tbottom .tr {
+    text-align: center;
+    justify-content: center;
 }
 .tbottom p{
     font-family: 'Mali', cursive;

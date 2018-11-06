@@ -31,7 +31,7 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label"><%= Lang.getKey(language, "Thumbnail")%></label>
-                            <input type="file" onchange="readURL(this)" class="form-control" name="image">
+                            <input type="file" onchange="readURL(this)" class="form-control" name="image" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label"><%= Lang.getKey(language, "Category")%></label> 

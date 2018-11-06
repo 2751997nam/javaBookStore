@@ -120,19 +120,19 @@ public class Book extends Model {
         return this.belongsToMany("categories", "Category", "book_category", "book_id", "category_id");
     }
 
-    public List<Book> topSell() {
+    public List<Book> topSell(int number) {
         return new DB("books", "Book")
-                .orderBy("updated_at DESC").limit(5).get();
+                .orderBy("updated_at DESC").limit(number).get();
     }
 
-    public List<Book> newBooks() {
+    public List<Book> newBooks(int number) {
         return new DB("books", "Book")
-                .orderBy("created_at DESC").limit(5).get();
+                .orderBy("created_at DESC").limit(number).get();
     }
 
-    public List<Book> recommendBooks() {
+    public List<Book> recommendBooks(int number) {
         return new DB("books", "Book")
-                .orderBy("quantity ASC").limit(7).get();
+                .orderBy("quantity ASC").limit(number).get();
     }
 
     public List<Book> filter() {

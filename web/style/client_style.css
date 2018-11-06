@@ -1197,7 +1197,7 @@ body{
 /*-- iphoneX nằm ngang = zoom 150% --*/
 @media(min-width: 800px) and (max-width: 1024px){
     .container{
-        width: 812px;
+        /*width: 812px;*/
         margin: 0 auto;
     }
     .header .search{

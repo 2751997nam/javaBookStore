@@ -18,6 +18,7 @@
         <link rel="stylesheet" type="text/css" href="style/client_style.css">
         <link rel="stylesheet" type="text/css" href="style/client_index.css">
         <link rel="stylesheet" type="text/css" href="style/client_category.css">
+        <link rel="stylesheet" type="text/css" href="style/style.css">
     </head>
     <body>
         <%
@@ -49,28 +50,28 @@
                                     <input type="hidden" name="q" value="<%= request.getAttribute("key")%>">
                                     <ul class="sb-list">
                                         <li class="sb-items">
-                                            <input type="radio" name="filter" value="Sach Kinh Doanh" <%= "Sach Kinh Doanh".equals(request.getAttribute("filter")) ? "checked": "" %> onchange="document.getElementById('filter').submit()"><a class="sb-items-link"><%= Lang.getKey(language, "Business & Investing")%></a><br>
+                                            <input type="radio" name="filter" value="Sach Kinh Doanh" <%= "Sach Kinh Doanh".equals(request.getAttribute("filter")) ? "checked" : ""%> onchange="document.getElementById('filter').submit()"><a class="sb-items-link"><%= Lang.getKey(language, "Business & Investing")%></a><br>
                                         </li>
                                         <li class="sb-items">
-                                            <input type="radio" name="filter" value="Sach Giao Khoa" <%= "Sach Giao Khoa".equals(request.getAttribute("filter")) ? "checked": "" %> onchange="document.getElementById('filter').submit()"><a class="sb-items-link" href=""><%= Lang.getKey(language, "Education & Textbooks")%></a><br>
+                                            <input type="radio" name="filter" value="Sach Giao Khoa" <%= "Sach Giao Khoa".equals(request.getAttribute("filter")) ? "checked" : ""%> onchange="document.getElementById('filter').submit()"><a class="sb-items-link" href=""><%= Lang.getKey(language, "Education & Textbooks")%></a><br>
                                         </li>
                                         <li class="sb-items">
-                                            <input type="radio" name="filter" value="Sach Thieu Nhi" <%= "Sach Thieu Nhi".equals(request.getAttribute("filter")) ? "checked": "" %> onchange="document.getElementById('filter').submit()"><a class="sb-items-link" href=""><%= Lang.getKey(language, "Kids")%></a><br>
+                                            <input type="radio" name="filter" value="Sach Thieu Nhi" <%= "Sach Thieu Nhi".equals(request.getAttribute("filter")) ? "checked" : ""%> onchange="document.getElementById('filter').submit()"><a class="sb-items-link" href=""><%= Lang.getKey(language, "Kids")%></a><br>
                                         </li>
                                         <li class="sb-items">                 
-                                            <input type="radio" name="filter" value="Sach Tinh Cam" <%= "Sach Tinh Cam".equals(request.getAttribute("filter")) ? "checked": "" %> onchange="document.getElementById('filter').submit()"><a class="sb-items-link" href=""><%= Lang.getKey(language, "Romance")%></a><br>
+                                            <input type="radio" name="filter" value="Sach Tinh Cam" <%= "Sach Tinh Cam".equals(request.getAttribute("filter")) ? "checked" : ""%> onchange="document.getElementById('filter').submit()"><a class="sb-items-link" href=""><%= Lang.getKey(language, "Romance")%></a><br>
                                         </li>
                                         <li class="sb-items">           
-                                            <input type="radio" name="filter" value="Sach Van Hoc & Vien Tuong" <%= "Sach Van Hoc & Vien Tuong".equals(request.getAttribute("filter")) ? "checked": "" %> onchange="document.getElementById('filter').submit()"><a class="sb-items-link" href=""><%= Lang.getKey(language, "Literature & Fiction")%></a><br>
+                                            <input type="radio" name="filter" value="Sach Van Hoc & Vien Tuong" <%= "Sach Van Hoc & Vien Tuong".equals(request.getAttribute("filter")) ? "checked" : ""%> onchange="document.getElementById('filter').submit()"><a class="sb-items-link" href=""><%= Lang.getKey(language, "Literature & Fiction")%></a><br>
                                         </li>
                                         <li class="sb-items">              
-                                            <input type="radio" name="filter" value="Truyen Tranh" <%= "Truyen Tranh".equals(request.getAttribute("filter")) ? "checked": "" %> onchange="document.getElementById('filter').submit()"><a class="sb-items-link" href=""><%= Lang.getKey(language, "Comics")%></a><br>
+                                            <input type="radio" name="filter" value="Truyen Tranh" <%= "Truyen Tranh".equals(request.getAttribute("filter")) ? "checked" : ""%> onchange="document.getElementById('filter').submit()"><a class="sb-items-link" href=""><%= Lang.getKey(language, "Comics")%></a><br>
                                         </li>
                                         <li class="sb-items">         
-                                            <input type="radio" name="filter" value="Sach Khoa Hoc" <%= "Sach Khoa Hoc".equals(request.getAttribute("filter")) ? "checked": "" %> onchange="document.getElementById('filter').submit()"><a class="sb-items-link" href=""><%= Lang.getKey(language, "Science Fiction")%></a><br>
+                                            <input type="radio" name="filter" value="Sach Khoa Hoc" <%= "Sach Khoa Hoc".equals(request.getAttribute("filter")) ? "checked" : ""%> onchange="document.getElementById('filter').submit()"><a class="sb-items-link" href=""><%= Lang.getKey(language, "Science Fiction")%></a><br>
                                         </li>
                                         <li class="sb-items">
-                                            <input type="radio" name="filter" value="Thanh Thieu Nien" <%= "Thanh Thieu Nien".equals(request.getAttribute("filter")) ? "checked": "" %> onchange="document.getElementById('filter').submit()"><a class="sb-items-link" href=""><%= Lang.getKey(language, "Teens & Young")%></a><br>
+                                            <input type="radio" name="filter" value="Thanh Thieu Nien" <%= "Thanh Thieu Nien".equals(request.getAttribute("filter")) ? "checked" : ""%> onchange="document.getElementById('filter').submit()"><a class="sb-items-link" href=""><%= Lang.getKey(language, "Teens & Young")%></a><br>
                                         </li>
                                     </ul>
                                 </form>

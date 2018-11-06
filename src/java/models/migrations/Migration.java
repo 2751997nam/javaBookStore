@@ -28,6 +28,7 @@ import models.migrations.migrations.CreateCategoriesTable;
 import models.migrations.migrations.CreateImagesTable;
 import models.migrations.migrations.CreateMigrationsTable;
 import models.migrations.migrations.CreateBookUserPivotTable;
+import models.migrations.migrations.CreateCommentsTable;
 import models.migrations.migrations.CreateOrderDetailsTable;
 import models.migrations.migrations.CreateOrdersTable;
 import models.migrations.migrations.CreateProfilesTable;
@@ -71,6 +72,7 @@ public class Migration {
         new RemoveAlternativeColumnInImagesTable().up();
         new AddStatusColumnInUsersTable().up();
         new AddBook_idColumnsInOrderDetailTable().up();
+        new CreateCommentsTable().up();
         new AddStatusColumnInOrdersTable().up();
     }
 

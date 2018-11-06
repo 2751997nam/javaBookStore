@@ -3,12 +3,13 @@
     Created on : Oct 22, 2018, 8:47:16 PM
     Author     : nguye
 --%>
+<%@page import="models.Order"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="config.Lang"%>
 <%@page import="models.Profile"%>
 <%@page import="models.User"%>
-<%@include file="../language.jsp" %>
+<%@include file="../../language.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="<%= language%>">
@@ -26,11 +27,11 @@
     </head>
     <body>
         <%
-            List<HashMap> orders = (List) request.getAttribute("orders");
+            List<Order> orders = (List) request.getAttribute("orders");
         %>
         <div class="container">
             <!-- HEADER TOP : HEADER -->
-            <%@include file="layout/header.jsp" %>
+            <%@include file="../layout/header.jsp" %>
             <!--body-->
             <div class="wrapper-color">
                 <div class="container" id="product-content">
@@ -75,23 +76,23 @@
                                     <div class="tr">
                                         <div class="proid">Mã đơn hàng</div>
                                         <div class="prodate">Ngày mua</div>
-                                        <div class="proname">Sản phẩm</div>
-                                        <div class="proprice">Số lượng</div>
-                                        <div class="proprice">Tổng tiền</div>
                                         <div class="prostatus">Trạng thái</div>
+                                        <div class="prostatus">Hành động</div>
                                     </div>
                                 </div>
-
                                 <div class="tbody">
                                     <% if (!orders.isEmpty()) {%>
-                                        <% for (HashMap order : orders) {%>
+                                        <% for (Order order : orders) {%>
                                             <div class="tr">
-                                                <div class="proid"><%= order.get("id")%></div>
-                                                <div class="prodate"><%= order.get("created_at")%></div>
-                                                <div class="proname"><%= order.get("name")%></div>
-                                                <div class="proprice"><%= order.get("quantity")%></div>
-                                                <div class="proprice"><%= order.get("price")%> ₫</div>
-                                                <div class="prostatus">Giao hàng thành công</div>
+                                                <div class="proid"><%= order.getId()%></div>
+                                                <div class="prodate"><%= order.getCreated_at()%></div>
+                                                <% if (order.getStatus() == 1) {%>
+                                                    <div class="prostatus">Đang Xử Lý</div>
+                                                    <div class="prostatus"><a href="/bookstore/order_detail/<%= order.getId() %>">Sửa</a></div>
+                                                <% } else {%>
+                                                    <div class="prostatus">Đã Giao</div>
+                                                    <div class="prostatus"><a href="/bookstore/order_detail/<%= order.getId() %>v">Xem</a></div>
+                                                <% } %>
                                             </div>
                                          <% } %>
                                     <% }else { %>
@@ -113,7 +114,7 @@
                 </div>
             </div>
             <!-- FOOTER -->
-            <%@include file="layout/footer.jsp" %>
+            <%@include file="../layout/footer.jsp" %>
             <!-- HẾT FOOTER -->
         </div>
     </body>

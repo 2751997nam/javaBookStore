@@ -4,6 +4,7 @@
     Author     : nguye
 --%>
 
+<%@page import="models.Comment"%>
 <%@page import="config.Lang"%>
 <%@page import="java.util.List"%>
 <%@page import="config.Database"%>
@@ -27,6 +28,7 @@
         <%
             Book book = (Book) request.getAttribute("book");
             List<Book> top_sell = (List) request.getAttribute("top_sell");
+            List<Comment> comments = (List) request.getAttribute("comments");
         %>
         <div class="container">
             <!-- HEADER TOP : HEADER -->
@@ -60,10 +62,7 @@
                                         <span class="spiral"></span>
                                         <%= book.showPrice()%> ₫
                                     </div>
-                                    <!--                                    <p class="original-price">Giá thị trường: <label>93.000 ₫</label></p>
-                                                                        <p class="saving">Tiếp kiệm: <label>30.000 ₫</label></p>-->
                                 </div>
-
                                 <div class="row1">
                                     <form action="/bookstore/add-cart" method="post">
                                         <div class="quantity">
@@ -115,29 +114,32 @@
                         <div id="comment">
                             <p class="card-head"><%= Lang.getKey(language, "Comments")%></p>
                             <div class="card-body">
-                                <form>
+                                <form action="/bookstore/comment" method="post">
                                     <div class="form-group">
-                                        <textarea class="form-control" rows="3"></textarea>
+                                        <input type="hidden" name="book_id" value="<%= book.getId()%>"/>
+                                        <textarea class="form-control" rows="3" name="content" required></textarea>
                                     </div>
                                     <button type="submit" class="btn-submit"><%= Lang.getKey(language, "Submit")%></button>
                                 </form>
                             </div>
+                            <% if (!comments.isEmpty()) {%>
+                            <% for (Comment comment : comments) {%>
                             <div class="row" id="media">
                                 <img src="http://placehold.it/50x50" class="rounded-circle">
                                 <div class="media-body">
-                                    <p class="commenter">Nhật Minh Lê Phan</p>
-                                    <p class="text-comment">Sách được bọc rất cẩn thận, giao hàng siêu nhanh. Mình mới nhận nên chưa review về nội dung của sách được. 5 sao cho dịch vụ của Team 09!
-                                        <br/>Team 09 giao hàng nhanh, sách đóng gói cẩn thận, không bị móp méo hay tróc chữ, nhân viên giao hàng thân thiện!
-                                    </p>
+                                    <p class="commenter"><%= comment.getUser().getName()%></p>
+                                    <p class="text-comment"><%= comment.getContent()%></p>
+                                    <% if ((session.getAttribute("email") == null ? "":session.getAttribute("email")).equals(comment.getUser().getEmail())) {%>
+                                    <div class="" style="display: flex;">
+                                        <p class=""><a href="#"><%= Lang.getKey(language, "Edit")%></a></p>
+                                        <p class=""><a href="#"><%= Lang.getKey(language, "Delete")%></a></p>
+                                    </div>
+                                    <% } %>
                                 </div>
                             </div>
-                            <div class="row" id="media">
-                                <img src="http://placehold.it/50x50" class="rounded-circle">
-                                <div class="media-body">
-                                    <p class="commenter">Nguyễn Thúy Hà</p>
-                                    <p class="text-comment">Sách đẹp và hay. Những chuyến đi luôn gắn kết con người lại với nhau</p>
-                                </div>
-                            </div>
+                            <%}%>
+                            <% }%>
+
                         </div>
 
                         <div class="other_products">
