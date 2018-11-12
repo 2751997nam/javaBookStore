@@ -44,7 +44,7 @@ public class AdminLoginController extends Controller {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         if(this.auth(request)) {
-            response.sendRedirect("/bookstore/admin/books");
+            response.sendRedirect("/bookstore/admin/dashboard");
             return;
         }
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/login.jsp");
@@ -92,7 +92,7 @@ public class AdminLoginController extends Controller {
             response.addCookie(cookie);
         }
         if(user.role().getName().compareTo("admin") == 0) {
-            response.sendRedirect("/bookstore/admin/books");
+            response.sendRedirect("/bookstore/admin/dashboard");
             return;
         }
         response.sendRedirect("/bookstore/admin");

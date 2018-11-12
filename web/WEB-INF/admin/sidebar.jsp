@@ -1,5 +1,6 @@
 <div class="sidebar">
     <ul>
+        <li class="accordion"><img src="/bookstore/images/dashboard.png"><a class="panel" href="/bookstore/admin/dashboard"><%= Lang.getKey(language, "Dashboard")%></li>
         <li class="accordion"><img src="/bookstore/images/books.png"><a  href="javascipt:void(0)"><%= Lang.getKey(language, "Books")%></a></li>
         <div class="item">
             <ul>               

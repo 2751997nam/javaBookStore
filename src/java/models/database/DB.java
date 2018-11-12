@@ -69,6 +69,12 @@ public class DB {
         return this;
     }
     
+    public String antiInjection(String sql) {
+        sql = sql.replaceAll("\'+|\"+|[--]+", "");
+        
+        return sql;
+    }
+    
     public Connection getConnection()
     {
         return this.connection;
@@ -195,8 +201,8 @@ public class DB {
         this.query.setColumnValues(" Values ( ");
         Iterator<Map.Entry<String, String>> iter = map.entrySet().iterator();
         map.entrySet().forEach((entry) -> {
-            String key = this.query.getColumns() + entry.getKey();
-            String value = this.query.getColumnValues() + "\'" + entry.getValue() + "\'";
+            String key = this.query.getColumns() + antiInjection(entry.getKey());
+            String value = this.query.getColumnValues() + "\'" + antiInjection(entry.getValue()) + "\'";
             iter.next();
             if (iter.hasNext()) {
                 this.query.setColumns(key + ", ");
@@ -217,7 +223,7 @@ public class DB {
         String sql = "SET ";
         ArrayList<String> sets = new ArrayList();
         map.entrySet().forEach((entry) -> {
-            sets.add(entry.getKey() + " = " + "\'" + entry.getValue() + "\'");
+            sets.add(antiInjection(entry.getKey()) + " = " + "\'" + antiInjection(entry.getValue()) + "\'");
         });
 
         for (String set : sets) {
@@ -245,7 +251,7 @@ public class DB {
     }
 
     public DB select(String select) {
-        this.query.setCommand("SELECT " + select);
+        this.query.setCommand("SELECT " + antiInjection(select));
 
         return this;
     }
@@ -264,7 +270,7 @@ public class DB {
 
     // chọn bảng cho câu truy vấn
     public DB table(String table) {
-        this.query.setFrom(table);
+        this.query.setFrom(antiInjection(table));
 
         return this;
     }
@@ -273,7 +279,7 @@ public class DB {
         String allWhere = "WHERE ";
         int length = wheres.length;
         for (String where : wheres) {
-            allWhere += where;
+            allWhere += antiInjection(where);
             if (where.compareTo(wheres[length - 1]) != 0) {
                 allWhere += " AND ";
             }
@@ -288,8 +294,8 @@ public class DB {
         if (this.query.getWhere().isEmpty()) {
             where = "WHERE ";
         }
-        where += key + " " + operator + " ";
-        where += value;
+        where += antiInjection(key) + " " + antiInjection(operator) + " ";
+        where += antiInjection(value);
         this.query.setWhere(where);
 
         return this;
@@ -300,8 +306,8 @@ public class DB {
         if (this.query.getWhere().isEmpty()) {
             where = "WHERE ";
         }
-        where += key + " " + operator;
-        where += " \'" + value + "\' ";
+        where += antiInjection(key) + " " + antiInjection(operator);
+        where += " \'" + antiInjection(value) + "\' ";
 
         this.query.setWhere(where);
 
@@ -309,25 +315,25 @@ public class DB {
     }
 
     public DB whereIn(String column, String where) {
-        String whereIn = "Where " + column + " IN (" + where + ")";
+        String whereIn = "Where " + antiInjection(column) + " IN (" + antiInjection(where) + ")";
         this.query.setWhere(whereIn);
 
         return this;
     }
 
     public DB groupBy(String groupBy) {
-        this.query.setGroupBy("GROUP BY " + groupBy);
+        this.query.setGroupBy("GROUP BY " + antiInjection(groupBy));
 
         return this;
     }
 
     public DB orderBy(String order) {
-        this.query.setOrderBy("Order By " + order);
+        this.query.setOrderBy("Order By " + antiInjection(order));
         return this;
     }
 
     public DB having(String having) {
-        this.query.setHaving("HAVING " + having);
+        this.query.setHaving("HAVING " + antiInjection(having));
         return this;
     }
 
@@ -423,14 +429,14 @@ public class DB {
     }
 
     public DB join(String table, String col1, String opt, String col2) {
-        String sql = "Inner Join " + table + " ON " + col1 + " " + opt + " " + col2 + "\n";
+        String sql = "Inner Join " + antiInjection(table) + " ON " + antiInjection(col1) + " " + antiInjection(opt) + " " + antiInjection(col2) + "\n";
         this.query.setJoin(sql);
 
         return this;
     }
 
     public DB join(String table, String col1, String col2) {
-        String sql = "Inner Join " + table + " ON " + col1 + " = " + col2 + "\n";
+        String sql = "Inner Join " + antiInjection(table) + " ON " + antiInjection(col1) + " = " + antiInjection(col2) + "\n";
         this.query.setJoin(sql);
 
         return this;
