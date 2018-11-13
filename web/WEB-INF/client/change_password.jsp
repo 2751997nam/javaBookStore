@@ -38,10 +38,10 @@
                             </div>
                             <div class="sb-body">
                                 <ul class="sb-list">
-                                    <li class="sb-items"><a class="sb-items-link " href="/bookstore/profile">Thông Tin Tài Khoản</a></li>
-                                    <li class="sb-items" id="dropdown"><a class="sb-items-link color-blue" href="">Đổi Mật Khẩu</a></li>
-                                    <li class="sb-items"><a class="sb-items-link" href="/bookstore/order">Quản Lý Đơn Hàng</a></li>
-                                    <li class="sb-items"><a class="sb-items-link" href="">Nhận Xét Của Tôi</a></li>
+                                    <li class="sb-items"><a class="sb-items-link" href="/bookstore/profile"><%= Lang.getKey(language,"User Information")%></a></li>
+                                    <li class="sb-items" id="dropdown"><a class="sb-items-link color-blue" href="/bookstore/change-password"><%= Lang.getKey(language,"Change Password")%></a></li>
+                                    <li class="sb-items"><a class="sb-items-link" href="/bookstore/order"><%= Lang.getKey(language,"Manage Orders")%></a></li>
+                                    <li class="sb-items"><a class="sb-items-link" href=""><%= Lang.getKey(language,"My Feedback")%></a></li>
                                 </ul>
                             </div>
                             <div class="sb-bottom">
@@ -65,7 +65,7 @@
 
                     <div class="col-md-9 accounts">
                         <div class="account-wrapper">
-                            <h3>Thay Đổi Mật Khẩu</h3>
+                            <h3><%= Lang.getKey(language, "Change password")%></h3>
                         </div>
                         <form action="change-password" method="post">
                             <div class="account-body">

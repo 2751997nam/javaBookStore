@@ -35,6 +35,10 @@
             <%@include file="layout/header.jsp" %>
             <!--body-->
             <div class="wrapper-color">
+                <div class="bread-crumb">
+                    <a href="#">Home</a>
+                    <span>❯ <%= Lang.getKey(language, "Detail")%></span>
+                </div>
                 <div class="body">
                     <div class="detail_product">
                         <div class="row">
@@ -128,11 +132,20 @@
                                 <img src="http://placehold.it/50x50" class="rounded-circle">
                                 <div class="media-body">
                                     <p class="commenter"><span><%= comment.getUser().getName()%></span><span class="margin-auto"></span><span><%= comment.getCreated_at()%></span></p>
-                                    <p class="text-comment"><%= comment.getContent()%></p>
+                                    <p class="text-comment content-edit"><%= comment.getContent()%></p>
                                     <% if ((session.getAttribute("email") == null ? "" : session.getAttribute("email")).equals(comment.getUser().getEmail())) {%>
-                                    <div class="change">
-                                        <p class=""><a href="#"><%= Lang.getKey(language, "Edit")%></a></p>
-                                        <p class=""><a href="/comment/delete/<%= comment.getId() %>"><%= Lang.getKey(language, "Delete")%></a></p>
+                                    <div id="change">
+                                        <p class="show-edit"><a onclick="showEdit()"><%= Lang.getKey(language, "Edit")%></a></p>
+                                        <p class=""><a href="/bookstore/comment/delete?id=<%= comment.getId()%>"><%= Lang.getKey(language, "Delete")%></a></p>
+                                    </div>
+                                    <div id="edit-form">
+                                        <form action="/bookstore/comment/edit" method="post">
+                                            <div class="form-group">
+                                                <input type="hidden" name="id" value="<%= comment.getId()%>"/>
+                                                <textarea class="form-control" rows="3" name="content" required><%= comment.getContent()%></textarea>
+                                            </div>
+                                            <button type="submit" class="btn-submit"><%= Lang.getKey(language, "Submit")%></button>
+                                        </form>
                                     </div>
                                     <% } %>
                                 </div>
@@ -170,5 +183,12 @@
 
             <!-- FOOTER -->
             <%@include file="layout/footer.jsp" %>
+            <script>
+                function showEdit() {
+                    document.getElementById("change").style.display = "none";
+                    document.getElementById("edit-form").style.display = "block";
+//                    document.getElementsByClassName("content-edit")[0].style.display = "none";
+                }
+            </script>
     </body>
 </html>

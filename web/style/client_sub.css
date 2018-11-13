@@ -348,14 +348,22 @@
 .media-body .commenter .margin-auto {
     margin-left: auto;
 }
-.media-body .change {
+.media-body #change {
     display: flex;
+    font-size: 12px;
 }
-.media-body .change p:first-child {
+.media-body #change p:first-child {
     margin-right: 20px;
 }
-.media-body .change p:hover a{
-    color: #3399ff;
+.media-body #change p:first-child a {
+     color: #3399ff;
+     cursor: pointer;
+}
+.media-body #change p:last-child a {
+     color: red;
+}
+#edit-form {
+    display: none;
 }
 .body .other_products{
     width: 100%;

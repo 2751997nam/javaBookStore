@@ -47,10 +47,10 @@
                             </div>
                             <div class="sb-body">
                                 <ul class="sb-list">
-                                    <li class="sb-items"><a class="sb-items-link color-blue" href="/bookstore/profile">Thông Tin Tài Khoản</a></li>
-                                    <li class="sb-items" id="dropdown"><a class="sb-items-link" href="/bookstore/change-password">Đổi Mật Khẩu</a></li>
-                                    <li class="sb-items"><a class="sb-items-link" href="/bookstore/order">Quản Lý Đơn Hàng</a></li>
-                                    <li class="sb-items"><a class="sb-items-link" href="">Nhận Xét Của Tôi</a></li>
+                                    <li class="sb-items"><a class="sb-items-link color-blue" href="/bookstore/profile"><%= Lang.getKey(language,"User Information")%></a></li>
+                                    <li class="sb-items" id="dropdown"><a class="sb-items-link" href="/bookstore/change-password"><%= Lang.getKey(language,"Change Password")%></a></li>
+                                    <li class="sb-items"><a class="sb-items-link" href="/bookstore/order"><%= Lang.getKey(language,"Manage Orders")%></a></li>
+                                    <li class="sb-items"><a class="sb-items-link" href=""><%= Lang.getKey(language,"My Feedback")%></a></li>
                                 </ul>
                             </div>
                             <div class="sb-bottom">
@@ -74,12 +74,12 @@
 
                     <div class="col-md-9 accounts">
                         <div class="account-wrapper">
-                            <h3>Thông tin tài khoản</h3>
+                            <h3><%= Lang.getKey(language,"User Information")%></h3>
                         </div>
                         <form action="profile?action=infor" method="post">
                             <div class="account-body">
                                 <div class="form-c">
-                                    <lable class="lb">Họ Tên</lable>
+                                    <lable class="lb"><%= Lang.getKey(language, "Name")%></lable>
                                     <input class="ai" type="text" name="name" value="<%= user.getName()%>" placeholder="Họ tên"/>
                                 </div>
                                 <div class="form-c">
@@ -87,22 +87,22 @@
                                     <input class="ai" type="text" name="email" value="<%= user.getEmail()%>" placeholder="Email" disabled/>
                                 </div>
                                 <div class="form-c">
-                                    <lable class="lb">Phone</lable>
+                                    <lable class="lb"><%= Lang.getKey(language, "Phone")%></lable>
                                     <input class="ai" type="text" name="phone" value="<%= profile.getPhone() == null ? "" : profile.getPhone()%>" placeholder="Số điện thoại"/>
                                 </div> 
                                 <div class="form-c">
-                                    <lable class="lb">Address</lable>
+                                    <lable class="lb"><%= Lang.getKey(language, "Address")%></lable>
                                     <input class="ai" type="text" name="address" value="<%= profile.getAddress() == null ? "" : profile.getAddress()%>" placeholder="Địa chỉ"/>
                                 </div>  
                                 <div class="form-c">
-                                    <lable class="lb">Gender</lable>
+                                    <lable class="lb"><%= Lang.getKey(language, "Gender")%></lable>
                                     <div class="row">
                                         <div class="col-4"><input type="radio" name="gender" value="male" class="gender" <%= profile.getGender() == 1 ? "Checked" : ""%> ><span>Nam</span></div>
                                         <div class="col-4"><input type="radio" name="gender" value="female" class="gender" <%= profile.getGender() == 0 ? "Checked" : ""%> ><span>Nữ</span></div>
                                     </div>
                                 </div>
                                 <div class="form-c">
-                                    <lable class="lb">Ngay Sinh</lable>
+                                    <lable class="lb"><%= Lang.getKey(language, "Date Of Birth")%></lable>
                                     <div class="input-wrap">
                                         <div id="birthday-picker" class="birthday-picker">
                                             <fieldset class="birthday-picker">

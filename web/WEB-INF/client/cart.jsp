@@ -118,7 +118,7 @@
                                         <p><strong class="color-red"><%= String.format("%,d", total + total * 10 / 100)%>&nbsp;₫ </strong></p>
                                     </div>
                                     <p class="text-right">
-                                        <small>(Đã bao gồm VAT)</small>
+                                        <small>(<%= Lang.getKey(language, "Included VAT")%>)</small>
                                     </p>
                                 </div>
                                 <div class="sub-row">

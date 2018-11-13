@@ -44,10 +44,10 @@
                             </div>
                             <div class="sb-body">
                                 <ul class="sb-list">
-                                    <li class="sb-items"><a class="sb-items-link" href="/bookstore/profile">Thông Tin Tài Khoản</a></li>
-                                    <li class="sb-items" id="dropdown"><a class="sb-items-link" href="/bookstore/change-password">Đổi Mật Khẩu</a></li>
-                                    <li class="sb-items"><a class="sb-items-link color-blue" href="/bookstore/order">Quản Lý Đơn Hàng</a></li>
-                                    <li class="sb-items"><a class="sb-items-link" href="">Nhận Xét Của Tôi</a></li>
+                                    <li class="sb-items"><a class="sb-items-link" href="/bookstore/profile"><%= Lang.getKey(language,"User Information")%></a></li>
+                                    <li class="sb-items" id="dropdown"><a class="sb-items-link" href="/bookstore/change-password"><%= Lang.getKey(language,"Change Password")%></a></li>
+                                    <li class="sb-items"><a class="sb-items-link color-blue" href="/bookstore/order"><%= Lang.getKey(language,"Manage Orders")%></a></li>
+                                    <li class="sb-items"><a class="sb-items-link" href=""><%= Lang.getKey(language,"My Feedback")%></a></li>
                                 </ul>
                             </div>
                             <div class="sb-bottom">
@@ -74,10 +74,10 @@
                             <div class="cart-table">
                                 <div class="thead">
                                     <div class="tr">
-                                        <div class="proid">Mã đơn hàng</div>
-                                        <div class="prodate">Ngày mua</div>
-                                        <div class="prostatus">Trạng thái</div>
-                                        <div class="prostatus">Hành động</div>
+                                        <div class="proid"><%= Lang.getKey(language, "Num.")%></div>
+                                        <div class="prodate"><%= Lang.getKey(language, "Created")%></div>
+                                        <div class="prostatus"><%= Lang.getKey(language, "Status")%></div>
+                                        <div class="prostatus"><%= Lang.getKey(language, "Action")%></div>
                                     </div>
                                 </div>
                                 <div class="tbody">
@@ -87,13 +87,13 @@
                                         <div class="proid"><%= order.getId()%></div>
                                         <div class="prodate"><%= order.getCreated_at()%></div>
                                         <% if (order.getStatus() == 1) {%>
-                                        <div class="prostatus">Đang Xử Lý</div>
+                                        <div class="prostatus"><%= Lang.getKey(language, "processing")%></div>
                                         <div class="prostatus">
                                             <a class="color-blue" href="/bookstore/order_detail/<%= order.getId()%>"><%= Lang.getKey(language,"Edit")%></a>
                                             <a class="color-red" href="/bookstore/order/delete/<%= order.getId()%>"><%= Lang.getKey(language,"Delete")%></a>
                                         </div>
                                         <% } else {%>
-                                        <div class="prostatus">Đã Giao</div>
+                                        <div class="prostatus"><%= Lang.getKey(language, "delivered")%></div>
                                         <div class="prostatus">
                                             <a class="color-blue" href="/bookstore/order_detail/<%= order.getId()%>v"><%= Lang.getKey(language,"View")%></a>
                                             <a class="color-red" href="/bookstore/order/delete/<%= order.getId()%>"><%= Lang.getKey(language,"Delete")%></a>
@@ -106,7 +106,7 @@
                                     <% }%>
                                     <div class="tbottom">
                                         <div class="tr">
-                                            <p>Cám ơn bạn đã mua hàng tại shop!!</p>
+                                            <p><%= Lang.getKey(language,"Thank for your puchase at Our Website")%>!!</p>
                                         </div>
                                         <div class="tr">
                                             <img src="images/thank-you.png">

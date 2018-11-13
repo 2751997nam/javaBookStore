@@ -7,21 +7,19 @@ package controllers.client;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.Book;
-import models.Comment;
-import models.database.DB;
 
 /**
  *
  * @author nguye
  */
-public class DetailController extends HttpServlet {
+@WebServlet(name = "UploadAvatarController", urlPatterns = {"/profile/upload"})
+public class UploadAvatarController extends HttpServlet {
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -35,17 +33,6 @@ public class DetailController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/client/detail.jsp");
-        String id = request.getPathInfo().replace("/", "");
-
-        Book book = (Book) new DB("books", "Book").where("id", "=", id).get().get(0);
-        List<Comment> comments = new DB("comments", "Comment").where("book_id", "=", book.getId() + "").get();
-        List<Book> top_sell = new Book().topSell(5);
-
-        request.setAttribute("book", book);
-        request.setAttribute("comments", comments);
-        request.setAttribute("top_sell", top_sell);
-        dispatcher.forward(request, response);
     }
 
     /**
