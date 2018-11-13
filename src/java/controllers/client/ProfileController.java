@@ -64,17 +64,15 @@ public class ProfileController extends HttpServlet {
             if(user.getName().compareToIgnoreCase(request.getParameter("name") + "") != 0){
                 HashMap<String, String> userMap = new HashMap();
                 userMap.put("name", request.getParameter("name"));
-                new DB("users").update(userMap).where("id", "=", user.getId() + "");
+                new DB("users").where("id", "=", user.getId() + "").update(userMap);
             }
             DB db = new DB("profiles","Profile");
             HashMap<String, String> map = new HashMap();
-            map.put("user_id", "" + user.getId());
             map.put("phone", request.getParameter("phone"));
             map.put("address", request.getParameter("address"));
             map.put("gender", (request.getParameter("gender").equals("male") ? "1":"0"));
             map.put("date_of_birth",request.getParameter("year") + "-" + request.getParameter("month") + "-" + request.getParameter("day"));
-            String[] tmp = {"user_id = " + user.getId()};
-            db.update(map);
+            db.where("user_id", "=",  user.getId() + "").update(map);
             response.sendRedirect(request.getContextPath() + "/profile");
         }
     }

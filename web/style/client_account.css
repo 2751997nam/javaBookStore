@@ -215,6 +215,9 @@ fieldset{
 .tr .prostatus{
     width: 25%;
 }
+.tr .prostatus a{
+    margin: 0 10px; 
+}
 .tr .proname{
     width: 35%;
     text-align: left;

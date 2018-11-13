@@ -76,9 +76,9 @@
                                     <% if (request.getAttribute("action") != "view") {%>
                                     <div class="quantity text-center">
                                         <div class="button-group ">
-                                            <form action="/bookstore/order_detail/update" method="post" id="<%= item.getId()%>">
+                                            <form action="/bookstore/order_detail" method="post" id="<%= item.getId()%>">
                                                 <input type="hidden" value="change" name="action"/>
-                                                <input type="hidden" value="<%= item.getId()%>" name="book_id"/>
+                                                <input type="hidden" value="<%= item.getId()%>" name="order_detail_id"/>
                                                 <select class="number" name="quantity" onchange="document.getElementById('<%= item.getId()%>').submit()">
                                                     <option value="default"><%= item.getQuantity()%></option>
                                                     <option value="1">1</option>
@@ -104,7 +104,7 @@
                                                 </select>
                                             </form>
                                         </div>
-                                        <p><a href="/bookstore/order_detail/delete/<%= item.getId()%>" class="color-red"><%= Lang.getKey(language, "Delete")%></a></p>
+                                        <p><a href="/bookstore/order/item/delete/<%= item.getId()%>" class="color-red"><%= Lang.getKey(language, "Delete")%></a></p>
                                     </div>
                                     <%} else {%>
                                     <div class="box-price">

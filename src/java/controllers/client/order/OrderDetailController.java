@@ -7,12 +7,15 @@ package controllers.client.order;
  */
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.Book;
+import models.Order;
 import models.User;
 import models.database.DB;
 import models.OrderDetail;
@@ -60,6 +63,16 @@ public class OrderDetailController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+               HttpSession session = request.getSession();
+        if (session.getAttribute("email") != null) {
+            HashMap<String, String> item = new HashMap();
+            item.put("quantity", Integer.parseInt(request.getParameter("quantity")) + "");
+            new DB("order_details").where("id", "=", request.getParameter("order_detail_id")).update(item);
+            response.sendRedirect(request.getHeader("Referer"));
+            return;
+        } else {
+            response.sendRedirect("/bookstore/login");
+            return;
+        }
     }
 }

@@ -82,5 +82,9 @@
     "Preview": "Xem Chi Tiết",
     "Accept": "Thanh Toán",
     "Order detail": "Chi tiết đơn hàng",
-    "Action": "Hoạt động"
+    "Action": "Hoạt động",
+    "View": "Xem",
+    "Password": "Mật khẩu",
+    "Comfirm password": "Nhập lại",
+    "Old password": "Mật khẩu củ"
 }

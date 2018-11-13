@@ -323,7 +323,7 @@
 #media{
     display: flex;
     align-items: flex-start;
-    padding: 1.25rem;
+    padding: 1rem;
     border: 1px solid #f7f7f7;
 }
 .rounded-circle{
@@ -343,7 +343,19 @@
     color: rgba(0,0,0,.54);
 }
 .media-body .commenter {
-
+    display: flex;
+}
+.media-body .commenter .margin-auto {
+    margin-left: auto;
+}
+.media-body .change {
+    display: flex;
+}
+.media-body .change p:first-child {
+    margin-right: 20px;
+}
+.media-body .change p:hover a{
+    color: #3399ff;
 }
 .body .other_products{
     width: 100%;

@@ -132,7 +132,7 @@ and open the template in the editor.
 
 .row .col-product{
     position: relative;
-    width: 224px;
+    width: 25%;
     float: left;
 }
 .row .col-product:hover{

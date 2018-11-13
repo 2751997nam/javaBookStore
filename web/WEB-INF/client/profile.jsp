@@ -48,7 +48,7 @@
                             <div class="sb-body">
                                 <ul class="sb-list">
                                     <li class="sb-items"><a class="sb-items-link color-blue" href="/bookstore/profile">Thông Tin Tài Khoản</a></li>
-                                    <li class="sb-items" id="dropdown"><a class="sb-items-link" href="">Đổi Mật Khẩu</a></li>
+                                    <li class="sb-items" id="dropdown"><a class="sb-items-link" href="/bookstore/change-password">Đổi Mật Khẩu</a></li>
                                     <li class="sb-items"><a class="sb-items-link" href="/bookstore/order">Quản Lý Đơn Hàng</a></li>
                                     <li class="sb-items"><a class="sb-items-link" href="">Nhận Xét Của Tôi</a></li>
                                 </ul>

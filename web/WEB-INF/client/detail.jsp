@@ -127,12 +127,12 @@
                             <div class="row" id="media">
                                 <img src="http://placehold.it/50x50" class="rounded-circle">
                                 <div class="media-body">
-                                    <p class="commenter"><%= comment.getUser().getName()%></p>
+                                    <p class="commenter"><span><%= comment.getUser().getName()%></span><span class="margin-auto"></span><span><%= comment.getCreated_at()%></span></p>
                                     <p class="text-comment"><%= comment.getContent()%></p>
-                                    <% if ((session.getAttribute("email") == null ? "":session.getAttribute("email")).equals(comment.getUser().getEmail())) {%>
-                                    <div class="" style="display: flex;">
+                                    <% if ((session.getAttribute("email") == null ? "" : session.getAttribute("email")).equals(comment.getUser().getEmail())) {%>
+                                    <div class="change">
                                         <p class=""><a href="#"><%= Lang.getKey(language, "Edit")%></a></p>
-                                        <p class=""><a href="#"><%= Lang.getKey(language, "Delete")%></a></p>
+                                        <p class=""><a href="/comment/delete/<%= comment.getId() %>"><%= Lang.getKey(language, "Delete")%></a></p>
                                     </div>
                                     <% } %>
                                 </div>

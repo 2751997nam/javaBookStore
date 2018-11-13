@@ -10,6 +10,7 @@
 <html lang="<%= language%>">
     <head>
         <title>Book Shop</title>
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="style/client_reset.css">       
@@ -92,7 +93,7 @@
                                         <img src="images/slide1.png" alt="">
                                     </div>
                                     <div class="slide-item">
-                                        <img src="images/slide2.jpg" alt="">
+                                        <img src="images/slide2.png" alt="">
                                     </div>
                                     <div class="slide-item">
                                         <img src="images/slide3.png" alt="">

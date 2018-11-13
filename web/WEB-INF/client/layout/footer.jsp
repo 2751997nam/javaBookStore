@@ -1,8 +1,9 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="footer">
     <div class="wrapper">
         <div class="f_cols">
             <h3>Location</h3>
-            <p>H?c vi?n C�ng ngh? B?u ch�nh Vi?n th�ng - Nguy?n Tr�i - H� ?�ng - H� N?i <span class="phone">Phone: 19008197 </span></p>
+            <p>Học viễn Công nghệ Bưu chính Viễn thông - Nguyễn Trãi - Hà Đông - Hà Nội <span class="phone">Phone: 19008197 </span></p>
             <a class="map" href="https://www.google.com/maps/place/H%E1%BB%8Dc+Vi%E1%BB%87n+C%C3%B4ng+ngh%E1%BB%87+B%C6%B0u+Ch%C3%ADnh+Vi%E1%BB%85n+Th%C3%B4ng/@20.9833077,105.7909336,15z/data=!4m5!3m4!1s0x3135accdcf7b0bd1:0xc1cf5dd00247628a!8m2!3d20.9813256!4d105.7874823">see it in the map <span class="arrow">&nbsp;&rarr;</span></a>
         </div>
 
@@ -21,12 +22,11 @@
                 <li><a href="#">FAQ</a></li>
                 <li><a href="#">Contact</a></li>
                 <li><a href="#">Policies</a></li>
-
             </ul>
         </div>
         <div class="f_cols">
             <h3>Minima</h3>
-            <p>S�ch l� kho tri th?c c?a nh�n lo?i. Vi?c ??c s�ch m?i ng�y s? gi�p b?n ph�t tri?n v??t b?c</p>
+            <p>Sách là kho tri thức của nhân loại. Việc đọc sách mỗi ngày sẽ giúp bạn phát triển vượt bậc</p>
             <p>Template made by Team 09</p>
         </div>
     </div>

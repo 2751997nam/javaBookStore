@@ -45,7 +45,7 @@
                             <div class="sb-body">
                                 <ul class="sb-list">
                                     <li class="sb-items"><a class="sb-items-link" href="/bookstore/profile">Thông Tin Tài Khoản</a></li>
-                                    <li class="sb-items" id="dropdown"><a class="sb-items-link" href="">Đổi Mật Khẩu</a></li>
+                                    <li class="sb-items" id="dropdown"><a class="sb-items-link" href="/bookstore/change-password">Đổi Mật Khẩu</a></li>
                                     <li class="sb-items"><a class="sb-items-link color-blue" href="/bookstore/order">Quản Lý Đơn Hàng</a></li>
                                     <li class="sb-items"><a class="sb-items-link" href="">Nhận Xét Của Tôi</a></li>
                                 </ul>
@@ -82,40 +82,46 @@
                                 </div>
                                 <div class="tbody">
                                     <% if (!orders.isEmpty()) {%>
-                                        <% for (Order order : orders) {%>
-                                            <div class="tr">
-                                                <div class="proid"><%= order.getId()%></div>
-                                                <div class="prodate"><%= order.getCreated_at()%></div>
-                                                <% if (order.getStatus() == 1) {%>
-                                                    <div class="prostatus">Đang Xử Lý</div>
-                                                    <div class="prostatus"><a href="/bookstore/order_detail/<%= order.getId() %>">Sửa</a></div>
-                                                <% } else {%>
-                                                    <div class="prostatus">Đã Giao</div>
-                                                    <div class="prostatus"><a href="/bookstore/order_detail/<%= order.getId() %>v">Xem</a></div>
-                                                <% } %>
-                                            </div>
-                                         <% } %>
-                                    <% }else { %>
-                                        <p class="color-red">Hiện tại bạn chưa mua gì</p>
+                                    <% for (Order order : orders) {%>
+                                    <div class="tr">
+                                        <div class="proid"><%= order.getId()%></div>
+                                        <div class="prodate"><%= order.getCreated_at()%></div>
+                                        <% if (order.getStatus() == 1) {%>
+                                        <div class="prostatus">Đang Xử Lý</div>
+                                        <div class="prostatus">
+                                            <a class="color-blue" href="/bookstore/order_detail/<%= order.getId()%>"><%= Lang.getKey(language,"Edit")%></a>
+                                            <a class="color-red" href="/bookstore/order/delete/<%= order.getId()%>"><%= Lang.getKey(language,"Delete")%></a>
+                                        </div>
+                                        <% } else {%>
+                                        <div class="prostatus">Đã Giao</div>
+                                        <div class="prostatus">
+                                            <a class="color-blue" href="/bookstore/order_detail/<%= order.getId()%>v"><%= Lang.getKey(language,"View")%></a>
+                                            <a class="color-red" href="/bookstore/order/delete/<%= order.getId()%>"><%= Lang.getKey(language,"Delete")%></a>
+                                        </div>
+                                        <% } %>
+                                    </div>
                                     <% } %>
-                                <div class="tbottom">
-                                    <div class="tr">
-                                        <p>Cám ơn bạn đã mua hàng tại shop!!</p>
-                                    </div>
-                                    <div class="tr">
-                                        <img src="images/thank-you.png">
-                                    </div>
+                                    <% } else { %>
+                                    <p class="color-red">Hiện tại bạn chưa mua gì</p>
+                                    <% }%>
+                                    <div class="tbottom">
+                                        <div class="tr">
+                                            <p>Cám ơn bạn đã mua hàng tại shop!!</p>
+                                        </div>
+                                        <div class="tr">
+                                            <img src="images/thank-you.png">
+                                        </div>
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="clear"></div>
                     </div>
-                    <div class="clear"></div>
                 </div>
+                <!-- FOOTER -->
+                <%@include file="../layout/footer.jsp" %>
+                <!-- HẾT FOOTER -->
             </div>
-            <!-- FOOTER -->
-            <%@include file="../layout/footer.jsp" %>
-            <!-- HẾT FOOTER -->
-        </div>
     </body>
 </html>
