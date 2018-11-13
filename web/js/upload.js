@@ -4,6 +4,7 @@ function readURL(input) {
 
         reader.onload = function (e) {
             var element = document.getElementById('thumbnail');
+            element.classList.remove('d-none');
             element.setAttribute('src', e.target.result);
         };
 

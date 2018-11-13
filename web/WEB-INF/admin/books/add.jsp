@@ -26,8 +26,12 @@
                             <input type="text" name="name" class="form-control" required>
                         </div>
                         <div class="form-group">
+                            <label class="form-label"></label>
+                            <img class="thumbnail d-none" id="thumbnail" src="">
+                        </div>
+                        <div class="form-group">
                             <label class="form-label"><%= Lang.getKey(language, "Thumbnail")%></label>
-                            <input type="file" class="form-control" name="image" required>
+                            <input type="file" onchange="readURL(this)" class="form-control" name="image" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label"><%= Lang.getKey(language, "Category")%></label> 
@@ -67,5 +71,6 @@
             </div>
         </div>
         <script src="/bookstore/js/admin/menu.js"></script>
+        <script src="/bookstore/js/upload.js"></script>
     </body>
 </html>
