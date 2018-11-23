@@ -5,13 +5,14 @@
  */
 package controllers.admin.users;
 
-import config.Database;
 import controllers.Controller;
+import static controllers.Controller.number;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import models.User;
@@ -21,8 +22,8 @@ import models.database.DB;
  *
  * @author ASUS
  */
-@WebServlet(name = "UserController", urlPatterns = {"/admin/users"})
-public class UserController extends Controller {
+@WebServlet(name = "ManagerController", urlPatterns = {"/admin/managers"})
+public class ManagerController extends Controller {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -35,14 +36,13 @@ public class UserController extends Controller {
         search = search == null ? "" : search;
         ArrayList<User> users = (ArrayList<User>) new DB("users", "User")
                 .where("email", "like", "%" + search + "%")
-                .where("role_id", "=", "2")
+                .where("role_id", "=", "3")
                 .orderBy("created_at")
                 .paginate(request)
                 .get();
         request.setAttribute("users", users);
         this.setPaginate(request, number);
-
-        showView(request, response, "admin/users/index");
+        showView(request, response, "admin/users/manager");
     }
 
     @Override
@@ -52,14 +52,5 @@ public class UserController extends Controller {
             response.sendRedirect("/bookstore/admin");
             return;
         }
-
-        int id = Integer.parseInt(request.getParameter("id"));
-        User user = (User) new DB("users", "User").find(id);
-        String status = user.getStatus() == 1 ? "2" : "1";
-        HashMap<String, String> map = new HashMap();
-        map.put("status", status);
-        new DB("users").where("id", "=", "" + id).update(map);
-
-        redirectBack(request, response);
     }
 }

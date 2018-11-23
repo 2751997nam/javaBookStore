@@ -87,5 +87,8 @@
     "Password": "Mật khẩu",
     "Comfirm password": "Nhập lại",
     "Old password": "Mật khẩu củ",
-    "Dashboard": "Bảng Điều Khiển"
+    "Dashboard": "Bảng Điều Khiển",
+    "Your account was blocked": "Tài khoản của bạn đã bị khóa",
+    "Please input required field": "Vui lòng điền vào các trường được yêu cầu",
+    "This email was existed": "Email này đã tồn tại"
 }

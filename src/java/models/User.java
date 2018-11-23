@@ -94,16 +94,26 @@ public class User extends Model {
                 .where("password", "=", password)
                 .checkQuery();
     }
+    
+    public static boolean checkStatus(String email, String password) {
+        return new DB("users")
+                .where("email", "=", email)
+                .where("password", "=", password)
+                .where("status", "=", "1")
+                .checkQuery();
+    }
 
     public static boolean checkAuth(String remember) {
         return new DB("users")
                 .where("remember_token", "=", remember)
+                .where("status", "=", "1")
                 .checkQuery();
     }
 
     public static User auth(String remember) {
         return (User) new DB("users", "User")
                 .where("remember_token", "=", remember)
+                .where("status", "=", "1")
                 .get()
                 .get(0);
     }
@@ -115,7 +125,7 @@ public class User extends Model {
     }
 
     public int getRole_id() {
-        return role_id;
+        return this.role_id;
     }
 
     public void setRole_id(int role_id) {

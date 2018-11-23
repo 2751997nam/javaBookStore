@@ -72,6 +72,11 @@ public class AdminLoginController extends Controller {
             response.sendRedirect(url);
             return;
         }
+        if(!User.checkStatus(email, password)) {
+            session.setAttribute("message", "Your account was blocked");
+            response.sendRedirect(url);
+            return;
+        }
         System.out.println("");
         System.out.println("LOgin");
         System.out.println("");
@@ -91,10 +96,11 @@ public class AdminLoginController extends Controller {
             cookie.setMaxAge(30 * 60 * 60 * 24);
             response.addCookie(cookie);
         }
-        if(user.role().getName().compareTo("admin") == 0) {
+        String role = user.role().getName();
+        if(role.compareTo("admin") == 0 || role.compareTo("manager") == 0) {
             response.sendRedirect("/bookstore/admin/dashboard");
             return;
         }
-        response.sendRedirect("/bookstore/admin");
+        response.sendRedirect("/bookstore");
     }
 }
