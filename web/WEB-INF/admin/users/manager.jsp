@@ -1,4 +1,3 @@
-<%@page import="models.Category"%>
 <%@page import="java.util.List"%>
 <%@page import="config.Database"%>
 <%@page import="config.Lang"%>
@@ -12,7 +11,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title><%= Lang.getKey(language, "Users Manager")%></title>
+        <title><%= Lang.getKey(language, "Managers Managerment")%></title>
         <link rel="stylesheet" href="../style/books.css">
         <link rel="stylesheet" href="../style/style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -23,6 +22,7 @@
             <%@include file="../sidebar.jsp" %>
             <div class="content-right-data">
                 <div>
+                    <a href="managers/add" role="button" class="btn btn-success"><%= Lang.getKey(language, "Add New Manager")%></a>
                     <table class="table-data">
                         <thead>
                             <tr>
@@ -69,7 +69,7 @@
                     <div class="paginate">
                         <%@include  file="/WEB-INF/paginate.jsp"%>
                     </div>
-                    <form action="" method="POST" id="delete_item">
+                    <form action="/bookstore/admin/users" method="POST" id="delete_item">
                         <input type="hidden" name="id" value="" id="item_id">
                     </form>
                 </div>

@@ -63,7 +63,6 @@
                             <input type="number" name="quantity" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <button id="back">Back</button>
                             <input id="save" type="submit" value="Save">
                         </div>                       
                     </form>

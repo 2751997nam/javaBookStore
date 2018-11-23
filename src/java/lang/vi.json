@@ -99,5 +99,8 @@
     "processing": "Đang xử lý",
     "delivered": "đã giao",
     "Date Of Birth": "Ngày Sinh",
-    "Detail": "Chi tiết"
+    "Detail": "Chi tiết",
+    "Your account was blocked": "Tài khoản của bạn đã bị khóa",
+    "Please input required field": "Vui lòng điền vào các trường được yêu cầu",
+    "This email was existed": "Email này đã tồn tại"
 }
