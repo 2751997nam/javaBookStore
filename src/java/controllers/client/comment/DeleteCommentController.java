@@ -30,11 +30,10 @@ public class DeleteCommentController extends HttpServlet {
             List<User> list = new DB("users", "User").where("email", "=", session.getAttribute("email") + "").get();
             if(!list.isEmpty()) {
                 User user = list.get(0);
-                String id_comment = request.getPathInfo().replace("/", "");
-                PrintWriter out = response.getWriter();
-                out.print(id_comment);
-//                new DB("comments", "Comment").where("id", "=", id_comment).where("user_id", "=", user.getId() + "").delete().execute();
-//                request.getRequestDispatcher(request.getHeader("Referer")).forward(request, response);
+                String id_comment = request.getParameter("id");
+                new DB("comments", "Comment").where("id", "=", id_comment).where("user_id", "=", user.getId() + "").delete().execute();
+                response.sendRedirect(request.getHeader("Referer"));
+                return;
             }
             session.removeAttribute("email");
             session.removeAttribute("book_cart");

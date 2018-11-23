@@ -12,7 +12,7 @@ package controllers.client;
 public class Test {
 
     public static void main(String[] args) {
-//        String x =  "";
-//        System.out.println(Integer.parseInt(null));
+        String x =  "9";
+        System.out.println((x.compareTo("12")));
     }
 }

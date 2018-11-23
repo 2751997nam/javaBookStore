@@ -70,7 +70,7 @@ public class DB {
     }
     
     public String antiInjection(String sql) {
-        sql = sql.replaceAll("\'+|\"+|[--]+", "");
+        sql = sql.replaceAll("\'+|\"+|(--)+", "");
         
         return sql;
     }

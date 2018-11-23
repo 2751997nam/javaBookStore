@@ -27,11 +27,14 @@ public class AddCartController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        
         if (session.getAttribute("email") != null) {
             User user = (User) new DB("users", "User").where("email", "=", (String) session.getAttribute("email")).get().get(0);
+           
             String book_id = request.getParameter("book_id");
             String quantity = request.getParameter("quantity");
             HashMap<String, String> map = new HashMap();
+            
             List book_users = (List) new DB("book_user").where("book_id", "=", book_id).where("user_id", "=", user.getId() + "").get();
             if (!book_users.isEmpty()) {
                 HashMap<String, String> book_user = (HashMap) book_users.get(0);
@@ -40,13 +43,16 @@ public class AddCartController extends HttpServlet {
                 } else {
                     map.put("quantity", Integer.parseInt(quantity) + "");
                 }
-                new DB("book_user").update(map).where("book_id", "=", book_id).where("user_id", "=", user.getId() + "").execute();
+                
+                new DB("book_user").where("book_id", "=", book_id).where("user_id", "=", user.getId() + "").update(map);
             } else {
                 map.put("book_id", book_id);
                 map.put("user_id", "" + user.getId());
                 map.put("quantity", quantity);
                 new DB("book_user").insert(map);
+                
                 String book_cart = (String) session.getAttribute("book_cart");
+                
                 if(book_cart.isEmpty()){
                     book_cart = "0";
                 }
