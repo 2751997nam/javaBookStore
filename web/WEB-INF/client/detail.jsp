@@ -131,7 +131,7 @@
                             <div class="row" id="media">
                                 <img src="http://placehold.it/50x50" class="rounded-circle">
                                 <div class="media-body">
-                                    <p class="commenter"><span><%= comment.getUser().getName()%></span><span class="margin-auto"></span><span><%= comment.getCreated_at()%></span></p>
+                                    <p class="commenter"><span><%= comment.getUser().getName()%></span><span class="margin-auto"></span><span class="text-time"><%= comment.getCreated_at()%></span></p>
                                     <p class="text-comment content-edit"><%= comment.getContent()%></p>
                                     <% if ((session.getAttribute("email") == null ? "" : session.getAttribute("email")).equals(comment.getUser().getEmail())) {%>
                                     <div id="change">
