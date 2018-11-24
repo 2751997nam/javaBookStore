@@ -102,5 +102,9 @@
     "Detail": "Chi tiết",
     "Your account was blocked": "Tài khoản của bạn đã bị khóa",
     "Please input required field": "Vui lòng điền vào các trường được yêu cầu",
-    "This email was existed": "Email này đã tồn tại"
+    "This email was existed": "Email này đã tồn tại",
+    "Confirm Information": "Xác Nhận Thông Tin",
+    "Confirm" : "Xác Nhận",
+    "Cancel" : "Hủy",
+    "Note" : "Ghi chú"
 }

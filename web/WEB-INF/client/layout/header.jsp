@@ -49,7 +49,7 @@
         <div class="col-9 row">
             <div class="col-10 search">
                 <div class="form-search">
-                    <form action="search" method="get">
+                    <form action="/bookstore/search" method="get">
                         <input type="text" name="q" placeholder="<%= Lang.getKey(language, "Search books, categories")%>">
                         <button type="submit"><img src="/bookstore/images/search.png" alt=""></button>
                     </form>
