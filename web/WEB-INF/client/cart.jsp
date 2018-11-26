@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="info-item">
                                     <div class="box-info-product">
-                                        <p class="name"><%= book.getName()%></p>
+                                        <a href="/bookstore/detail/<%= book.getId()%>"><p class="name"><%= book.getName()%></p></a>
                                         <p class="note"> - <%= Lang.getKey(language, "Author")%>: <a href="" target=""><%= book.getAuthor()%></a></p>
                                     </div>
                                     <div class="box-price">
@@ -147,32 +147,30 @@
             <div class="modal-content">
                 <div class="model-head">
                     <span class="close" onClick="hideModal()">&times;</span>
-                    <p>Xách Nhận Thông Tin</p>
+                    <p><%= Lang.getKey(language, "Confirm Information")%></p>
                 </div>
                 <div class="modal-body">
                     <form method="post" action="/bookstore/order">
                         <input type="hidden" name="email" value="<%= user.getEmail()%>">
                         <div class="form-c">
-                            <lable class="lb">Họ Tên</lable>
-                            <input class="ai" type="text" name="name" value="<%= user.getName()%>" required disabled placeholder="Họ tên"/>
+                            <lable class="lb"><%= Lang.getKey(language, "Name")%> <span class="color-red">(*)</span></lable>
+                            <input class="ai" type="text" name="name" value="<%= user.getName()%>" required disabled placeholder=""/>
                         </div>
                         <div class="form-c">
-                            <lable class="lb">Đỉa Chỉ</lable>
-                            <input class="ai" type="text" name="address" value="<%= profile.getAddress()%>" required  placeholder="Địa chỉ"/>
+                            <lable class="lb"><%= Lang.getKey(language, "Address")%> <span class="color-red">(*)</span></lable>
+                            <input class="ai" type="text" name="address" value="<%= profile.getAddress()%>" required  placeholder=""/>
                         </div>
                         <div class="form-c">
-                            <lable class="lb">Điện Thoại</lable>
-                            <input class="ai" type="text" name="phone" value="<%= profile.getPhone()%>" required placeholder="Số điện thoại"/>
+                            <lable class="lb"><%= Lang.getKey(language, "Phone")%> <span class="color-red">(*)</span></lable>
+                            <input class="ai" type="text" name="phone" value="<%= profile.getPhone()%>" required />
                         </div>
                         <div class="form-c">
-                            <lable class="lb">Ghi chú</lable>
-                            <textarea class="ai" rows="5" name="note">
-                            
-                            </textarea>
+                            <lable class="lb"><%= Lang.getKey(language, "Note")%></lable>
+                            <textarea class="ai" rows="5" name="note"></textarea>
                         </div>
                         <div class="btn-bot">
-                            <button class="btnc" type="submit">Xac Nhan</button>
-                            <a class="btnc" onclick="hideModal()">Huy</a>
+                            <button class="btnc" type="submit"><%= Lang.getKey(language, "Confirm")%></button>
+                            <a class="btnc" onclick="hideModal()"><%= Lang.getKey(language, "Cancel")%></a>
                         </div>
                     </form>
                 </div>

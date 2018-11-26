@@ -24,10 +24,12 @@
         <link rel="stylesheet" type="text/css" href="style/client_index.css">
         <link rel="stylesheet" type="text/css" href="style/client_category.css">
         <link rel="stylesheet" type="text/css" href="style/client_account.css">
+        <link rel="stylesheet" type="text/css" href="style/modal.css">
     </head>
     <body>
         <%
             List<Order> orders = (List) request.getAttribute("orders");
+            Profile profile = (Profile) request.getAttribute("profile");
         %>
         <div class="container">
             <!-- HEADER TOP : HEADER -->
@@ -39,15 +41,19 @@
                         <div class="sidebar-wrapper">
                             <div class="sb-top">
                                 <div class="sb-logo">
-                                    <img src="images/profile.png">
+                                    <% if (!" ".equals(profile.getAvatar())) {%>
+                                        <img src="<%= profile.showAvatar()%>">
+                                    <% } else { %>
+                                        <img src="images/profile.png">
+                                    <% } %>
                                 </div>
                             </div>
                             <div class="sb-body">
                                 <ul class="sb-list">
-                                    <li class="sb-items"><a class="sb-items-link" href="/bookstore/profile"><%= Lang.getKey(language,"User Information")%></a></li>
-                                    <li class="sb-items" id="dropdown"><a class="sb-items-link" href="/bookstore/change-password"><%= Lang.getKey(language,"Change Password")%></a></li>
-                                    <li class="sb-items"><a class="sb-items-link color-blue" href="/bookstore/order"><%= Lang.getKey(language,"Manage Orders")%></a></li>
-                                    <li class="sb-items"><a class="sb-items-link" href=""><%= Lang.getKey(language,"My Feedback")%></a></li>
+                                    <li class="sb-items"><a class="sb-items-link" href="/bookstore/profile"><%= Lang.getKey(language, "User Information")%></a></li>
+                                    <li class="sb-items" id="dropdown"><a class="sb-items-link" href="/bookstore/change-password"><%= Lang.getKey(language, "Change Password")%></a></li>
+                                    <li class="sb-items"><a class="sb-items-link color-blue" href="/bookstore/order"><%= Lang.getKey(language, "Manage Orders")%></a></li>
+                                    <li class="sb-items"><a class="sb-items-link" href=""><%= Lang.getKey(language, "My Feedback")%></a></li>
                                 </ul>
                             </div>
                             <div class="sb-bottom">
@@ -89,14 +95,14 @@
                                         <% if (order.getStatus() == 1) {%>
                                         <div class="prostatus"><%= Lang.getKey(language, "processing")%></div>
                                         <div class="prostatus">
-                                            <a class="color-blue" href="/bookstore/order_detail/<%= order.getId()%>"><%= Lang.getKey(language,"Edit")%></a>
-                                            <a class="color-red" href="/bookstore/order/delete/<%= order.getId()%>"><%= Lang.getKey(language,"Delete")%></a>
+                                            <a class="color-blue" href="/bookstore/order_detail/<%= order.getId()%>"><%= Lang.getKey(language, "Edit")%></a>
+                                            <a class="color-red" data-id="<%= order.getId()%>" onclick="showModal(this)"><%= Lang.getKey(language, "Delete")%></a>
                                         </div>
                                         <% } else {%>
                                         <div class="prostatus"><%= Lang.getKey(language, "delivered")%></div>
                                         <div class="prostatus">
-                                            <a class="color-blue" href="/bookstore/order_detail/<%= order.getId()%>v"><%= Lang.getKey(language,"View")%></a>
-                                            <a class="color-red" href="/bookstore/order/delete/<%= order.getId()%>"><%= Lang.getKey(language,"Delete")%></a>
+                                            <a class="color-blue" href="/bookstore/order_detail/<%= order.getId()%>v"><%= Lang.getKey(language, "View")%></a>
+                                            <a class="color-red" data-id="<%= order.getId()%>" onclick="showModal(this)"><%= Lang.getKey(language, "Delete")%></a>
                                         </div>
                                         <% } %>
                                     </div>
@@ -106,12 +112,11 @@
                                     <% }%>
                                     <div class="tbottom">
                                         <div class="tr">
-                                            <p><%= Lang.getKey(language,"Thank for your puchase at Our Website")%>!!</p>
+                                            <p><%= Lang.getKey(language, "Thank for your puchase at Our Website")%>!!</p>
                                         </div>
                                         <div class="tr">
                                             <img src="images/thank-you.png">
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -123,5 +128,33 @@
                 <%@include file="../layout/footer.jsp" %>
                 <!-- HẾT FOOTER -->
             </div>
+            <!--modal delete-->
+            <div id="deleteModal" class="modal">
+                <div class="modal-content">
+                    <div class="model-head">
+                        <span class="close" onClick="hideModal()">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <p><%= Lang.getKey(language, "Do you want to delete this orders?")%></p>
+                        <div class="btn-bot">
+                            <a class="btnc" id="link-delete" href="" class="color-red"><%= Lang.getKey(language, "Delete")%></a>
+                            <a class="btnc" onclick="hideModal()"><%= Lang.getKey(language, "Cancel")%></a>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                function showModal(item) {
+                    document.getElementById("deleteModal").style.display = "block";
+                    var id = item.getAttribute("data-id");
+                    document.getElementById("link-delete").setAttribute("href", "/bookstore/order/delete/" + id);
+                }
+                function hideModal() {
+                    document.getElementById("deleteModal").style.display = "none";
+                }
+            </script>
     </body>
 </html>

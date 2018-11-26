@@ -51,7 +51,7 @@ public class AddCartController extends HttpServlet {
                 map.put("quantity", quantity);
                 new DB("book_user").insert(map);
                 
-                String book_cart = (String) session.getAttribute("book_cart");
+                String book_cart = session.getAttribute("book_cart") + "";
                 
                 if(book_cart.isEmpty()){
                     book_cart = "0";

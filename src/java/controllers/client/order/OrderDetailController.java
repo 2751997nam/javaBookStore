@@ -45,9 +45,11 @@ public class OrderDetailController extends HttpServlet {
                 action = "view";
                 paramater = request.getPathInfo().substring(1, request.getPathInfo().length() -1 );
             }
+            Order order = (Order) new DB("orders", "Order").where("id", "=", paramater).get().get(0);
             List<OrderDetail> items = (List) new DB("order_details", "OrderDetail").where("order_id", "=", paramater).get();
             request.setAttribute("action", action);
             request.setAttribute("items", items);
+            request.setAttribute("order", order);
             request.getRequestDispatcher("/WEB-INF/client/order/order_detail.jsp").forward(request, response);
         }
     }

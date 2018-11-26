@@ -19,7 +19,7 @@
                         <span><%=session.getAttribute("email")%></span>
                     </a>
                     <div class="dropdown-content">
-                        <a href="/bookstore/profile"><img src="/bookstore/images/user.png" alt="" class="login">  <%= Lang.getKey(language, "Profile")%></a>
+                        <a href="/bookstore/profile"> <%= Lang.getKey(language, "Profile")%></a>
                         <a href="/bookstore/login?action=logout" class="fa fa-logout">  <%= Lang.getKey(language, "Logout")%></a>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
         <div class="col-9 row">
             <div class="col-10 search">
                 <div class="form-search">
-                    <form action="search" method="get">
+                    <form action="/bookstore/search" method="get">
                         <input type="text" name="q" placeholder="<%= Lang.getKey(language, "Search books, categories")%>">
                         <button type="submit"><img src="/bookstore/images/search.png" alt=""></button>
                     </form>

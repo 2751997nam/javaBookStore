@@ -29,9 +29,11 @@ public class HomeController extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/client/index.jsp");
+        
         List<Book> top_sell = new Book().topSell(5);
         List<Book> new_books = new Book().newBooks(5);
         List<Book> recommend_books = new Book().recommendBooks(7);
+        
         request.setAttribute("recommend_books", recommend_books);
         request.setAttribute("top_sell", top_sell);
         request.setAttribute("new_books", new_books);

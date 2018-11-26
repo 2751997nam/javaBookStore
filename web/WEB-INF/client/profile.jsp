@@ -3,6 +3,7 @@
     Created on : Oct 22, 2018, 8:47:16 PM
     Author     : nguye
 --%>
+<%@page import="config.Database"%>
 <%@page import="config.Lang"%>
 <%@page import="models.Profile"%>
 <%@page import="models.User"%>
@@ -25,7 +26,7 @@
     <body>
         <% User user = (User) request.getAttribute("user");
             Profile profile = (Profile) request.getAttribute("profile");
-            String day = "Ngày", month = "Tháng", year = "Năm";
+            String day = "01", month = "01", year = "1900";
             if (profile.getDate_of_birth() != null) {
                 year = profile.getDate_of_birth().substring(0, 4);
                 month = profile.getDate_of_birth().substring(5, 7);
@@ -42,15 +43,19 @@
                         <div class="sidebar-wrapper">
                             <div class="sb-top">
                                 <div class="sb-logo">
+                                    <% if (!" ".equals(profile.getAvatar())) {%>
+                                    <img src="<%= profile.showAvatar()%>">
+                                    <% } else { %>
                                     <img src="images/profile.png">
+                                    <% }%>
                                 </div>
                             </div>
                             <div class="sb-body">
                                 <ul class="sb-list">
-                                    <li class="sb-items"><a class="sb-items-link color-blue" href="/bookstore/profile"><%= Lang.getKey(language,"User Information")%></a></li>
-                                    <li class="sb-items" id="dropdown"><a class="sb-items-link" href="/bookstore/change-password"><%= Lang.getKey(language,"Change Password")%></a></li>
-                                    <li class="sb-items"><a class="sb-items-link" href="/bookstore/order"><%= Lang.getKey(language,"Manage Orders")%></a></li>
-                                    <li class="sb-items"><a class="sb-items-link" href=""><%= Lang.getKey(language,"My Feedback")%></a></li>
+                                    <li class="sb-items"><a class="sb-items-link color-blue" href="/bookstore/profile"><%= Lang.getKey(language, "User Information")%></a></li>
+                                    <li class="sb-items" id="dropdown"><a class="sb-items-link" href="/bookstore/change-password"><%= Lang.getKey(language, "Change Password")%></a></li>
+                                    <li class="sb-items"><a class="sb-items-link" href="/bookstore/order"><%= Lang.getKey(language, "Manage Orders")%></a></li>
+                                    <li class="sb-items"><a class="sb-items-link" href=""><%= Lang.getKey(language, "My Feedback")%></a></li>
                                 </ul>
                             </div>
                             <div class="sb-bottom">
@@ -74,17 +79,18 @@
 
                     <div class="col-md-9 accounts">
                         <div class="account-wrapper">
-                            <h3><%= Lang.getKey(language,"User Information")%></h3>
+                            <h3><%= Lang.getKey(language, "User Information")%></h3>
                         </div>
-                        <form action="profile?action=infor" method="post">
-                            <div class="account-body">
+                        <div class="account-body">
+                            <form action="profile?action=infor" method="post" enctype = "multipart/form-data">
+
                                 <div class="form-c">
                                     <lable class="lb"><%= Lang.getKey(language, "Name")%></lable>
                                     <input class="ai" type="text" name="name" value="<%= user.getName()%>" placeholder="Họ tên"/>
                                 </div>
                                 <div class="form-c">
                                     <lable class="lb">Email</lable>
-                                    <input class="ai" type="text" name="email" value="<%= user.getEmail()%>" placeholder="Email" disabled/>
+                                    <input class="ai" type="email" name="email" value="<%= user.getEmail()%>" placeholder="Email" disabled/>
                                 </div>
                                 <div class="form-c">
                                     <lable class="lb"><%= Lang.getKey(language, "Phone")%></lable>
@@ -186,7 +192,6 @@
                                                     <option value="1992">1992</option>
                                                     <option value="1991">1991</option>
                                                     <option value="1990">1990</option>
-
                                                 </select>
                                             </fieldset>
                                         </div>
@@ -194,10 +199,14 @@
                                     </div>
                                 </div>  
                                 <div class="form-c">
-                                    <button type="submit" >Save</button>
+                                    <lable class="lb"><%= Lang.getKey(language, "Upload Avatar")%></lable>
+                                    <input type = "file" name = "avatar"/>
+                                </div>  
+                                <div class="form-c">
+                                    <button type="submit" ><%= Lang.getKey(language, "Save")%></button>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -29,6 +29,9 @@ public class ChangePasswordController extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         if (session.getAttribute("email") != null) {
+            User user = (User) new DB("users", "User").where("email", "=", session.getAttribute("email") + "").get().get(0);
+            Profile profile = (Profile) new DB("profiles", "Profile").where("user_id", "=", user.getId() + "").get().get(0);
+            request.setAttribute("profile", profile);
             request.getRequestDispatcher("/WEB-INF/client/change_password.jsp").forward(request, response);
         } else {
             response.sendRedirect(request.getContextPath() + "");

@@ -199,6 +199,7 @@ fieldset{
     width: 100%;
     display: block;
     text-align: center;
+    padding-top: 10px;
 }
 .thead{
     border-bottom: 1px solid #eeeeee;
@@ -258,9 +259,9 @@ fieldset{
     font-size: 1.1rem;
 }
 .account-body {
-    width: 60%;
     width: 75%;
     padding: 20px 50px;
+    float: left;
 }
 
 .form-c {
@@ -320,4 +321,14 @@ fieldset{
 }
 .text-time  {
     font-size: 13px;
+}
+.receiver_info {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    line-height: 20px;
+}
+.receiver_info p {
+    font-size: 15px;
 }

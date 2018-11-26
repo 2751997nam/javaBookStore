@@ -22,7 +22,7 @@ import models.database.DB;
  * @author nguye
  */
 public class LoginController extends HttpServlet {
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -37,7 +37,7 @@ public class LoginController extends HttpServlet {
                     response.sendRedirect(request.getContextPath() + "/login");
                 } else {
                     session.setAttribute("email", user.getEmail());
-                    request.getRequestDispatcher("/WEB-INF/client/index.jsp").forward(request, response);
+                    response.sendRedirect("/bookstore");
                 }
             }
         } else {
@@ -47,32 +47,39 @@ public class LoginController extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "");
         }
     }
-    
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         String email = request.getParameter("email");
         String password = MD5.md5(request.getParameter("password"));
+        
         if (!User.checkAuth(email, password)) {
             request.setAttribute("error", "Email or password is incorrect.");
             request.getRequestDispatcher("/WEB-INF/client/login.jsp").forward(request, response);
         } else {
-            if (request.getParameter("remember") != null) {
-                addCookie(email, password, response);
-            }
             User user = (User) new DB("users", "User").where("email", "=", email).get().get(0);
-            int book_cart = new DB("book_user").where("user_id", "=", "" + user.getId()).get().size();
-            session.setAttribute("email", email);
-            session.setAttribute("book_cart", book_cart == 0 ? "": book_cart);
-            response.sendRedirect(request.getContextPath() + "");
-            
+            if (user.getStatus() != 1) {
+                request.setAttribute("error", "Your account has been locked");
+                request.getRequestDispatcher("/WEB-INF/client/login.jsp").forward(request, response);
+            } else {
+                if (request.getParameter("remember") != null) {
+                    addCookie(email, password, response);
+                }
+                int book_cart = new DB("book_user").where("user_id", "=", "" + user.getId()).get().size();
+                session.setAttribute("email", email);
+                session.setAttribute("book_cart", book_cart == 0 ? "" : book_cart);
+                response.sendRedirect(request.getContextPath() + "");
+            }
+
         }
     }
-    
+
     private User checkCookie(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
         String email = "";
         String password = "";
+        
         for (Cookie cookie : cookies) {
             if (cookie.getName().equalsIgnoreCase("email")) {
                 email = cookie.getValue();
@@ -86,7 +93,7 @@ public class LoginController extends HttpServlet {
         }
         return null;
     }
-    
+
     private void addCookie(String email, String password, HttpServletResponse response) {
         Cookie cKEmail = new Cookie("email", email);
         cKEmail.setMaxAge(36000);

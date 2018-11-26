@@ -50,7 +50,7 @@ and open the template in the editor.
 }
 .modal .modal-content .modal-body {
     height: 350px;
-    padding: 20px 40px;
+    padding: 20px 38px;
 }
 .modal .modal-content .modal-footer{
     padding: 15px;
@@ -96,4 +96,20 @@ and open the template in the editor.
 }
 .close:hover {
     color: black;
+}
+/*modal delete*/
+#deleteModal {
+    padding-top: 150px; 
+}
+#deleteModal .modal-content {
+    width: 315px;
+    height: 150px;
+}
+#deleteModal .modal-content .btn-bot {
+    justify-content: center;
+    padding-top: 5px;
+}
+#deleteModal .modal-content .modal-body {
+    padding: 20px;
+    text-align: center;
 }
