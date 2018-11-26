@@ -54,38 +54,36 @@ public class DB {
         }
         this.class_name = "models." + class_name;
     }
-    
+
     public void flush() {
         this.query = new Query();
         this.table = null;
         this.class_name = null;
     }
-    
+
     public DB newQuery(String table) {
         flush();
         this.table = table;
         this.query.setFrom("From " + table);
-        
+
         return this;
     }
-    
+
     public String antiInjection(String sql) {
         sql = sql.replaceAll("('')+|\"+|(--)+", "");
-        
         return sql;
     }
-    
-    public Connection getConnection()
-    {
+
+    public Connection getConnection() {
         return this.connection;
     }
-    
+
     public DB newQuery(String table, String class_name) {
         flush();
         this.table = table;
-        this.class_name = class_name;
+        this.class_name = "models." + class_name;
         this.query.setFrom("From " + table);
-        
+
         return this;
     }
 
@@ -109,7 +107,9 @@ public class DB {
                 }
                 result.add(Class.forName(this.class_name).getConstructor(HashMap.class).newInstance(cols));
             }
-            this.connection.close();
+            if (this.connection.getAutoCommit()) {
+                this.connection.close();
+            }
         } catch (InstantiationException | IllegalAccessException
                 | IllegalArgumentException | InvocationTargetException
                 | ClassNotFoundException | NoSuchMethodException | SQLException ex) {
@@ -136,7 +136,9 @@ public class DB {
 
                 result.add(map);
             }
-            this.connection.close();
+            if (this.connection.getAutoCommit()) {
+                this.connection.close();
+            }
         } catch (IllegalArgumentException | SQLException ex) {
             Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -151,10 +153,14 @@ public class DB {
             Statement statement = this.connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             if (rs.next()) {
-                this.connection.close();
+                if (this.connection.getAutoCommit()) {
+                    this.connection.close();
+                }
                 return true;
             }
-            this.connection.close();
+            if (this.connection.getAutoCommit()) {
+                this.connection.close();
+            }
         } catch (SQLException ex) {
             Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex);
@@ -232,7 +238,7 @@ public class DB {
         sql += "updated_at = CURRENT_TIMESTAMP";
         this.query.setUpdate(sql);
         this.execute();
-        
+
         return this;
     }
 
@@ -374,11 +380,10 @@ public class DB {
 
         return this;
     }
-    
-    public DB paginate(HttpServletRequest request)
-    {
+
+    public DB paginate(HttpServletRequest request) {
         this.paginate(request, Integer.parseInt(new Database().get("paginate")));
-        
+
         return this;
     }
 

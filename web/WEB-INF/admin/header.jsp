@@ -4,17 +4,11 @@
     <div class="navbar">
         <div class="dropdown">
             <% User user = (User) session.getAttribute("user"); %>
-            <% String welcome =  Lang.getKey(language, "Welcome") + " " + user.getName(); %>
-            <button class="dropbtn" onclick="myFunction()"><%= welcome %>
-                <i class="fa fa-caret-down"></i>
+            <% String welcome = Lang.getKey(language, "Welcome") + " " + user.getName();%>
+            <button class="dropbtn"><%= welcome%>
             </button>
-            <div class="dropdown-content" id="myDropdown">
-                <a href="inforadmin.html">Account</a>
-                <a href="changepassadmin.html">Change Password</a>
-                <form action="/bookstore/admin/logout" method="Post" id="logout">
-                    <a href="javascript:document.querySelector('#logout').submit()" role="button">Log out</a>
-                </form>
-            </div>
+            <form action="/bookstore/admin/logout" method="Post" id="logout">
+            </form>
         </div> 
     </div>
     <div class="lang-form">
@@ -22,7 +16,7 @@
     </div>
     <div class="search-container">
         <form action="">
-            <input type="text" placeholder="Search.." name="search" value="<%= request.getParameter("search") != null ? request.getParameter("search") : ""  %>">
+            <input type="text" placeholder="Search.." name="search" value="<%= request.getParameter("search") != null ? request.getParameter("search") : ""%>">
             <button type="submit"><i class="fa fa-search"></i></button>
         </form>
     </div>
