@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="info-item">
                                     <div class="box-info-product">
-                                        <p class="name"><%= book.getName()%></p>
+                                        <a href="/bookstore/detail/<%= book.getId()%>"><p class="name"><%= book.getName()%></p></a>
                                         <p class="note"> - <%= Lang.getKey(language, "Author")%>: <a href="" target=""><%= book.getAuthor()%></a></p>
                                     </div>
                                     <div class="box-price">
@@ -153,22 +153,20 @@
                     <form method="post" action="/bookstore/order">
                         <input type="hidden" name="email" value="<%= user.getEmail()%>">
                         <div class="form-c">
-                            <lable class="lb"><%= Lang.getKey(language, "Name")%></lable>
+                            <lable class="lb"><%= Lang.getKey(language, "Name")%> <span class="color-red">(*)</span></lable>
                             <input class="ai" type="text" name="name" value="<%= user.getName()%>" required disabled placeholder=""/>
                         </div>
                         <div class="form-c">
-                            <lable class="lb"><%= Lang.getKey(language, "Address")%></lable>
+                            <lable class="lb"><%= Lang.getKey(language, "Address")%> <span class="color-red">(*)</span></lable>
                             <input class="ai" type="text" name="address" value="<%= profile.getAddress()%>" required  placeholder=""/>
                         </div>
                         <div class="form-c">
-                            <lable class="lb"><%= Lang.getKey(language, "Phone")%></lable>
+                            <lable class="lb"><%= Lang.getKey(language, "Phone")%> <span class="color-red">(*)</span></lable>
                             <input class="ai" type="text" name="phone" value="<%= profile.getPhone()%>" required />
                         </div>
                         <div class="form-c">
                             <lable class="lb"><%= Lang.getKey(language, "Note")%></lable>
-                            <textarea class="ai" rows="5" name="note">
-                            
-                            </textarea>
+                            <textarea class="ai" rows="5" name="note"></textarea>
                         </div>
                         <div class="btn-bot">
                             <button class="btnc" type="submit"><%= Lang.getKey(language, "Confirm")%></button>

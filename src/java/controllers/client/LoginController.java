@@ -37,7 +37,7 @@ public class LoginController extends HttpServlet {
                     response.sendRedirect(request.getContextPath() + "/login");
                 } else {
                     session.setAttribute("email", user.getEmail());
-                    request.getRequestDispatcher("/WEB-INF/client/index.jsp").forward(request, response);
+                    response.sendRedirect("/bookstore");
                 }
             }
         } else {

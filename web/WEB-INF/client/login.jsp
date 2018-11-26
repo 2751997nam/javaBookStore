@@ -35,10 +35,10 @@
                         </div>
                         <%}%>
                         <div>
-                            <input type="text" name="email" class="input-round" placeholder="Email"/>
+                            <input type="email" name="email" class="input-round" placeholder="Email" required/>
                         </div>
                         <div>
-                            <input type="password" name="password" class="input-round" placeholder="Password"/>
+                            <input type="password" name="password" class="input-round" placeholder="Password" required/>
                         </div>
                         <div style="display: flex;">
                             <p style="margin-right: auto;">

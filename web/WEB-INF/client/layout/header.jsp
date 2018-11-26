@@ -19,7 +19,7 @@
                         <span><%=session.getAttribute("email")%></span>
                     </a>
                     <div class="dropdown-content">
-                        <a href="/bookstore/profile"><img src="/bookstore/images/user.png" alt="" class="login">  <%= Lang.getKey(language, "Profile")%></a>
+                        <a href="/bookstore/profile"> <%= Lang.getKey(language, "Profile")%></a>
                         <a href="/bookstore/login?action=logout" class="fa fa-logout">  <%= Lang.getKey(language, "Logout")%></a>
                     </div>
                 </div>

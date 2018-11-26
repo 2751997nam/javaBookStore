@@ -166,3 +166,6 @@ input, select {
 .color-blue {
     color: #3399ff!important;
 }
+.cursor-pointer {
+    cursor: pointer;
+}

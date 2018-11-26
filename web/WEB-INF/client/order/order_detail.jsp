@@ -1,3 +1,4 @@
+<%@page import="models.Order"%>
 <%@page import="models.OrderDetail"%>
 <%@page import="models.Profile"%>
 <%@page import="config.Database"%>
@@ -24,9 +25,9 @@
     <body>
         <%
             List<OrderDetail> items = (List) request.getAttribute("items");
+            Order order = (Order) request.getAttribute("order");
             long total = 0;
-//            Profile profile = (Profile) request.getAttribute("profile");
-           %>
+        %>
         <div class="container">
             <!-- HEADER -->
             <%@include file="../layout/header.jsp" %>
@@ -45,6 +46,12 @@
                     <div class="row" >
                         <% if (!items.isEmpty()) {%>
                         <div class="col-left" id="purchase-left">
+                            <div class="receiver_info">
+                                <lable class="bold"><%= Lang.getKey(language, "Receiver Information")%></lable>
+                                <p class="receiver_name"><%= Lang.getKey(language, "Name")%>: <%= order.user().getName()%></p>
+                                <p class="receiver_phone"><%= Lang.getKey(language, "Phone")%>: <%= order.getPhone()%></p>
+                                <p class="receiver_address"><%= Lang.getKey(language, "Address")%>: <%= order.getAddress()%></p>
+                            </div>
                             <div class="shopping-cart-item">
                                 <div class="info-item full-width">
                                     <div class="box-info-product bold"><%= Lang.getKey(language, "Book Name")%></div>
@@ -104,7 +111,7 @@
                                                 </select>
                                             </form>
                                         </div>
-                                        <p><a href="/bookstore/order/item/delete/<%= item.getId()%>" class="color-red"><%= Lang.getKey(language, "Delete")%></a></p>
+                                        <p><a onclick="showModal(this)" data-id="<%= item.getId()%>" class="color-red cursor-pointer"><%= Lang.getKey(language, "Delete")%></a></p>
                                     </div>
                                     <%} else {%>
                                     <div class="box-price">
@@ -149,5 +156,33 @@
             <%@include file="../layout/footer.jsp" %>
             <!-- HẾT FOOTER -->
         </div>
+        <!--Modal confirm delete-->
+        <div id="deleteModal" class="modal">
+            <div class="modal-content">
+                <div class="model-head">
+                    <span class="close" onClick="hideModal()">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <p><%= Lang.getKey(language, "Do you want to delete this book?")%></p>
+                    <div class="btn-bot">
+                        <a class="btnc" id="link-delete" href="" class="color-red"><%= Lang.getKey(language, "Delete")%></a>
+                        <a class="btnc" onclick="hideModal()"><%= Lang.getKey(language, "Cancel")%></a>
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            function showModal(item) {
+                document.getElementById("deleteModal").style.display = "block";
+                var id = item.getAttribute("data-id");
+                document.getElementById("link-delete").setAttribute("href", "/bookstore/order/item/delete/" + id);
+            }
+            function hideModal() {
+                document.getElementById("deleteModal").style.display = "none";
+            }
+        </script>
     </body>
 </html>

@@ -23,6 +23,9 @@
         <link rel="stylesheet" type="text/css" href="style/client_account.css">
     </head>
     <body>
+        <%
+            Profile profile = (Profile) request.getAttribute("profile");
+        %>
         <div class="container">
             <!-- HEADER TOP : HEADER -->
             <%@include file="layout/header.jsp" %>
@@ -33,15 +36,19 @@
                         <div class="sidebar-wrapper">
                             <div class="sb-top">
                                 <div class="sb-logo">
+                                    <% if (!" ".equals(profile.getAvatar())) {%>
+                                    <img src="<%= profile.showAvatar()%>">
+                                    <% } else { %>
                                     <img src="images/profile.png">
+                                    <% }%>
                                 </div>
                             </div>
                             <div class="sb-body">
                                 <ul class="sb-list">
-                                    <li class="sb-items"><a class="sb-items-link" href="/bookstore/profile"><%= Lang.getKey(language,"User Information")%></a></li>
-                                    <li class="sb-items" id="dropdown"><a class="sb-items-link color-blue" href="/bookstore/change-password"><%= Lang.getKey(language,"Change Password")%></a></li>
-                                    <li class="sb-items"><a class="sb-items-link" href="/bookstore/order"><%= Lang.getKey(language,"Manage Orders")%></a></li>
-                                    <li class="sb-items"><a class="sb-items-link" href=""><%= Lang.getKey(language,"My Feedback")%></a></li>
+                                    <li class="sb-items"><a class="sb-items-link" href="/bookstore/profile"><%= Lang.getKey(language, "User Information")%></a></li>
+                                    <li class="sb-items" id="dropdown"><a class="sb-items-link color-blue" href="/bookstore/change-password"><%= Lang.getKey(language, "Change Password")%></a></li>
+                                    <li class="sb-items"><a class="sb-items-link" href="/bookstore/order"><%= Lang.getKey(language, "Manage Orders")%></a></li>
+                                    <li class="sb-items"><a class="sb-items-link" href=""><%= Lang.getKey(language, "My Feedback")%></a></li>
                                 </ul>
                             </div>
                             <div class="sb-bottom">
@@ -72,7 +79,7 @@
                                 <div class="form-c">
                                     <lable class="lb"><%= Lang.getKey(language, "Old password")%></lable>
                                     <input class="ai" type="password" name="opassword" value="" placeholder="Old password"/>
-                                    <% if(request.getAttribute("error") != null) {%>
+                                    <% if (request.getAttribute("error") != null) {%>
                                     <span class="color-red">wrong!</span>
                                     <%}%>
                                 </div>

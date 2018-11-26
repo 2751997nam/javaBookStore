@@ -33,7 +33,9 @@ public class OrderController extends HttpServlet {
         if (session.getAttribute("email") != null) {
             User user = (User) new DB("users", "User").where("email", "=", session.getAttribute("email") + "").get().get(0);
             List<Order> Orders = new DB("orders", "Order").where("user_id", "=", user.getId() + "").get();
+            Profile profile = (Profile) new DB("profiles", "Profile").where("user_id", "=", user.getId() + "").get().get(0);
             request.setAttribute("orders", Orders);
+            request.setAttribute("profile", profile);
             request.getRequestDispatcher("/WEB-INF/client/order/order.jsp").forward(request, response);
         } else {
             session.removeAttribute("email");

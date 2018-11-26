@@ -5,6 +5,7 @@
  */
 package models;
 
+import config.Database;
 import java.util.HashMap;
 
 /**
@@ -72,4 +73,7 @@ public class Profile extends Model{
         this.gender = gender;
     }
     
+    public String showAvatar() {
+        return  new Database().get("img_path") + this.avatar;
+    }
 }

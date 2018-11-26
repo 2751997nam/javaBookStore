@@ -153,6 +153,12 @@
 }
 .detail_product .col-left img {
     width: 200px;
+    transition: transform .2s;
+}
+.detail_product .col-left img:hover {
+    -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Safari 3-8 */
+    transform: scale(1.5); 
 }
 .detail_product .col-right{
     width: 60%;
@@ -356,11 +362,11 @@
     margin-right: 20px;
 }
 .media-body #change p:first-child a {
-     color: #3399ff;
-     cursor: pointer;
+    color: #3399ff;
+    cursor: pointer;
 }
 .media-body #change p:last-child a {
-     color: red;
+    color: red;
 }
 #edit-form {
     display: none;

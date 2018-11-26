@@ -34,6 +34,11 @@ and open the template in the editor.
     display: flex;
     justify-content: center;
 }
+.sb-logo img {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+}
 .sb-social{
     width: 90%;
     margin-left: auto;

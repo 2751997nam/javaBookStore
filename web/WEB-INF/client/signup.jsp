@@ -40,7 +40,7 @@
                             <input type="text" name="name" class="input-round" placeholder="Name"/>
                         </div>
                         <div>
-                            <input type="text" name="email" class="input-round" placeholder="Email"/>
+                            <input type="email" name="email" class="input-round" placeholder="Email"/>
                         </div>
                         <div>
                             <input type="password" name="password" class="input-round" placeholder="Password" id="password" required/>
