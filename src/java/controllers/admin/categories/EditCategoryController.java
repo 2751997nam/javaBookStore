@@ -58,18 +58,20 @@ public class EditCategoryController extends Controller {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
         if (!this.auth(request)) {
             response.sendRedirect("/bookstore/admin");
             return;
         }
         String id = request.getParameter("id");
         String name = request.getParameter("name");
-        HashMap<String, String>map = new HashMap();
+        HashMap<String, String> map = new HashMap();
         map.put("name", name);
         new DB("categories")
-            .where("id", "=", id)
-            .update(map);
-        
+                .where("id", "=", id)
+                .update(map);
+
         response.sendRedirect("/bookstore/admin/categories");
     }
 }

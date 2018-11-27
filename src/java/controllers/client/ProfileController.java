@@ -19,6 +19,7 @@ import models.database.DB;
 import controllers.Controller;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.Part;
+
 /**
  *
  * @author nguye
@@ -61,6 +62,8 @@ public class ProfileController extends Controller {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
         if (session.getAttribute("email") != null) {
             User user = (User) new DB("users", "User").where("email", "=", (String) session.getAttribute("email")).get().get(0);
             if (user == null) {
@@ -71,7 +74,7 @@ public class ProfileController extends Controller {
                 userMap.put("name", request.getParameter("name"));
                 new DB("users").where("id", "=", user.getId() + "").update(userMap);
             }
-            
+
             HashMap<String, String> map = new HashMap();
             Part part = request.getPart("avatar");
             if (part.getSize() != 0) {

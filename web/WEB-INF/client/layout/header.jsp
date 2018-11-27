@@ -15,7 +15,8 @@
                 </div>
                 <div class="head-user dropdown">
                     <a href="#">
-                        <img src="/bookstore/images/user.jpg" alt="" class="login">
+                        <img src="/bookstore/images/profile.png">
+                        <!--<img src="/bookstore/images/user.jpg" alt="" class="login">-->
                         <span><%=session.getAttribute("email")%></span>
                     </a>
                     <div class="dropdown-content">

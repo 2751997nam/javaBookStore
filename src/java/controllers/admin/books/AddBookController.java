@@ -41,7 +41,7 @@ public class AddBookController extends Controller {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(!this.auth(request)) {
+        if (!this.auth(request)) {
             response.sendRedirect("/bookstore/admin");
             return;
         }
@@ -62,7 +62,9 @@ public class AddBookController extends Controller {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(!this.auth(request)) {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
+        if (!this.auth(request)) {
             response.sendRedirect("/bookstore/admin");
             return;
         }
@@ -75,24 +77,24 @@ public class AddBookController extends Controller {
             map.put("quantity", request.getParameter("quantity"));
             map.put("description", request.getParameter("description"));
             String[] categories = request.getParameterValues("categories");
-            
+
             String image = uploadFile(request);
-            
+
             new DB("books").insert(map);
             Book book = (Book) new DB("books", "Book").orderBy("created_at desc").limit(1).get().get(0);
-            
+
             map = new HashMap<String, String>();
             map.put("link", image);
             map.put("book_id", "" + book.getId());
             new DB("images").insert(map);
-            
-            for(String cate: categories) {
+
+            for (String cate : categories) {
                 map = new HashMap<String, String>();
                 map.put("book_id", "" + book.getId());
                 map.put("category_id", cate);
                 new DB("book_category").insert(map);
             }
-            
+
             response.sendRedirect("/bookstore/admin/books");
         } catch (IOException e) {
             request.setAttribute("errorMessage", "Error: " + e.getMessage());

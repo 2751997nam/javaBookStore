@@ -23,7 +23,6 @@ import models.database.DB;
  */
 public class CommentController extends HttpServlet {
 
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -50,9 +49,13 @@ public class CommentController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        if( session.getAttribute("email") != null) {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
+//        PrintWriter out = response.getWriter();
+//        out.println(request.getParameter("content"));
+        if (session.getAttribute("email") != null) {
             List<User> userList = new DB("users", "User").where("email", "=", session.getAttribute("email") + "").get();
-            if(userList.isEmpty()){
+            if (userList.isEmpty()) {
                 response.sendRedirect("login");
                 return;
             }

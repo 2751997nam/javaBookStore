@@ -29,6 +29,8 @@ public class EditCommentController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
         if (session.getAttribute("email") != null) {
             List<User> userList = new DB("users", "User").where("email", "=", session.getAttribute("email") + "").get();
             if (userList.isEmpty()) {

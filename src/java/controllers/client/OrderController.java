@@ -56,6 +56,8 @@ public class OrderController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
         if (session.getAttribute("email") != null) {
 
             List list = new DB("users", "User").where("email", "=", session.getAttribute("email") + "").get();
