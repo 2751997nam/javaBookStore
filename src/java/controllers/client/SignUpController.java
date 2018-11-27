@@ -43,7 +43,7 @@ public class SignUpController extends HttpServlet {
             mapUser.put("password", password);
             mapUser.put("email", email);
             mapUser.put("remember_token", "");
-            mapUser.put("role_id", 1 + "");
+            mapUser.put("role_id", 2 + "");
             mapUser.put("status", 1 + "");
             new DB("users").insert(mapUser);
             
