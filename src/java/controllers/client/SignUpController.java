@@ -34,6 +34,8 @@ public class SignUpController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
         String email = request.getParameter("email");
         String password = MD5.md5(request.getParameter("password"));
         String name = request.getParameter("name");
@@ -46,7 +48,7 @@ public class SignUpController extends HttpServlet {
             mapUser.put("role_id", 2 + "");
             mapUser.put("status", 1 + "");
             new DB("users").insert(mapUser);
-            
+
             User user = (User) new DB("users", "User").where("email", "=", email).get().get(0);
             DB profileQuery = new DB("profiles");
             HashMap<String, String> mapProfile = new HashMap<>();

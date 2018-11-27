@@ -39,6 +39,8 @@ public class EditBookController extends Controller {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
         if (!this.auth(request)) {
             response.sendRedirect("/bookstore/admin");
             return;
@@ -65,7 +67,7 @@ public class EditBookController extends Controller {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(!this.auth(request)) {
+        if (!this.auth(request)) {
             response.sendRedirect("/bookstore/admin");
             return;
         }

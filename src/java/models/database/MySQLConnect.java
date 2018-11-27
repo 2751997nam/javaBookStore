@@ -28,7 +28,7 @@ public class MySQLConnect {
 	     // Cấu trúc URL Connection đối với MySQL:
 	     // Ví dụ: 
 	     // jdbc:mysql://localhost:3306/simplehr
-	     String connectionURL = "jdbc:mysql://" + hostName + ":3306/" + dbName;
+	     String connectionURL = "jdbc:mysql://" + hostName + ":3306/" + dbName + "?useUnicode=true&characterEncoding=UTF-8";
 	  
 	     Connection conn = DriverManager.getConnection(connectionURL, userName,
 	             password);
