@@ -19,7 +19,7 @@
     </servlet>
     <servlet>
         <servlet-name>ProfileController</servlet-name>
-        <servlet-class>controllers.client.ProfileController</servlet-class>
+        <servlet-class>controllers.client.account.ProfileController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DetailController</servlet-name>
@@ -68,7 +68,7 @@
     </servlet>
     <servlet>
         <servlet-name>ChangePasswordController</servlet-name>
-        <servlet-class>controllers.client.ChangePasswordController</servlet-class>
+        <servlet-class>controllers.client.account.ChangePasswordController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>BookController</servlet-name>

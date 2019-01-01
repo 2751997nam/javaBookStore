@@ -7,6 +7,7 @@ package models;
 
 import java.util.HashMap;
 import models.database.DB;
+import org.json.simple.JSONObject;
 
 /**
  *
@@ -65,5 +66,14 @@ public class Rate extends Model {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("id", this.getId());
+        json.put("user_id", this.user.getId());
+        json.put("book_id", this.book.getId());
+        json.put("star", this.star);
+        json.put("comment", this.comment);
+        return json;
     }
 }

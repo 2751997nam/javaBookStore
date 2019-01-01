@@ -54,7 +54,7 @@ public class SignUpController extends HttpServlet {
             HashMap<String, String> mapProfile = new HashMap<>();
             mapProfile.put("user_id", user.getId() + "");
             mapProfile.put("gender", 1 + "");
-            mapProfile.put("avatar", " ");
+            mapProfile.put("avatar", "profile.png");
             profileQuery.insert(mapProfile);
             Profile profile = (Profile) new DB("profiles", "Profile").where("user_id", "=", user.getId() + "").get().get(0);
             request.setAttribute("user", user);

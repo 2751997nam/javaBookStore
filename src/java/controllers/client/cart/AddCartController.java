@@ -53,7 +53,7 @@ public class AddCartController extends HttpServlet {
                 
                 String book_cart = session.getAttribute("book_cart") + "";
                 
-                if(book_cart.isEmpty()){
+                if(book_cart.isEmpty() || book_cart == null){
                     book_cart = "0";
                 }
                 session.setAttribute("book_cart", (Integer.parseInt(book_cart) + 1) + "");

@@ -20,6 +20,7 @@
         <link rel="stylesheet" type="text/css" href="style/client_style.css">
         <link rel="stylesheet" type="text/css" href="style/client_index.css">
         <link rel="stylesheet" type="text/css" href="style/client_category.css">
+        <link rel="stylesheet" type="text/css" href="style/modal.css">
         <link rel="stylesheet" type="text/css" href="style/client_account.css">
     </head>
     <body>
@@ -78,21 +79,18 @@
                             <div class="account-body">
                                 <div class="form-c">
                                     <lable class="lb"><%= Lang.getKey(language, "Old password")%></lable>
-                                    <input class="ai" type="password" name="opassword" value="" placeholder="Old password"/>
-                                    <% if (request.getAttribute("error") != null) {%>
-                                    <span class="color-red">wrong!</span>
-                                    <%}%>
+                                    <input class="ai" type="password" name="opassword" value="" placeholder="Old password" required/>
                                 </div>
                                 <div class="form-c">
                                     <lable class="lb"><%= Lang.getKey(language, "Password")%></lable>
-                                    <input class="ai" type="password" name="password" value="" placeholder="password" id="password"/>
+                                    <input class="ai" type="password" name="password" value="" placeholder="password" id="password" required/>
                                 </div>
                                 <div class="form-c">
                                     <lable class="lb"><%= Lang.getKey(language, "Comfirm password")%></lable>
                                     <input class="ai" type="password" name="cpassword" value="" placeholder="Comfirm password" id="cpassword"/>
                                 </div>
                                 <div class="form-c">
-                                    <button type="submit" >Save</button>
+                                    <button type="submit" ><%= Lang.getKey(language, "Save")%></button>
                                 </div>
                             </div>
                         </form>
@@ -102,7 +100,28 @@
             <!-- FOOTER -->
             <%@include file="layout/footer.jsp" %>
             <!-- HẾT FOOTER -->
-            <script src="js/validate.js"></script>
         </div>
+        <!--modal show message-->
+        <% if (session.getAttribute("message") != null) {%>
+        <div id="message" class="modal modal-msg">
+            <div class="modal-content">
+                <div class="model-head">
+                    <span class="close" onClick="hideModal()">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <span class="color-red font-weight-bolder"><%= session.getAttribute("message")%></span>
+                        <% session.removeAttribute("message"); %>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <%}%>
+        <script type="text/javascript">
+            function hideModal() {
+                document.getElementById("message").style.display = "none";
+            }
+        </script>
+        <script src="js/validate.js"></script>
     </body>
 </html>

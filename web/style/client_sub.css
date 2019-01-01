@@ -187,7 +187,7 @@
 }
 .col-right .rating-box{
     position: relative;
-    display: inline-block;
+    display: flex;
     cursor: pointer;
 
 }
@@ -203,12 +203,9 @@
 }
 .col-right .price{
     width: 250px;
-    background: url(../images/pricetagproduct.png) no-repeat right 0;
     position: relative;
-    padding: 9px 0 9px 20px;
-    margin: 20px 0 10px -28px;
+    padding: 10px 20px;
     font-size: 30px;
-    text-align: center;
     line-height: 44px;
     color: #ff3425;
 }
@@ -216,7 +213,6 @@
     position: absolute;
     top: -19px;
     left: 25px;
-    background: url(../images/spiral.png) no-repeat right 0;
     height: 50px;
     width: 35px;
 }
@@ -282,7 +278,7 @@
 .addCart li a:hover{
     background-color: #3399ff;
 }
-
+/*comment*/
 #comment{
     margin: 1.5rem 0;
     border: 1px solid rgba(0,0,0,.125);
@@ -297,8 +293,9 @@
 .card-body{
     padding: 1.25rem;
     flex: 1 1 auto;
+    background: white;
 }
-.card-body .form-control{
+.card-body .textareaC {
     display: block;
     width: 100%;
     padding: .375rem .75rem;
@@ -326,6 +323,105 @@
 .clear{
     clear: both;
 }
+
+#rating {
+
+}
+
+#rating .rating-body {
+    background: white;
+    width: 100%;
+    text-align: center;
+    padding: 15px 40px;
+    border-radius: .25rem;
+}
+#rating .rating-body p:first-child {
+    font-size: 15px;
+    color: #4a4a4a;
+}
+#rating .btn-rating {
+    display: flex;
+    justify-content: center;
+}
+#rating button {
+    font-weight: 500;
+    font-size: 13px;
+    height: 40px;
+    background: #fdd22f;
+    border: 0;
+    border-radius: 3px;
+    color: #333;
+    width: 229px;
+    margin-top: 15px;
+}
+#hide-rating {
+    display: none;
+}
+#form-rating {
+    border-top: 0.5px solid darkgray;
+    margin-top: 15px;
+    padding: 15px;
+    display: none;
+}
+#form-rating div:last-child {
+    text-align: right;
+}
+#form-rating .rating-star {
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+}
+#form-rating .rating-star .rating-box {
+    display: flex;
+}
+#form-rating .rating-content {
+    text-align: left;
+    padding: 5px 0;
+}
+#form-rating .rating-content .form-group {
+    text-align: left;
+}
+#form-rating .rating-content .form-group p {
+    font-size: 14px;
+    margin-top: 5px;
+}
+#form-rating .rating-content textarea {
+    height: auto;
+}
+#form-rating button {
+    margin-top: 0;
+}
+/*rate*/
+#rates {
+    margin-top: 10px;
+}
+#rates .rate-item {
+    display: flex;
+    border-top: 0.5px solid darkgray;
+    padding: 10px 0;
+}
+#rates .rate-item .rate-r {
+    text-align: left;
+    width: 90%;
+    padding: 10px;
+    line-height: 25px;
+}
+#rates .rate-item .rate-l {
+    width: 10%;
+}
+#rates .rate-item .rate-l .rate-img {
+    display: flex;
+    justify-content: center;
+    padding: 5px 0;
+}
+#rates .rate-item .rate-l img {
+    margin: 0;
+}
+#rates .rate-item .rate-r .rate-rt {
+    display: flex;
+    align-items: center;
+}
+/*media*/
 #media{
     display: flex;
     align-items: flex-start;
@@ -872,4 +968,12 @@
 .full-width {
     width: 100%;
 }
-
+/*star*/
+.rating-box .stars {
+    display: flex;
+    padding: 2px 5px;
+    cursor: pointer;
+}
+.white-star {
+    display: none;
+}

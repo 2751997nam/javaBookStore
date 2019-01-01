@@ -4,8 +4,10 @@
     Author     : nguye
 --%>
 
+<%@page import="models.Rate"%>
 <%@page import="models.Comment"%>
 <%@page import="config.Lang"%>
+<%@page import="controllers.TimeController"%>
 <%@page import="java.util.List"%>
 <%@page import="config.Database"%>
 <%@page import="models.Book"%>
@@ -25,13 +27,14 @@
         <link rel="stylesheet" type="text/css" href="../style/client_reset.css">
         <link rel="stylesheet" type="text/css" href="../style/client_index.css">
         <link rel="stylesheet" type="text/css" href="../style/client_account.css">
-
+        <link rel="stylesheet" type="text/css" href="style/modal.css">
     </head>
     <body>
         <%
             Book book = (Book) request.getAttribute("book");
             List<Book> top_sell = (List) request.getAttribute("top_sell");
             List<Comment> comments = (List) request.getAttribute("comments");
+            List<Rate> rates = (List) request.getAttribute("rates");
         %>
         <div class="container">
             <!-- HEADER TOP : HEADER -->
@@ -73,7 +76,7 @@
                                 <div class="row1">
                                     <form action="/bookstore/add-cart" method="post">
                                         <div class="quantity">
-                                            <input name="book_id" type="hidden" value="<%= book.getId()%>"/>
+                                            <input id="book_id" name="book_id" type="hidden" value="<%= book.getId()%>"/>
                                             <div class="button-group">
                                                 <p><%= Lang.getKey(language, "Quantity")%></p>
                                                 <select class="number" name="quantity">
@@ -117,14 +120,13 @@
                             </div>
                         </div>
 
-
                         <div id="comment">
-                            <p class="card-head"><%= Lang.getKey(language, "Comments")%></p>
+                            <p class="card-head"><%= Lang.getKey(language, "Comments")%> ( <%= Lang.getKey(language, "Your questions,...")%> )</p>
                             <div class="card-body">
                                 <form action="/bookstore/comment" method="post">
                                     <div class="form-group">
                                         <input type="hidden" name="book_id" value="<%= book.getId()%>"/>
-                                        <textarea class="form-control" rows="3" name="content" required></textarea>
+                                        <textarea class="form-control textareaC" rows="3" name="content" required></textarea>
                                     </div>
                                     <button type="submit" class="btn-submit"><%= Lang.getKey(language, "Submit")%></button>
                                 </form>
@@ -134,7 +136,7 @@
                             <div class="row" id="media">
                                 <img src="http://placehold.it/50x50" class="rounded-circle">
                                 <div class="media-body">
-                                    <p class="commenter"><span><%= comment.getUser().getName()%></span><span class="margin-auto"></span><span class="text-time"><%= comment.getCreated_at()%></span></p>
+                                    <p class="commenter"><span class="text-time"><%= comment.getUser().getName()%></span><span class="margin-auto"></span><span class="text-time"><%= TimeController.showTime(comment.getCreated_at())%></span></p>
                                     <p class="text-comment content-edit"><%= comment.getContent()%></p>
                                     <% if ((session.getAttribute("email") == null ? "" : session.getAttribute("email")).equals(comment.getUser().getEmail())) {%>
                                     <div id="change">
@@ -145,7 +147,7 @@
                                         <form action="/bookstore/comment/edit" method="post">
                                             <div class="form-group">
                                                 <input type="hidden" name="id" value="<%= comment.getId()%>"/>
-                                                <textarea class="form-control" rows="3" name="content" required><%= comment.getContent()%></textarea>
+                                                <textarea class="form-control textareaC" rows="3" name="content" required><%= comment.getContent()%></textarea>
                                             </div>
                                             <button type="submit" class="btn-submit"><%= Lang.getKey(language, "Submit")%></button>
                                         </form>
@@ -154,8 +156,100 @@
                                 </div>
                             </div>
                             <%}%>
+                            <% if (comments.size() == 3) {%>
+                            <div>
+                                <a href="#"><%= Lang.getKey(language, "see more")%></a>
+                            </div>
+                            <% } %>
                             <% }%>
+                        </div>
 
+                        <div id="rating">
+                            <h3 class="section-name"><%= Lang.getKey(language, "CUSTOMER FEEDBACKS")%></h3>
+                            <div class="rating-body">
+                                <p><%= Lang.getKey(language, "Share your review")%></p>
+                                <div class="btn-rating">
+                                    <button id="show-rating" onclick="showRating(this)"><%= Lang.getKey(language, "Write your review")%></button>
+                                    <button id="hide-rating" onclick="hideRating(this)"><%= Lang.getKey(language, "Close")%></button>
+                                </div>
+                                <div id="form-rating">
+                                    <input type="hidden" id="countStar" name="star" value="5">
+                                    <input type="hidden" name="id">
+                                    <div class="rating-star">
+                                        <p>1. <%= Lang.getKey(language, "Your rating of this product")%>:</p>
+                                        <div class="rating">
+                                            <div class="rating-box">
+                                                <div class="stars" onclick="setStars(1)" onmousemove="moveoverStar(1)" onmouseout="clearMove()">
+                                                    <span class="star"><img src="../images/star.png"></span>
+                                                    <span class="white-star"><img src="../images/starwhite.png"></span>
+                                                </div>
+                                                <div class="stars" onclick="setStars(2)" onmousemove="moveoverStar(2)" onmouseout="clearMove()">
+                                                    <span class="star"><img src="../images/star.png"></span>
+                                                    <span class="white-star"><img src="../images/starwhite.png"></span>
+                                                </div>
+                                                <div class="stars" onclick="setStars(3)" onmousemove="moveoverStar(3)" onmouseout="clearMove()">
+                                                    <span class="star"><img src="../images/star.png"></span>
+                                                    <span class="white-star"><img src="../images/starwhite.png"></span>
+                                                </div>
+                                                <div class="stars" onclick="setStars(4)" onmousemove="moveoverStar(4)" onmouseout="clearMove()">
+                                                    <span class="star"><img src="../images/star.png"></span>
+                                                    <span class="white-star"><img src="../images/starwhite.png"></span>
+                                                </div>
+                                                <div class="stars" onclick="setStars(5)" onmousemove="moveoverStar(5)" onmouseout="clearMove()">
+                                                    <span class="star"><img src="../images/star.png"></span>
+                                                    <span class="white-star"><img src="../images/starwhite.png"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="rating-content">
+                                        <p>2. <%= Lang.getKey(language, "Write your review below")%>:</p>
+                                        <br>
+                                        <div class="form-group">
+                                            <textarea class="form-control" id="review-content" rows="3" name="review-content" required></textarea>
+                                            <p class="color-red error"></p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button class="submit-rating" onclick="sendReview()"><%= Lang.getKey(language, "Send")%></button>   
+                                    </div>
+                                </div>
+                                <div id="rates">
+                                    <% if (!rates.isEmpty()) { %>
+                                        <% for (Rate rate : rates) {%>
+                                            <div class="rate-item">
+                                                <div class="rate-l">
+                                                    <div class="rate-img">
+                                                        <img src="http://placehold.it/60x60" class="rounded-circle">
+                                                    </div>
+                                                    <p><%= rate.getUser().getName() %></p>
+                                                </div>
+                                                <div class="rate-r">
+                                                    <div class="rate-rt">
+                                                        <div class="item-rating">
+                                                            <p class="rating">
+                                                                <span class="rating-box">
+                                                                    <% for (int i = 1; i <= 5; i++ ) {
+                                                                        if (i <= rate.getStar()) {
+                                                                    %>
+                                                                            <i><img src="../images/star.png"></i>
+                                                                        <% } else {%>
+                                                                        <i><img src="../images/starwhite.png"></i>
+                                                                        <% } %>
+                                                                    <% } %>
+                                                                </span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="rate-rb">
+                                                        <p class="comment"><%= rate.getComment() %></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <% } %>
+                                    <% } %>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="other_products">
@@ -183,15 +277,34 @@
                 </div>
                 <div class="clear"></div>
             </div>
-
             <!-- FOOTER -->
             <%@include file="layout/footer.jsp" %>
-            <script>
-                function showEdit() {
-                    document.getElementById("change").style.display = "none";
-                    document.getElementById("edit-form").style.display = "block";
-//                    document.getElementsByClassName("content-edit")[0].style.display = "none";
-                }
-            </script>
-    </body>
+            <!--end footer-->
+
+            <!--modal show message-->
+            <div id="message" class="modal modal-msg" style="display: none;">
+                <div class="modal-content">
+                    <div class="model-head">
+                        <span class="close" onClick="hideModal()">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <p class="color-red font-weight-bolder"
+
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!--js-->
+        <script src="../js/app.js"></script>
+        <script>
+                        function hideModal() {
+                            document.getElementById("message").style.display = "none";
+                        }
+                        function showEdit() {
+                            document.getElementById("change").style.display = "none";
+                            document.getElementById("edit-form").style.display = "block";
+                        }
+        </script>
+        <script src="../js/star_rating.js"></script>
+</body>
 </html>
