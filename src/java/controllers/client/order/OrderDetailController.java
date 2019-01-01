@@ -30,6 +30,8 @@ public class OrderDetailController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
         if (session.getAttribute("email") != null) {
             List<User> listUser = new DB("users", "User").where("email", "=", session.getAttribute("email") + "").get();
             if (listUser.isEmpty()) {
@@ -43,7 +45,7 @@ public class OrderDetailController extends HttpServlet {
 //            v có nghĩa là chỉ cho xem, vì order đã được giao
             if ("v".equals(action)) {
                 action = "view";
-                paramater = request.getPathInfo().substring(1, request.getPathInfo().length() -1 );
+                paramater = request.getPathInfo().substring(1, request.getPathInfo().length() - 1);
             }
             Order order = (Order) new DB("orders", "Order").where("id", "=", paramater).get().get(0);
             List<OrderDetail> items = (List) new DB("order_details", "OrderDetail").where("order_id", "=", paramater).get();
@@ -65,7 +67,7 @@ public class OrderDetailController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-               HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
         if (session.getAttribute("email") != null) {
             HashMap<String, String> item = new HashMap();
             item.put("quantity", Integer.parseInt(request.getParameter("quantity")) + "");

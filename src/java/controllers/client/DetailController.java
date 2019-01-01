@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import models.Book;
 import models.Comment;
+import models.Rate;
 import models.database.DB;
 
 /**
@@ -39,11 +40,13 @@ public class DetailController extends HttpServlet {
         String id = request.getPathInfo().replace("/", "");
 
         Book book = (Book) new DB("books", "Book").where("id", "=", id).get().get(0);
-        List<Comment> comments = new DB("comments", "Comment").where("book_id", "=", book.getId() + "").get();
+        List<Comment> comments = new DB("comments", "Comment").where("book_id", "=", book.getId() + "").limit(3).get();
+        List<Rate> rates = new DB("rates", "Rate").where("book_id", "=", book.getId() + "").limit(3).get();
         List<Book> top_sell = new Book().topSell(5);
 
         request.setAttribute("book", book);
         request.setAttribute("comments", comments);
+        request.setAttribute("rates", rates);
         request.setAttribute("top_sell", top_sell);
         dispatcher.forward(request, response);
     }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers.client;
+package controllers.client.account;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -60,14 +60,16 @@ public class ChangePasswordController extends HttpServlet {
             HashMap<String, String> map = new HashMap<>();
             String oldPW = MD5.md5(request.getParameter("opassword"));
             if (!oldPW.equals(user.getPassword() + "")) {
-                request.setAttribute("error", "Wrong");
-                request.getRequestDispatcher("/WEB-INF/client/change_password.jsp").forward(request, response);
+                session.setAttribute("message", "Your password is wrong!!!");
+                response.sendRedirect(request.getHeader("Referer"));
                 return;
             }
             map.put("password", MD5.md5(request.getParameter("password")));
             new DB("users").where("email", "=", user.getEmail()).update(map);
+            session.setAttribute("message", "Success");
             request.setAttribute("user", user);
             response.sendRedirect(request.getHeader("Referer"));
+            return;
         } else {
             response.sendRedirect(request.getContextPath() + "");
         }

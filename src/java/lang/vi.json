@@ -49,7 +49,7 @@
     "see more": "xem thêm",
     "Update every hour new books on our Website": "Cập nhật hàng giờ nhưng sách mới",
     "NEW UPDATE": "CẬP NHẬT MỚI",
-    "Commnents": "Để Lại Bình Luận Của Bạn",
+    "Comments": "Bình Luận",
     "Introduction": "GIỚI THIỆU VỀ SÁCH",
     "Add To Cart": "Thêm Vào Giỏ",
     "Business & Investing" : "Sách Kinh Doanh",
@@ -110,5 +110,15 @@
     "Save" : "Lưu",
     "Gender" : "Giới Tính",
     "Receiver Information" : "Thông Tin Người Nhận",
-    "Upload Avatar" : "Tải Ảnh Lên"
+    "Upload Avatar" : "Tải Ảnh Lên",
+    "Male" : "Nam",
+    "Female" : "Nữ",
+    "Your questions,..." : "Các câu hỏi, thắc mắc...",
+    "CUSTOMER FEEDBACKS" : "KHÁCH HÀNG PHẢN HỒI",
+    "Share your review" : "Chia sẻ nhận xét về sản phẩm",
+    "Write your review" : "Viết đánh giá",
+    "Close": "Đóng", 
+    "Your rating of this product" : "Đánh giá về sản phẩm này",
+    "Write your review below" : "Viết đánh giá của bạn dưới đây",
+    "Send" : "Gửi"
 }

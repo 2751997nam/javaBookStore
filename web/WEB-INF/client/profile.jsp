@@ -43,11 +43,7 @@
                         <div class="sidebar-wrapper">
                             <div class="sb-top">
                                 <div class="sb-logo">
-                                    <% if (!" ".equals(profile.getAvatar())) {%>
                                     <img src="<%= profile.showAvatar()%>">
-                                    <% } else { %>
-                                    <img src="images/profile.png">
-                                    <% }%>
                                 </div>
                             </div>
                             <div class="sb-body">
@@ -103,8 +99,8 @@
                                 <div class="form-c">
                                     <lable class="lb"><%= Lang.getKey(language, "Gender")%></lable>
                                     <div class="row">
-                                        <div class="col-4"><input type="radio" name="gender" value="male" class="gender" <%= profile.getGender() == 1 ? "Checked" : ""%> ><span>Nam</span></div>
-                                        <div class="col-4"><input type="radio" name="gender" value="female" class="gender" <%= profile.getGender() == 0 ? "Checked" : ""%> ><span>Nữ</span></div>
+                                        <div class="col-4"><input type="radio" name="gender" value="male" class="gender" <%= profile.getGender() == 1 ? "Checked" : ""%> ><span><%= Lang.getKey(language, "Male")%></span></div>
+                                        <div class="col-4"><input type="radio" name="gender" value="female" class="gender" <%= profile.getGender() == 0 ? "Checked" : ""%> ><span><%= Lang.getKey(language, "Female")%></span></div>
                                     </div>
                                 </div>
                                 <div class="form-c">

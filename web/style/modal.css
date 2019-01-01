@@ -113,3 +113,15 @@ and open the template in the editor.
     padding: 20px;
     text-align: center;
 }
+/*message modal*/
+.modal-msg {
+    display: block;
+    padding-top: 100px;
+}
+.modal-msg .modal-content {
+    height: 130px;
+    width: 300px;
+}
+.modal-msg .modal-body  p {
+    text-align: center;
+}
