@@ -1,3 +1,4 @@
+<%@page import="java.util.Calendar"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="models.Category"%>
 <%@page import="java.util.List"%>
@@ -24,14 +25,19 @@
         <div class="content">
             <%@include file="sidebar.jsp" %>
             <div class="content-right-data">
+                <h3 class="text-center text-danger"><%= Lang.getKey(language, "Revenue Each Month In Year: ")%><%= Calendar.getInstance().get(Calendar.YEAR) %></h3>
                 <table>
                     <tbody>
                         <tr style="height: 500px">
                             <% ArrayList<HashMap<String, String>> revenues
                                         = (ArrayList<HashMap<String, String>>) request.getAttribute("revenues");
                                 int size = revenues.size();
-                                long total = Long.parseLong(revenues.get(size - 1).get("revenue"));
-                                int first = Integer.parseInt(revenues.get(0).get("month"));
+                                long total = 0;
+                                long first = 0;
+                                if(size > 0) {
+                                    total = Long.parseLong(revenues.get(size - 1).get("revenue"));
+                                    first = Integer.parseInt(revenues.get(0).get("month"));
+                                }
                             %>
                             
                             <% for (int i = 1; i < first; i++) {%>
